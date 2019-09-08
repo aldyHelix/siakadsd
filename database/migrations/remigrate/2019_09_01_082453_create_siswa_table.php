@@ -9,7 +9,7 @@ class CreateSiswaTable extends Migration {
 	{
 		Schema::create('siswa', function(Blueprint $table) {
 			$table->increments('id_siswa');
-			$table->integer('id_kelas')->unsigned()->nullable();
+			$table->integer('id_kelas');
 			$table->string('nama_lengkap');
 			$table->enum('jenis_kelamin', array('Laki-Laki', 'Perempuan'));
 			$table->string('INDUK');

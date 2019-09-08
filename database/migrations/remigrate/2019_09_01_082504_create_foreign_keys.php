@@ -9,9 +9,10 @@ class CreateForeignKeys extends Migration {
 	public function up()
 	{
 		Schema::table('siswa', function(Blueprint $table){
+			$table->integer('id_kelas')->unsigned();
 			$table->foreign('id_kelas')->references('id_kelas')->on('kelas')
-						->onDelete('cascade')
-						->onUpdate('cascade');
+			->onDelete('cascade')
+			->onUpdate('cascade')
 		});
 		Schema::table('kelas', function(Blueprint $table) {
 			$table->foreign('id_guru')->references('id_guru')->on('guru_karyawan')
@@ -105,8 +106,8 @@ class CreateForeignKeys extends Migration {
 		});
 		Schema::table('kelas_siswa', function(Blueprint $table) {
 			$table->foreign('id_kelas')->references('id_kelas')->on('kelas')
-						->onDelete('cascade')
-						->onUpdate('cascade');
+						->onDelete('restrict')
+						->onUpdate('restrict');
 		});
 		Schema::table('ekskul_siswa', function(Blueprint $table) {
 			$table->foreign('id_siswa')->references('id_siswa')->on('siswa')

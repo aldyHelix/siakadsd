@@ -9,9 +9,9 @@ class CreateEkskulSiswaTable extends Migration {
 	{
 		Schema::create('ekskul_siswa', function(Blueprint $table) {
 			$table->increments('id');
-			$table->timestamps();
 			$table->integer('id_siswa')->unsigned();
 			$table->integer('id_ekskul')->unsigned();
+			$table->timestamps();
 		});
 	}
 
