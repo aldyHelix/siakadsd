@@ -11,7 +11,7 @@
                         </div>
                         <div class="col-lg-2 pull-right">
                             <a href="{{route('siswa.create')}}">
-                                <button type="button" class="btn btn-primary waves-effect">
+                                <button type="button" class="btn btn-primary waves-effect" toggle="tooltip" data-placement="top" title="Tambah Data Siswa">
                                 <i class="material-icons">person_add</i>
                                 <span>Tambah Siswa</span>
                             </button>
@@ -19,6 +19,7 @@
                         </div>
                     </div>
                 </div>
+                @include('layouts.flash-message')
                 <div class="body table-responsive">
                     <table class="table table-hover">
                         <thead>
@@ -45,21 +46,27 @@
                                 @else 
                                     <td>P</td>
                                 @endif
-                                <td>{{!empty($siswas->kelas->nama_kelas) ? $siswas->kelas->nama_kelas : '-'}}</td>
+                                <td>{{!empty($siswas->current_kelas->nama_kelas) ? $siswas->current_kelas->nama_kelas : '-'}}</td>
                                 <td>{{$siswas->tempat_lahir}},{{$siswas->tgl_lahir}}</td>
                                 <td>
-                                        <button type="button" class="btn btn-primary btn-circle waves-effect waves-circle waves-float" data-toggle="modal" data-target="#smallModal{{$no}}">
+                                        <button type="button" class="btn btn-primary btn-circle waves-effect waves-circle waves-float" data-toggle="modal" data-target="#smallModal{{$no}}" toggle="tooltip" data-placement="top" title="Naikkan Kelas Siswa">
                                             <i class="material-icons">plus_one</i>
                                         </button>
-                                        <button type="button" class="btn btn-primary btn-circle waves-effect waves-circle waves-float">
+                                    <a href="{{route('siswa.show', $siswas->id_siswa)}}">
+                                        <button type="button" class="btn btn-primary btn-circle waves-effect waves-circle waves-float" toggle="tooltip" data-placement="top" title="Detail Data">
                                             <i class="material-icons">more_horiz</i>
-                                        </button>
-                                        <button type="button" class="btn btn-info btn-circle waves-effect waves-circle waves-float">
+                                        </button>                                        
+                                    </a> 
+                                    <a href="">
+                                        <button type="button" class="btn btn-info btn-circle waves-effect waves-circle waves-float" toggle="tooltip" data-placement="top" title="Ubah Data">
                                             <i class="material-icons">edit</i>
                                         </button>
-                                        <button type="button" class="btn btn-danger btn-circle waves-effect waves-circle waves-float">
+                                    </a>
+                                    <a href="">
+                                        <button type="button" class="btn btn-danger btn-circle waves-effect waves-circle waves-float" toggle="tooltip" data-placement="top" title="Hapus Data">
                                             <i class="material-icons">delete</i>
                                         </button>
+                                    </a>
                                 </td>
                             </tr>
                             @endforeach
@@ -78,15 +85,17 @@
                     <div class="modal-header">
                         <h4 class="modal-title" id="smallModalLabel">{{$siswas->nama_lengkap}}</h4>
                     </div>
+                    {!! Form::open(['route' => 'siswa.naikkelas', 'enctype' => 'multipart/form-data']) !!}
                     <div class="modal-body">
-                        Siswa akan dinaikan Kelas dari {{!empty($siswas->kelas->nama_kelas) ? $siswas->kelas->nama_kelas : '-'}} ke
+                        Siswa akan dinaikan Kelas dari {{!empty($siswas->current_kelas->nama_kelas) ? $siswas->current_kelas->nama_kelas : '-'}} ke
                         <div class="row clearfix">
                         <div class="col-sm-12">
-                                {{-- form class --}}
+                                {{-- form class --}} 
                                 <div class="form-group">
                                     <div class="form-line">
+                                        {{ Form::hidden('id_siswa', $siswas->id_siswa) }}
                                         @if(!empty($kelas))
-                                        <select class="form-control show-tick">
+                                        <select name="id_kelas" class="form-control show-tick">
                                             <option value="">-- Pilih Kelas --</option>
                                             @foreach ($kelas as $item)
                                             <option value="{{$item->id_kelas}}">{{$item->nama_kelas}} ({{$item->tahun_ajaran}})</option>    
@@ -102,9 +111,10 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-link waves-effect">SIMPAN</button>
+                        {!! Form::submit('SIMPAN', ['class'=>'btn btn-link waves-effect']) !!}
                         <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
-                    </div>
+                    </div>  
+                    {!! Form::close() !!}
                 </div>
             </div>
         </div>
