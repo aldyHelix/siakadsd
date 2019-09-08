@@ -17,6 +17,7 @@ Route::get('/', function () {
 
 Route::get('/home', 'FrontController@homeView');
 Route::get('/halaman-utama', 'DashboardController@index')->name('halaman-utama');
+Route::post('/siswa/naikkela', 'SiswaController@naikkelas')->name('siswa.naikkelas');
 
 
 Route::resource('siswa', 'SiswaController');

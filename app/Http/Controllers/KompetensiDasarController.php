@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use App\KompetensiDasar;
 use Illuminate\Http\Request;
-
+use App\MataPel;
 class KompetensiDasarController extends Controller 
 {
 
@@ -25,7 +25,8 @@ class KompetensiDasarController extends Controller
    */
   public function create()
   {
-      return view('kd.kd-tambah');
+      $matapel = MataPel::get();
+      return view('kd.kd-tambah', compact('matapel'));
   }
 
   /**
