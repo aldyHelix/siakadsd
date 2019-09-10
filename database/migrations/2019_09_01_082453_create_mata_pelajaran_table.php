@@ -9,11 +9,12 @@ class CreateMataPelajaranTable extends Migration {
 	{
 		Schema::create('mata_pelajaran', function(Blueprint $table) {
 			$table->increments('id_mata_pelajaran');
-			$table->timestamps();
 			$table->integer('id_guru')->unsigned();
 			$table->integer('kelas');
 			$table->string('nama_mata_pelajaran');
 			$table->integer('kkm');
+			$table->boolean('is_kelas')->nullable()->default(false);
+			$table->timestamps();
 		});
 	}
 

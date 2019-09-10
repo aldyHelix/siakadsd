@@ -9,7 +9,6 @@ class CreateCatatanSiswaTable extends Migration {
 	{
 		Schema::create('catatan_siswa', function(Blueprint $table) {
 			$table->increments('id_catatan');
-			$table->timestamps();
 			$table->integer('id_nilai_siswa')->unsigned();
 			$table->integer('absensi_sakit');
 			$table->integer('absensi_ijin');
@@ -21,6 +20,7 @@ class CreateCatatanSiswaTable extends Migration {
 			$table->text('kesehatan_gigi');
 			$table->text('kesehatan_lainnya');
 			$table->text('prestasi_akademik');
+			$table->timestamps();
 		});
 	}
 

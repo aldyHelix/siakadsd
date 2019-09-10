@@ -9,7 +9,6 @@ class CreatePrestasiTable extends Migration {
 	{
 		Schema::create('prestasi', function(Blueprint $table) {
 			$table->increments('id_prestasi');
-			$table->timestamps();
 			$table->integer('id_siswa')->unsigned();
 			$table->string('nama_prestasi');
 			$table->text('saran_saran');
@@ -18,6 +17,7 @@ class CreatePrestasiTable extends Migration {
 			$table->string('penyelenggara');
 			$table->string('peringkat');
 			$table->string('foto_prestasi');
+			$table->timestamps();
 		});
 	}
 

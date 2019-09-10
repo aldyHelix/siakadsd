@@ -9,7 +9,8 @@ class CreateNilaiHarianKi3Table extends Migration {
 	{
 		Schema::create('nilai_harian_ki3', function(Blueprint $table) {
 			$table->increments('id_nilai_ki3');
-			$table->timestamps();
+			$table->integer('id_nilai_siswa')->unsigned();
+			$table->integer('id_kompetensi_dasar')->unsigned();
 			$table->integer('p1lisan');
 			$table->integer('p1tulis');
 			$table->integer('p1tugas1');
@@ -40,8 +41,7 @@ class CreateNilaiHarianKi3Table extends Migration {
 			$table->integer('NPAS2');
 			$table->integer('nilai_kd');
 			$table->text('deskripsi');
-			$table->integer('id_nilai_siswa')->unsigned();
-			$table->integer('id_kompetensi_dasar')->unsigned();
+			$table->timestamps();
 		});
 	}
 

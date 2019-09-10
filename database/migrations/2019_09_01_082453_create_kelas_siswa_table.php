@@ -9,9 +9,9 @@ class CreateKelasSiswaTable extends Migration {
 	{
 		Schema::create('kelas_siswa', function(Blueprint $table) {
 			$table->increments('id');
-			$table->timestamps();
 			$table->integer('id_siswa')->unsigned();
 			$table->integer('id_kelas')->unsigned();
+			$table->timestamps();
 		});
 	}
 

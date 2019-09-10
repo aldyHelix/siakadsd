@@ -9,7 +9,6 @@ class CreateNilaiSpiritualTable extends Migration {
 	{
 		Schema::create('nilai_spiritual', function(Blueprint $table) {
 			$table->increments('id_nilai_spiritual');
-			$table->timestamps();
 			$table->integer('id_nilai_siswa')->unsigned();
 			$table->string('nama_nilai_spiritual');
 			$table->integer('ketaatan_ibadah_sb');
@@ -21,6 +20,7 @@ class CreateNilaiSpiritualTable extends Migration {
 			$table->integer('toleransi_beribadah_sb');
 			$table->integer('toleransi_beribadah_pb');
 			$table->text('deskripsi_raport');
+			$table->timestamps();
 		});
 	}
 

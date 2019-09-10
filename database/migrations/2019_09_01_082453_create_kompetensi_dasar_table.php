@@ -9,13 +9,13 @@ class CreateKompetensiDasarTable extends Migration {
 	{
 		Schema::create('kompetensi_dasar', function(Blueprint $table) {
 			$table->increments('id_kompetensi_dasar');
-			$table->timestamps();
 			$table->integer('id_mapel')->unsigned();
 			$table->string('kelompok_indikator');
 			$table->integer('no_indikator');
 			$table->text('keterangan_kompetensi_dasar');
 			$table->integer('kelas');
 			$table->integer('semester');
+			$table->timestamps();
 		});
 	}
 

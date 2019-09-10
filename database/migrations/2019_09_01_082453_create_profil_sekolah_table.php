@@ -9,7 +9,6 @@ class CreateProfilSekolahTable extends Migration {
 	{
 		Schema::create('profil_sekolah', function(Blueprint $table) {
 			$table->integer('npsn')->unique();
-			$table->timestamps();
 			$table->integer('id_kepala_sekolah')->unsigned();
 			$table->string('nama_sekolah');
 			$table->string('status');
@@ -27,6 +26,7 @@ class CreateProfilSekolahTable extends Migration {
 			$table->string('negara');
 			$table->string('lat')->nullable();
 			$table->string('long')->nullable();
+			$table->timestamps();
 		});
 	}
 

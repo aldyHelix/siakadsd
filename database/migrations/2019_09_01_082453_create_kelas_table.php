@@ -9,12 +9,11 @@ class CreateKelasTable extends Migration {
 	{
 		Schema::create('kelas', function(Blueprint $table) {
 			$table->increments('id_kelas');
-			$table->timestamps();
 			$table->string('nama_kelas');
 			$table->integer('semester');
 			$table->string('tahun_ajaran');
-			$table->integer('jumlah_siswa');
 			$table->integer('id_guru')->unsigned();
+			$table->timestamps();
 		});
 	}
 

@@ -9,11 +9,11 @@ class CreateEkstrakulikulerTable extends Migration {
 	{
 		Schema::create('ekstrakulikuler', function(Blueprint $table) {
 			$table->increments('id_ekskul');
-			$table->timestamps();
 			$table->string('nama_ekskul');
 			$table->string('nama_pengajar');
+			$table->string('hari_mengajar');
 			$table->time('jam_mengajar');
-			$table->integer('jumlah_peserta');
+			$table->timestamps();
 		});
 	}
 

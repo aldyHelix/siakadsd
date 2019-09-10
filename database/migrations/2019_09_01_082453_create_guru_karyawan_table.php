@@ -9,10 +9,9 @@ class CreateGuruKaryawanTable extends Migration {
 	{
 		Schema::create('guru_karyawan', function(Blueprint $table) {
 			$table->increments('id_guru');
-			$table->timestamps();
 			$table->string('nama');
-			$table->string('NIP');
-			$table->string('NUPTK');
+			$table->string('NIP')->nullable();
+			$table->string('NUPTK')->nullable();
 			$table->string('tempat_lahir');
 			$table->string('status_guru');
 			$table->string('golongan');
@@ -24,6 +23,7 @@ class CreateGuruKaryawanTable extends Migration {
 			$table->string('tipe_guru');
 			$table->date('tgl_lahir');
 			$table->string('foto_guru')->nullable();
+			$table->timestamps();
 		});
 	}
 
