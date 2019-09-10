@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Siswa;
 use App\Kelas;
 use App\KelasSiswa;
+use App\Prestasi;
 use Illuminate\Http\Request;
 use Validator;
 
@@ -92,8 +93,9 @@ class SiswaController extends Controller
    */
   public function show($id)
   {
+    $prestasi = Prestasi::find($id);
     $siswa = Siswa::findOrFail($id);
-    return view('siswa.siswa-detail', compact('siswa'));
+    return view('siswa.siswa-detail', compact('siswa','prestasi'));
   }
 
   /**

@@ -28,7 +28,7 @@ class Siswa extends Model
 
     public function prestasi()
     {
-        return $this->hasMany('App\Prestasi', 'id_prestasi');
+        return $this->hasMany('App\Prestasi', 'id_siswa');
     }
 
     public function nilai_siswa()

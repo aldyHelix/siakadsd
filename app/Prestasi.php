@@ -8,6 +8,7 @@ class Prestasi extends Model
 {
 
     protected $table = 'prestasi';
+    protected $primaryKey = 'id_prestasi';
     public $timestamps = true;
     protected $fillable = array('id_siswa', 'nama_prestasi', 'saran_saran', 'tahun_prestasi', 'jenis_prestasi', 'penyelenggara', 'peringkat', 'foto_prestasi');
 
