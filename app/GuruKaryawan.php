@@ -10,7 +10,7 @@ class GuruKaryawan extends Model
     protected $table = 'guru_karyawan';
     protected $primaryKey = 'id_guru';
     public $timestamps = true;
-    protected $fillable = array('nama', 'NIP', 'NUPTK', 'tempat_lahir', 'status_guru', 'golongan', 'pendidikan_terakhir', 'jenis_kelamin', 'jabatan', 'alamat', 'tipe_guru', 'tgl_lahir', 'foto_guru');
+    protected $fillable = array('nama', 'NIP', 'NUPTK', 'tempat_lahir', 'agama', 'status_guru', 'golongan', 'pendidikan_terakhir', 'jenis_kelamin', 'jabatan', 'alamat', 'tipe_guru', 'tgl_lahir', 'foto_guru');
 
     public function kelas()
     {

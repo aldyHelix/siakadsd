@@ -152,6 +152,9 @@ class CreateForeignKeys extends Migration {
 		Schema::table('nilai_siswa', function(Blueprint $table) {
 			$table->dropForeign('nilai_siswa_id_kelas_foreign');
 		});
+		Schema::table('nilai_siswa', function(Blueprint $table) {
+			$table->dropForeign('nilai_siswa_id_kelas_siswa_foreign');
+		});
 		Schema::table('nilai_harian_ki3', function(Blueprint $table) {
 			$table->dropForeign('nilai_harian_ki3_id_nilai_siswa_foreign');
 		});

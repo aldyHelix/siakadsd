@@ -10,7 +10,7 @@ class MataPel extends Model
     protected $table = 'mata_pelajaran';
     protected $primaryKey = 'id_mata_pelajaran';
     public $timestamps = true;
-    protected $fillable = array('id_guru', 'kelas', 'nama_mata_pelajaran', 'kkm');
+    protected $fillable = array('id_guru', 'kelas', 'nama_mata_pelajaran', 'kkm', 'is_kelas');
 
     public function guru()
     {

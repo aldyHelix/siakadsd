@@ -10,7 +10,7 @@ class Kelas extends Model
     protected $table = 'kelas';
     protected $primaryKey = 'id_kelas';
     public $timestamps = true;
-    protected $fillable = array('nama_kelas', 'semester', 'tahun_ajaran', 'jumlah_siswa', 'id_guru');
+    protected $fillable = array('nama_kelas', 'semester', 'tahun_ajaran', 'id_guru');
 
     public function siswa()
     {
