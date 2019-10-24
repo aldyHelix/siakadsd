@@ -36,7 +36,16 @@ class MataPelController extends Controller
    */
   public function store(Request $request)
   {
-    
+    $this->validate($request, [
+      'id_guru' => 'required', 
+      'kelas'  => 'required', 
+      'nama_mata_pelajaran' => 'required', 
+      'kkm' => 'required',
+      'is_kelas' => 'required', 
+    ]);
+    $data = $request->all();
+    MataPel::create($data);
+    return redirect()->route('matapel.index')->with('success', 'Berhasil Menambahkan Data Mata Pelajaran' .$request->get('nama_mata_pelajaran'));
   }
 
   /**
@@ -47,7 +56,8 @@ class MataPelController extends Controller
    */
   public function show($id)
   {
-    
+    $matapel = MataPel::findOrFail($id);
+    return view('mapel.mapel-detail', compact('matapel'));
   }
 
   /**
@@ -58,7 +68,9 @@ class MataPelController extends Controller
    */
   public function edit($id)
   {
-    
+    $guru = GuruKaryawan::pluck('nama','id_guru');
+    $matapel = MataPel::findOrFail($id);
+    return view('mapel.mapel-edit', compact('matapel','guru'));
   }
 
   /**
@@ -67,9 +79,19 @@ class MataPelController extends Controller
    * @param  int  $id
    * @return Response
    */
-  public function update($id)
+  public function update(Request $request, $id)
   {
     
+    $matapel = MataPel::findOrFail($id);
+    $this->validate($request, [
+      'id_guru' => 'required', 
+      'kelas'  => 'required', 
+      'nama_mata_pelajaran' => 'required', 
+      'kkm' => 'required',
+      'is_kelas' => 'required', 
+    ]);
+    $matapel->update($request->all());
+    return redirect()->route('matapel.index')->with('success', 'Berhasil Mengubah Data Mata Pelajaran ' .$request->get('nama_mata_pelajaran'));
   }
 
   /**
@@ -80,7 +102,8 @@ class MataPelController extends Controller
    */
   public function destroy($id)
   {
-    
+    MataPel::find($id)->delete();
+    return redirect()->route('matapel.index')->with('error', 'Berhasil Menghapus Data Mata pelajaran');
   }
   
 }

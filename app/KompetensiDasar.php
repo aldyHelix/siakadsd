@@ -8,6 +8,7 @@ class KompetensiDasar extends Model
 {
 
     protected $table = 'kompetensi_dasar';
+    protected $primaryKey = 'id_kompetensi_dasar';
     public $timestamps = true;
     protected $fillable = array('id_mapel', 'kelompok_indikator', 'no_indikator', 'keterangan_kompetensi_dasar', 'kelas', 'semester');
 

@@ -7512,6 +7512,34 @@ fieldset[disabled] .form-control {
       overflow: hidden;
       margin-top: 5px;
       font-size: 13px; }
+  .circle-image img {
+    width: 75px;
+    height: auto;
+    padding: 10px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    border-radius: 50%; 
+  }
+  .nav-circle-image img {
+    width: 50px;
+    height: auto;
+    position: relative;
+    top: 7px;
+    margin-bottom: 8px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    border-radius: 50%; 
+  }
+  .text-info{
+    padding: 10px;
+    text-align: center;
+  }
+
   .sidebar .user-info {
     padding: 13px 15px 12px 15px;
     white-space: nowrap;
@@ -8039,4 +8067,3 @@ html.ie11 .dropdown-menu ul.menu li a {
 
 html.ie11 .bs-searchbox .form-control {
   width: 90%; }
-

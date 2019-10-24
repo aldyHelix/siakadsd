@@ -37,11 +37,11 @@
                                                 </tr>
                                                 <tr>
                                                     <td>Sedang Di Kelas</td>
-                                                    <td>: {{$siswa->current_kelas->nama_kelas}}</td>
+                                                    <td>: {{!empty($siswa->current_kelas->nama_kelas) ? $siswa->current_kelas->nama_kelas : '-'}}</td>
                                                 </tr>
                                                 <tr>
                                                     <td>Semester/Tahun Ajaran</td>
-                                                    <td>: {{$siswa->current_kelas->semester}}/({{$siswa->current_kelas->tahun_ajaran}})</td>
+                                                    <td>: {{!empty($siswa->current_kelas->semester) ? $siswa->current_kelas->semester : '-'}}/({{!empty($siswa->current_kelas->tahun_ajaran) ? $siswa->current_kelas->tahun_ajaran : '-'}})</td>
                                                 </tr>
                                                 <tr>
                                                     <td>Jenis Kelamin</td>
@@ -70,7 +70,7 @@
                                 <div class="row clearfix">
                                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                         @foreach($siswa->kelas as $kel)
-                                    <a href="javascript:void(0);" class="btn btn-primary btn-block waves-effect" role="button">{{$kel->nama_kelas}}/{{$kel->semester}}({{$kel->tahun_ajaran}})</a>
+                                            <a href="{{route('siswa.shownilai',['idsiswa' => $siswa->id_siswa, 'idkelas'=>$kel->id_kelas])}}" class="btn btn-primary btn-block waves-effect" role="button">Nilai {{$kel->nama_kelas}}/ SMT {{$kel->semester}}({{$kel->tahun_ajaran}})</a>
                                         @endforeach
                                     </div>
                                 </div>  
@@ -282,13 +282,11 @@
                                                                 </div>
                                                     </div>
                                                     <div role="tabpanel" class="tab-pane fade" id="profile_with_icon_title">
-                                                        <a href="" class="pull-right">
-                                                            <button type="button" class="btn btn-info waves-effect">Tambah Prestasi Siswa</button>
-                                                        </a>
+                                                            <button type="button" class="btn btn-info waves-effect pull-right" data-toggle="modal" data-target="#modalPrestasi">Tambah Prestasi Siswa</button>
                                                         <br>
                                                         <b>Prestasi Siswa</b>
                                                         <p>
-                                                            @foreach($siswa->prestasi as $pr)
+                                                            @foreach($siswa->prestasi as $key=>$pr)
                                                             <div class="media">
                                                                 <div class="media-left">
                                                                     <a href="javascript:void(0);">
@@ -296,32 +294,87 @@
                                                                     </a>
                                                                 </div>
                                                                 <div class="media-body">
-                                                                    <h4 class="media-heading">{{$pr->nama_prestasi}}</h4> 
+                                                                    <h4 class="media-heading">{{$pr->nama_prestasi}}</h4>
+                                                                    <button type="button" class="btn btn-default waves-effect pull-right" data-toggle="modal" data-target="#{{$key}}">
+                                                                            <i class="material-icons">edit</i>
+                                                                    </button>
                                                                     Tahun : {{$pr->tahun_prestasi}} <br>
                                                                     Prestasi {{$pr->jenis_prestasi}} yang diselenggarakan oleh {{$pr->penyelenggara}}. <br>
                                                                     Peringkat {{$pr->peringkat}}, Hasil {{$pr->saran_saran}}.
                                                                 </div>
                                                             </div>
+                                                            <div class="modal fade" id="{{$key}}" tabindex="-1" role="dialog">
+                                                                    <div class="modal-dialog" role="document">
+                                                                        <div class="modal-content">
+                                                                            <div class="modal-header">
+                                                                            <h4 class="modal-title" id="defaultModalLabel">Modal title {{$key}}</h4>
+                                                                            </div>
+                                                                            <div class="modal-body">
+                                                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales orci ante, sed ornare eros vestibulum ut. Ut accumsan
+                                                                                vitae eros sit amet tristique. Nullam scelerisque nunc enim, non dignissim nibh faucibus ullamcorper.
+                                                                                Fusce pulvinar libero vel ligula iaculis ullamcorper. Integer dapibus, mi ac tempor varius, purus
+                                                                                nibh mattis erat, vitae porta nunc nisi non tellus. Vivamus mollis ante non massa egestas fringilla.
+                                                                                Vestibulum egestas consectetur nunc at ultricies. Morbi quis consectetur nunc.
+                                                                            </div>
+                                                                            <div class="modal-footer">
+                                                                                <button type="button" class="btn btn-link waves-effect">SAVE CHANGES</button>
+                                                                                <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
                                                             @endforeach
                                                         </p>
                                                     </div>
                                                     <div role="tabpanel" class="tab-pane fade" id="messages_with_icon_title">
-                                                        <b>Message Content</b>
-                                                        <p>
-                                                            Lorem ipsum dolor sit amet, ut duo atqui exerci dicunt, ius impedit mediocritatem an. Pri ut tation electram moderatius.
-                                                            Per te suavitate democritum. Duis nemore probatus ne quo, ad liber essent aliquid
-                                                            pro. Et eos nusquam accumsan, vide mentitum fabellas ne est, eu munere gubergren
-                                                            sadipscing mel.
-                                                        </p>
+                                                            <button type="button" class="btn btn-info waves-effect pull-right" data-toggle="modal" data-target="#modalEkskul">Tambah Ekstrakulikuler Siswa</button>
+                                                            <br>
+                                                            <b>Ekstrakulikuler Siswa</b>
+                                                            <p>
+                                                                @foreach($siswa->ekskul as $key=>$pr)
+                                                                <div class="media">
+                                                                    <div class="media-left">
+                                                                        <a href="javascript:void(0);">
+                                                                            <img class="media-object" src="http://placehold.it/64x64" width="64" height="64">
+                                                                        </a>
+                                                                    </div>
+                                                                    <div class="media-body">
+                                                                        <h4 class="media-heading">{{$pr->nama_ekskul}}</h4>
+                                                                        <button type="button" class="btn btn-default waves-effect pull-right" data-toggle="modal" data-target="#{{$key}}">
+                                                                                <i class="material-icons">edit</i>
+                                                                        </button>
+                                                                        {{-- Tahun : {{$pr->tahun_prestasi}} <br>
+                                                                        Prestasi {{$pr->jenis_prestasi}} yang diselenggarakan oleh {{$pr->penyelenggara}}. <br>
+                                                                        Peringkat {{$pr->peringkat}}, Hasil {{$pr->saran_saran}}. --}}
+                                                                    </div>
+                                                                </div>
+                                                                <div class="modal fade" id="{{$key}}" tabindex="-1" role="dialog">
+                                                                        <div class="modal-dialog" role="document">
+                                                                            <div class="modal-content">
+                                                                                <div class="modal-header">
+                                                                                <h4 class="modal-title" id="defaultModalLabel">Modal title {{$key}}</h4>
+                                                                                </div>
+                                                                                <div class="modal-body">
+                                                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales orci ante, sed ornare eros vestibulum ut. Ut accumsan
+                                                                                    vitae eros sit amet tristique. Nullam scelerisque nunc enim, non dignissim nibh faucibus ullamcorper.
+                                                                                    Fusce pulvinar libero vel ligula iaculis ullamcorper. Integer dapibus, mi ac tempor varius, purus
+                                                                                    nibh mattis erat, vitae porta nunc nisi non tellus. Vivamus mollis ante non massa egestas fringilla.
+                                                                                    Vestibulum egestas consectetur nunc at ultricies. Morbi quis consectetur nunc.
+                                                                                </div>
+                                                                                <div class="modal-footer">
+                                                                                    <button type="button" class="btn btn-link waves-effect">SAVE CHANGES</button>
+                                                                                    <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                @endforeach
+                                                            </p>
                                                     </div>
                                                     <div role="tabpanel" class="tab-pane fade" id="settings_with_icon_title">
-                                                        <b>Settings Content</b>
-                                                        <p>
-                                                            Lorem ipsum dolor sit amet, ut duo atqui exerci dicunt, ius impedit mediocritatem an. Pri ut tation electram moderatius.
-                                                            Per te suavitate democritum. Duis nemore probatus ne quo, ad liber essent aliquid
-                                                            pro. Et eos nusquam accumsan, vide mentitum fabellas ne est, eu munere gubergren
-                                                            sadipscing mel.
-                                                        </p>
+                                                        @foreach ($siswa->kelas as $item)
+                                                        {{$item->nama_kelas}} : {{$item->tahun_ajaran}}<br>
+                                                        @endforeach
                                                     </div>
                                                 </div>
                                             </div>
@@ -336,4 +389,42 @@
         </div>
     </div>
 </div>
+<!-- Default Size -->
+<div class="modal fade" id="modalPrestasi" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="defaultModalLabel">Tambah Prestasi</h4>
+            </div>
+            <div class="modal-body">
+                {!! Form::open(['route' => 'prestasi.store', 'enctype' => 'multipart/form-data']) !!}
+                <!-- Hidden Id siswa here-->
+                    @include('inputform.prestasi')
+                {!! Form::close() !!}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Default Size -->
+<div class="modal fade" id="modalEkskul" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="defaultModalLabel">Tambah Ekstrakulikuler Siswa</h4>
+                </div>
+                <div class="modal-body">
+                    {!! Form::open(['route' => 'ekskulsiswa.store', 'enctype' => 'multipart/form-data']) !!}
+                    <!-- Hidden Id siswa here-->
+                        @include('inputform.ekskul_siswa')
+                    {!! Form::close() !!}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection

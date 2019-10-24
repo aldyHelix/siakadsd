@@ -38,7 +38,7 @@
                             @foreach($guru as $no=>$gurus)
                             <tr>
                                 <th scope="row">{{$no+1}}</th>
-                                <td>{{$gurus->nip}}</td>
+                                <td>{{$gurus->NIP}}</td>
                                 <td>{{$gurus->nama}}</td>
                                 <td>{{$gurus->jenis_kelamin}}</td>
                                 <td>{{$gurus->tempat_lahir}},{{$gurus->tgl_lahir}}</td>
@@ -46,21 +46,21 @@
                                 <td>{{$gurus->tipe_guru}}</td>
                                 <td>{{$gurus->status_guru}}</td>
                                 <td>
-                                    <a href="">
+                                    {!! Form::model($gurus, ['route' => ['gurukaryawan.destroy', $gurus->id_guru], 'method' => 'delete'] ) !!}
+                                        <a href="{{route('gurukaryawan.show', $gurus->id_guru)}}">
                                         <button type="button" class="btn btn-primary btn-circle waves-effect waves-circle waves-float">
                                             <i class="material-icons">more_horiz</i>
                                         </button>
-                                    </a>
-                                    <a href="">
+                                        </a>
+                                        <a href="{{route('gurukaryawan.edit', $gurus->id_guru)}}">
                                         <button type="button" class="btn btn-info btn-circle waves-effect waves-circle waves-float">
                                             <i class="material-icons">edit</i>
                                         </button>
-                                    </a>
-                                    <a href="">
-                                        <button type="button" class="btn btn-danger btn-circle waves-effect waves-circle waves-float">
-                                            <i class="material-icons">delete</i>
-                                        </button>
-                                    </a>      
+                                        </a>
+                                            <button type="submit" class="btn btn-danger btn-circle waves-effect waves-circle waves-float">
+                                                <i class="material-icons">delete</i>
+                                            </button>
+                                    {!! Form::close()!!}
                                 </td>
                             </tr>
                             @endforeach

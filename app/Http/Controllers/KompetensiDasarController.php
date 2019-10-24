@@ -36,7 +36,17 @@ class KompetensiDasarController extends Controller
    */
   public function store(Request $request)
   {
-    
+    $this->validate($request, [
+      'id_mapel' => 'required', 
+      'kelompok_indikator'  => 'required', 
+      'no_indikator' => 'required', 
+      'keterangan_kompetensi_dasar' => 'required', 
+      'kelas' => 'required',
+      'semester' => 'required',  
+    ]);
+    $data = $request->all();
+    KompetensiDasar::create($data);
+    return redirect()->route('kompetensidasar.index')->with('success', 'Berhasil Menambahkan Data Kompetensi dasar dan kelas ' .$request->get('kelompok_indikator'));
   }
 
   /**
@@ -47,7 +57,8 @@ class KompetensiDasarController extends Controller
    */
   public function show($id)
   {
-    
+    $kd = KompetensiDasar::findOrFail($id);
+    return view('kd.kd-details', compact('kd'));
   }
 
   /**
@@ -58,7 +69,8 @@ class KompetensiDasarController extends Controller
    */
   public function edit($id)
   {
-    
+    $kd = KompetensiDasar::findOrFail($id);
+    return view('kd.kd-edit', compact('kd'));
   }
 
   /**
@@ -67,9 +79,20 @@ class KompetensiDasarController extends Controller
    * @param  int  $id
    * @return Response
    */
-  public function update($id)
+  public function update(Request $request, $id)
   {
     
+    $kd = KompetensiDasar::findOrFail($id);
+    $this->validate($request, [
+      'id_mapel' => 'required', 
+      'kelompok_indikator'  => 'required', 
+      'no_indikator' => 'required', 
+      'keterangan_kompetensi_dasar' => 'required', 
+      'kelas' => 'required',
+      'semester' => 'required',  
+    ]);
+    $kd->update($request->all());
+    return redirect()->route('kompetensidasar.index')->with('success', 'Berhasil Mengubah Data Kompetensi dasar ' .$request->get('kelompok_indikator'));
   }
 
   /**
@@ -80,7 +103,8 @@ class KompetensiDasarController extends Controller
    */
   public function destroy($id)
   {
-    
+    KompetensiDasar::find($id)->delete();
+    return redirect()->route('komtensidasar.index')->with('error', 'Berhasil Menghapus Data Kompetensi Dasar ');
   }
   
 }

@@ -27,7 +27,7 @@
 {{-- ukuran --}}
 <div class="row clearfix">
 		{{-- form kolom --}}
-		<div class="col-sm-6">
+		<div class="col-sm-4">
 			{{-- form class --}}
 			<div class="form-group">
 				<div class="form-line">
@@ -37,11 +37,21 @@
 		</div>
 			{{--END form kolom  --}}
 			{{-- form kolom --}}
-		<div class="col-sm-6">
+		<div class="col-sm-4">
 			{{-- form class --}}
 			<div class="form-group">
 				<div class="form-line">
 					{!! Form::text('kkm', null,['class' =>'form-control', 'placeholder' => 'KKM']) !!}
+				</div>
+			</div>
+		</div>
+		{{--END form kolom  --}}
+		{{-- form kolom --}}
+		<div class="col-sm-4">
+			{{-- form class --}}
+			<div class="form-group">
+				<div class="form-line">
+					{!! Form::select('is_kelas',['' => 'Pilih Mapel Kelas atau Guru' ,'0' => 'Guru Pengajar', '1' => 'Dalam Kelas'],'Pilih Mapel Kelas atau Guru',['class' => 'form-control show-tick']) !!}
 				</div>
 			</div>
 		</div>

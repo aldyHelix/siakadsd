@@ -1,6 +1,6 @@
 @extends('layouts.app-dashboard')
 @section('content')
-<!-- Hover Rows -->
+breadcrums<!-- Hover Rows -->
 <div class="row clearfix">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
@@ -47,8 +47,9 @@
                                     <td>P</td>
                                 @endif
                                 <td>{{!empty($siswas->current_kelas->nama_kelas) ? $siswas->current_kelas->nama_kelas : '-'}}</td>
-                                <td>{{$siswas->tempat_lahir}},{{$siswas->tgl_lahir}}</td>
-                                <td>
+                                <td>{{$siswas->tempat_lahir}}, {{date('d-m-Y', strtotime($siswas->tgl_lahir))}}</td>
+                                <td> 
+                                        {!! Form::model($siswas, ['route' => ['siswa.destroy', $siswas->id_siswa], 'method' => 'delete'] ) !!}
                                         <button type="button" class="btn btn-primary btn-circle waves-effect waves-circle waves-float" data-toggle="modal" data-target="#smallModal{{$no}}" toggle="tooltip" data-placement="top" title="Naikkan Kelas Siswa">
                                             <i class="material-icons">plus_one</i>
                                         </button>
@@ -57,21 +58,21 @@
                                             <i class="material-icons">more_horiz</i>
                                         </button>                                        
                                     </a> 
-                                    <a href="">
+                                    <a href="{{route('siswa.edit', $siswas->id_siswa)}}">
                                         <button type="button" class="btn btn-info btn-circle waves-effect waves-circle waves-float" toggle="tooltip" data-placement="top" title="Ubah Data">
                                             <i class="material-icons">edit</i>
                                         </button>
                                     </a>
-                                    <a href="">
-                                        <button type="button" class="btn btn-danger btn-circle waves-effect waves-circle waves-float" toggle="tooltip" data-placement="top" title="Hapus Data">
+                                        <button type="submit" class="btn btn-danger btn-circle waves-effect waves-circle waves-float">
                                             <i class="material-icons">delete</i>
                                         </button>
-                                    </a>
+                                    {!! Form::close()!!}
                                 </td>
                             </tr>
                             @endforeach
                         </tbody>
                     </table>
+                    pagination  
                 </div>
             </div>
         </div>
@@ -87,7 +88,7 @@
                     </div>
                     {!! Form::open(['route' => 'siswa.naikkelas', 'enctype' => 'multipart/form-data']) !!}
                     <div class="modal-body">
-                        Siswa akan dinaikan Kelas dari {{!empty($siswas->current_kelas->nama_kelas) ? $siswas->current_kelas->nama_kelas : '-'}} ke
+                        Siswa akan dinaikan Kelas dari {{!empty($siswas->current_kelas->nama_kelas) ? $siswas->current_kelas->nama_kelas : '-'}} smt {{!empty($siswas->current_kelas->semester) ? $siswas->current_kelas->semester : '-'}}({{!empty($siswas->current_kelas->tahun_ajaran) ? $siswas->current_kelas->tahun_ajaran : '-'}}) ke
                         <div class="row clearfix">
                         <div class="col-sm-12">
                                 {{-- form class --}} 
@@ -98,7 +99,7 @@
                                         <select name="id_kelas" class="form-control show-tick">
                                             <option value="">-- Pilih Kelas --</option>
                                             @foreach ($kelas as $item)
-                                            <option value="{{$item->id_kelas}}">{{$item->nama_kelas}} ({{$item->tahun_ajaran}})</option>    
+                                            <option value="{{$item->id_kelas}}">{{$item->nama_kelas}} smt {{$item->semester}} ({{$item->tahun_ajaran}})</option>    
                                              @endforeach
                                         </select>
                                         @else 

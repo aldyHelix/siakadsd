@@ -1,39 +1,76 @@
-{!! Form::open(array('route' => 'route.name', 'method' => 'POST')) !!}
-	<ul>
-		<li>
-			{!! Form::label('id_siswa', 'Id_siswa:') !!}
-			{!! Form::text('id_siswa') !!}
-		</li>
-		<li>
-			{!! Form::label('nama_prestasi', 'Nama_prestasi:') !!}
-			{!! Form::text('nama_prestasi') !!}
-		</li>
-		<li>
-			{!! Form::label('saran_saran', 'Saran_saran:') !!}
-			{!! Form::textarea('saran_saran') !!}
-		</li>
-		<li>
-			{!! Form::label('tahun_prestasi', 'Tahun_prestasi:') !!}
-			{!! Form::text('tahun_prestasi') !!}
-		</li>
-		<li>
-			{!! Form::label('jenis_prestasi', 'Jenis_prestasi:') !!}
-			{!! Form::text('jenis_prestasi') !!}
-		</li>
-		<li>
-			{!! Form::label('penyelenggara', 'Penyelenggara:') !!}
-			{!! Form::text('penyelenggara') !!}
-		</li>
-		<li>
-			{!! Form::label('peringkat', 'Peringkat:') !!}
-			{!! Form::text('peringkat') !!}
-		</li>
-		<li>
-			{!! Form::label('foto_prestasi', 'Foto_prestasi:') !!}
-			{!! Form::text('foto_prestasi') !!}
-		</li>
-		<li>
-			{!! Form::submit() !!}
-		</li>
-	</ul>
-{!! Form::close() !!}
+                <div class="row clearfix">
+                    {{-- form kolom --}}
+                    <div class="col-sm-6">
+                        {{-- form class --}}
+                        <div class="form-group">
+                            <div class="form-line">
+                                {!! Form::text('nama_prestasi', null,['class' =>'form-control', 'placeholder' => 'Nama Prestasi']) !!}
+                            </div>
+                            {!! $errors->first('nama_prestasi', '<p class="help-block">:message</p>') !!}
+                        </div>
+                    </div>
+                    {{--END form kolom  --}}
+                    {{-- form kolom --}}
+                    <div class="col-sm-6">
+                        {{-- form class --}}
+                        <div class="form-group">
+                            <div class="form-line">
+                                {!! Form::text('penyelenggara', null,['class' =>'form-control', 'placeholder' => 'Penyelenggara']) !!}
+                            </div>
+                            {!! $errors->first('penyelenggara', '<p class="help-block">:message</p>') !!}
+                        </div>
+                    </div>
+                    {{--END form kolom  --}}
+                </div>
+                <div class="row clearfix">
+                {{-- form kolom --}}
+                    <div class="col-sm-6">
+                        {{-- form class --}}
+                        <div class="form-group">
+                            <div class="form-line">
+                                {!! Form::text('tahun_prestasi', null,['class' =>'form-control', 'placeholder' => 'Tahun Prestasi']) !!}
+                            </div>
+                            {!! $errors->first('tahun_prestasi', '<p class="help-block">:message</p>') !!}
+                        </div>
+                    </div>
+                    {{--END form kolom  --}}
+                    {{-- form kolom --}}
+                    <div class="col-sm-6">
+                        {{-- form class --}}
+                        <div class="form-group">
+                            <div class="form-line">
+                                {!! Form::text('peringkat', null,['class' =>'form-control', 'placeholder' => 'Peringkat']) !!}
+                            </div>
+                            {!! $errors->first('peringkat', '<p class="help-block">:message</p>') !!}
+                        </div>
+                    </div>
+                    {{--END form kolom  --}}
+                </div>
+                <div class="row clearfix">
+                    {{-- form kolom --}}
+                    <div class="col-sm-6">
+                        {{-- form class --}}
+                        <div class="form-group">
+                            <div class="form-line">
+                                {!! Form::textarea('saran-saran', null,['rows' => '2','class' =>'form-control', 'placeholder' => 'Saran - Saran']) !!}
+                            </div>
+                            {!! $errors->first('saran-saran', '<p class="help-block">:message</p>') !!}
+                        </div>
+                    </div>
+                    {{--END form kolom  --}}
+
+                    {{-- form kolom --}}
+                    <div class="col-sm-6">
+                        <h4 class="card-inside-title">Foto Prestasi</h4>
+                        {{-- form class --}}
+                        <div class="form-group">
+                            <div class="form-line">
+                                {!! Form::file('foto_prestasi', null,['class' => 'form-control']) !!}
+                        	</div>
+                            {!! $errors->first('foto_prestasi', '<p class="help-block">:message</p>') !!}
+                        </div>
+                    </div>
+                    {{--END form kolom  --}}
+				</div>
+
+				{!! Form::submit(isset($model) ? 'Perbarui' : 'Simpan', ['class'=>'btn btn-primary']) !!}

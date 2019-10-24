@@ -40,15 +40,21 @@
                                 <td>{{$kds->keterangan_kompetensi_dasar}}</td>
                                 <td>{{$kds->kelas}} / {{$kds->semester}}</td>
                                 <td>
-                                        <button type="button" class="btn btn-primary btn-circle waves-effect waves-circle waves-float">
-                                            <i class="material-icons">more_horiz</i>
-                                        </button>
-                                        <button type="button" class="btn btn-info btn-circle waves-effect waves-circle waves-float">
-                                            <i class="material-icons">edit</i>
-                                        </button>
-                                        <button type="button" class="btn btn-danger btn-circle waves-effect waves-circle waves-float">
+                                    {!! Form::model($kds, ['route' => ['kompetensidasar.destroy', $kds->id_kompetensi_dasar], 'method' => 'delete'] ) !!}
+                                        <a href="{{route('kompetensidasar.show', $kds->id_kompetensi_dasar)}}">
+                                            <button type="button" class="btn btn-primary btn-circle waves-effect waves-circle waves-float">
+                                                <i class="material-icons">more_horiz</i>
+                                            </button>
+                                        </a>
+                                        <a href="{{route('kompetensidasar.show', $kds->id_kompetensi_dasar)}}">
+                                            <button type="button" class="btn btn-info btn-circle waves-effect waves-circle waves-float">
+                                                <i class="material-icons">edit</i>
+                                            </button>
+                                        </a>
+                                        <button type="submit" class="btn btn-danger btn-circle waves-effect waves-circle waves-float">
                                             <i class="material-icons">delete</i>
                                         </button>
+                                    {!! Form::close()!!}      
                                 </td>
                             </tr>
                             @endforeach

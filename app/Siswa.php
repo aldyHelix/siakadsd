@@ -18,12 +18,15 @@ class Siswa extends Model
     }
     public function kelas()
     {
-        return $this->belongsToMany('App\Kelas', 'kelas_siswa','id_kelas','id_siswa');
+        return $this->belongsToMany('App\Kelas', 'kelas_siswa','id_siswa','id_kelas');
     }
-
+    public function siswaekskul()
+    {
+        return $this->belongsTo('App\EkskulSiswa','id');
+    }
     public function ekskul()
     {
-        return $this->belongsToMany('App\Ekstrakulikuler', 'ekskul_siswa','id_ekskul','id_siswa')->withTimeStamps();
+        return $this->belongsToMany('App\Ekstrakulikuler', 'ekskul_siswa','id_ekskul','id_siswa');
     }
 
     public function prestasi()

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Kelas;
 use App\GuruKaryawan;
+use App\KelasSiswa;
+use App\Siswa;
 class KelasController extends Controller 
 {
 
@@ -37,7 +39,15 @@ class KelasController extends Controller
    */
   public function store(Request $request)
   {
-    
+    $this->validate($request, [
+      'nama_kelas' => 'required|string|max:255', 
+      'semester'  => 'required|string|max:255', 
+      'tahun_ajaran' => 'required|string|max:255', 
+      'id_guru' => 'required', 
+    ]);
+    $data = $request->all();
+    Kelas::create($data);
+    return redirect()->route('kelas.index')->with('success', 'Berhasil Menambahkan Data Kelas ' .$request->get('nama_kelas'));
   }
 
   /**
@@ -48,7 +58,10 @@ class KelasController extends Controller
    */
   public function show($id)
   {
-    
+    $kelassiswa = Siswa::where('id_kelas',$id)->get();
+    $guru = GuruKaryawan::pluck('nama','id_guru');
+    $kelas = Kelas::findOrFail($id);
+    return view('kelas.kelas-details', compact('kelas','guru','kelassiswa'));
   }
 
   /**
@@ -59,7 +72,9 @@ class KelasController extends Controller
    */
   public function edit($id)
   {
-    
+    $guru = GuruKaryawan::pluck('nama','id_guru');
+    $kelas = Kelas::findOrFail($id);
+    return view('kelas.kelas-edit', compact('kelas','guru'));
   }
 
   /**
@@ -70,7 +85,15 @@ class KelasController extends Controller
    */
   public function update($id)
   {
-    
+    $kelas = Kelas::findOrFail($id);
+    $this->validate($request, [
+      'nama_kelas' => 'required|string|max:255', 
+      'semester'  => 'required|string|max:255', 
+      'tahun_ajaran' => 'required|string|max:255', 
+      'id_guru' => 'required',
+    ]);
+    $kelas->update($request->all());
+    return redirect()->route('kelas.index')->with('success', 'Berhasil Mengubah Data Kelas ' .$request->get('nama_kelas'));
   }
 
   /**
@@ -81,7 +104,8 @@ class KelasController extends Controller
    */
   public function destroy($id)
   {
-    
+    Kelas::find($id)->delete();
+    return redirect()->route('kelas.index')->with('error', 'Berhasil Menghapus Data kelas ');
   }
   
 }

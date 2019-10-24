@@ -38,17 +38,23 @@
                                 <td>{{$ekskuls->nama_ekskul}}</td>
                                 <td>{{$ekskuls->nama_pengajar}}</td>
                                 <td>{{$ekskuls->jam_mengajar}}</td>
-                                <td>{{$ekskuls->jumlah_peserta}}</td>
+                                <td>{{count($ekskuls->siswa)}}</td>
                                 <td>
-                                        <button type="button" class="btn btn-primary btn-circle waves-effect waves-circle waves-float">
-                                            <i class="material-icons">more_horiz</i>
-                                        </button>
-                                        <button type="button" class="btn btn-info btn-circle waves-effect waves-circle waves-float">
-                                            <i class="material-icons">edit</i>
-                                        </button>
-                                        <button type="button" class="btn btn-danger btn-circle waves-effect waves-circle waves-float">
+                                    {!! Form::model($ekskuls, ['route' => ['ekstrakulikuler.destroy', $ekskuls->id_ekskul], 'method' => 'delete'] ) !!}
+                                        <a href="{{route('ekstrakulikuler.show', $ekskuls->id_ekskul)}}">
+                                            <button type="button" class="btn btn-primary btn-circle waves-effect waves-circle waves-float">
+                                                <i class="material-icons">more_horiz</i>
+                                            </button>
+                                        </a>
+                                        <a href="{{route('ekstrakulikuler.edit', $ekskuls->id_ekskul)}}">
+                                            <button type="button" class="btn btn-info btn-circle waves-effect waves-circle waves-float">
+                                                <i class="material-icons">edit</i>
+                                            </button>
+                                        </a>
+                                        <button type="submit" class="btn btn-danger btn-circle waves-effect waves-circle waves-float">
                                             <i class="material-icons">delete</i>
                                         </button>
+                                    {!! Form::close()!!}      
                                 </td>
                             </tr>
                             @endforeach

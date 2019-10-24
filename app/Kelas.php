@@ -14,7 +14,7 @@ class Kelas extends Model
 
     public function siswa()
     {
-        return $this->belongsToMany('App\Siswa','kelas_siswa','id_siswa','id_kelas');
+        return $this->belongsToMany('App\Siswa','kelas_siswa','id_kelas','id_siswa');
     }
 
     public function guru()

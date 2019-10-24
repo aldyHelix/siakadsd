@@ -12,15 +12,17 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('halaman-utama');
 });
 
 Route::get('/home', 'FrontController@homeView');
 Route::get('/halaman-utama', 'DashboardController@index')->name('halaman-utama');
-Route::post('/siswa/naikkela', 'SiswaController@naikkelas')->name('siswa.naikkelas');
+Route::post('/siswa/naikkelas', 'SiswaController@naikkelas')->name('siswa.naikkelas');
 
 
 Route::resource('siswa', 'SiswaController');
+Route::get('siswa/{idsiswa}/{idkelas}',['as'=> 'siswa.shownilai','uses'=>'SiswaController@showNilai']);
+
 Route::resource('kelas', 'KelasController');
 Route::resource('profilsekolah', 'ProfilSekolahController');
 Route::resource('prestasi', 'PrestasiController');

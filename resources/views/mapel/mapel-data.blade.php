@@ -26,8 +26,7 @@
                                 <th>No</th>
                                 <th>Nama Mata Pelajaran</th>
                                 <th>KKM</th>
-                                <th>Guru Pengajar</th>
-                                <th>Kelas</th>
+                                <th>Pengajaran</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -37,18 +36,27 @@
                                 <th scope="row">{{$no+1}}</th>
                                 <td>{{$mapels->nama_mata_pelajaran}}</td>
                                 <td>{{$mapels->kkm}}</td>
-                                <td>{{$mapels->guru->nama}}</td>
-                                <td>{{$mapels->kelas}}</td>
+                                @if($mapels->is_kelas == 1)
+                                    <td>Kelas {{$mapels->kelas}}</td>
+                                @else
+                                    <td>Guru Pengajar : {{$mapels->guru->nama}} Kelas {{$mapels->kelas}} </td>
+                                @endif
                                 <td>
+                                    {!! Form::model($mapels, ['route' => ['matapel.destroy', $mapels->id_mata_pelajaran], 'method' => 'delete'] ) !!}
+                                        <a href="{{route('matapel.show', $mapels->id_mata_pelajaran)}}">
                                         <button type="button" class="btn btn-primary btn-circle waves-effect waves-circle waves-float">
                                             <i class="material-icons">more_horiz</i>
                                         </button>
+                                        </a>
+                                        <a href="{{route('matapel.edit', $mapels->id_mata_pelajaran)}}">
                                         <button type="button" class="btn btn-info btn-circle waves-effect waves-circle waves-float">
                                             <i class="material-icons">edit</i>
                                         </button>
-                                        <button type="button" class="btn btn-danger btn-circle waves-effect waves-circle waves-float">
-                                            <i class="material-icons">delete</i>
-                                        </button>
+                                        </a>
+                                            <button type="submit" class="btn btn-danger btn-circle waves-effect waves-circle waves-float">
+                                                <i class="material-icons">delete</i>
+                                            </button>
+                                    {!! Form::close()!!}
                                 </td>
                             </tr>
                             @endforeach

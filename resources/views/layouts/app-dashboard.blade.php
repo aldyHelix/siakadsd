@@ -27,6 +27,10 @@
     <link href="{{asset('dashboard/css/style.css')}}" rel="stylesheet">
     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
     <link href="{{asset('dashboard/css/themes/all-themes.css')}}" rel="stylesheet" />
+    <!-- Range Slider Css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.0/css/ion.rangeSlider.min.css"/>
+    <link href="{{asset('dashboard/plugins/ion-rangeslider/css/ion.rangeSlider.css')}}" rel="stylesheet" />
+    <link href="{{asset('dashboard/plugins/ion-rangeslider/css/ion.rangeSlider.skinFlat.css')}}" rel="stylesheet" />
 
 </head>
 <body class="theme-lime ls-opened">
@@ -36,11 +40,39 @@
             <div class="navbar-header">
                 <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
                 <a href="javascript:void(0);" class="bars"></a>
-                <a class="navbar-brand" href="../../index.html">SIMAK - SDN 2 LANDUNGSARI</a>
+                <a class="navbar-brand" href="{{route('halaman-utama')}}">SIMAK - SDN 2 LANDUNGSARI</a>
             </div>
             <div class="collapse navbar-collapse" id="navbar-collapse">
                 <div class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button">
+                            <i class="material-icons">person</i>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="header">Informasi Pengguna</li>
+                            <li class="body">
+                                <ul class="menu">
+                                        <div class="clearfix">
+                                            <div class="circle-image">
+                                                <img src="{{url('dashboard/images/user.png')}}" alt="User" />           
+                                            </div>
+                                            <div class="text-info">
+                                                JHON DOE
+                                                <div>john.doe@example.com</div>
+                                                <div>1234567890</div>
+                                            </div>
+                                        </div>
+                                </ul>
+                            </li>
+                            <li class="footer">
+                                <a href="javascript:void(0);">Detail informasi Pengguna</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- #END# Notifications -->
+
                     <li><a href="#" class="js-search" data-close="true"><i class="material-icons">input</i></a></li>
+                    <!-- Notifications -->
                 </div>
             </div>
         </div>
@@ -79,6 +111,8 @@
 
         <!-- Multi Select Plugin Js -->
         <script src="{{asset('dashboard/plugins/multi-select/js/jquery.multi-select.js')}}"></script>
+    <!-- RangeSlider Plugin Js -->
+    <script src="{{asset('dashboard/plugins/ion-rangeslider/js/ion.rangeSlider.js')}}"></script>
     <!-- Dropzone Plugin Js -->
     <script src="{{asset('dashboard/plugins/dropzone/dropzone.js')}}"></script>
     <!-- Jquery CountTo Plugin Js -->
@@ -89,6 +123,9 @@
     <script src="{{asset('dashboard/plugins/bootstrap-notify/bootstrap-notify.js')}}"></script>
     <!-- Demo Js -->
     <script src="{{asset('dashboard/js/demo.js')}}"></script>
+        <!-- Custom Js -->
+        <script src="{{asset('dashboard/js/admin.js')}}"></script>
+        <script src="{{asset('dashboard/js/pages/ui/range-sliders.js')}}"></script>
     <!-- Popper -->
     {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script> --}}
     <script>
@@ -99,7 +136,8 @@
     $('#datetimepicker').datetimepicker({
     format: 'yyyy-mm-dd'
     });
-        }); 
+        });
+
 </script>
 </body>
 </html>

@@ -2,7 +2,7 @@
 @section('content')
 <div class="container-fluid">
     <div class="block-header">
-        <h2>Tambah Data Mata Pelajaran</h2>
+        <h2>Tambah Data Kompetensi Dasar</h2>
     </div>
     <!-- Input -->
     <div class="row clearfix">
