@@ -1,5 +1,13 @@
 @extends('layouts.app-dashboard')
 @section('content')
+<ol class="breadcrumb">
+    <a href="{{URL::previous()}}">
+        <button type="button" class="btn btn-warning waves-effect">
+            <i class="material-icons">navigate_before</i>
+            <span>KEMBALI</span>
+        </button>
+    </a>
+</ol>
 <div class="container-fluid">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="card">
@@ -16,10 +24,49 @@
                                 </a>
                             </div>
                             <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
-                                info 1
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td>Nama Peserta Didik</td>
+                                            <td>: {{$siswa->nama_lengkap}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>NISN / NIS</td>
+                                            <td>: {{$siswa->NISN}} / {{$siswa->INDUK}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Nama Sekolah</td>
+                                            <td>: SDN balabala</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Alamat Sekolah</td>
+                                            <td>: Jalan Jalan</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                             <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
-                                info 2
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td>Kelas</td>
+                                            <td>: {{$siswa->current_kelas->nama_kelas}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Semester</td>
+                                            <td>: 
+                                            @if ($siswa->current_kelas->semester == 1)
+                                            Ganjil
+                                            @else 
+                                            Genap    
+                                            @endif</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Tahun Ajaran</td>
+                                            <td>: {{$siswa->current_kelas->tahun_ajaran}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                           
@@ -28,16 +75,21 @@
         </div>
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="card">
-                    <div class="body">
+                    <div class="body nomarginbot">
                         <div class="row clearfix demo-button-sizes">
                             <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                                <a href="#" class="btn btn-primary btn-block waves-effect" role="button">Setting Raport</a>
+                                <a href="#" class="btn btn-primary btn-block waves-effect" role="button" data-toggle="modal" data-target="#setRaport">Setting Raport</a>
                             </div>
                             <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                                <a href="#" class="btn btn-primary btn-block waves-effect" role="button">Rangkum Pembelajaran</a>
+                                <a href="#" class="btn btn-primary btn-block waves-effect" role="button" data-toggle="modal" data-target="#rangkumModal">Rangkum Pembelajaran</a>
                             </div>
                             <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                                <a href="#" class="btn btn-primary btn-block waves-effect" role="button">Cetak Raport</a>
+                                @if (!empty($nilaisiswa)) 
+                                    <a href="{{route('raport.cetak', ['idnilaisiswa' => $nilaisiswa->id_nilai_siswa])}}" class="btn btn-primary btn-block waves-effect" role="button">Cetak Raport</a>
+                                @else 
+                                <a href="#" class="btn btn-primary btn-block waves-effect" disabled="disabled">Cetak Raport</a>
+                                @endif
+                                
                             </div>
                         </div>
                           <!-- Nav tabs -->
@@ -84,16 +136,19 @@
 
                                 </div>
                                 <div role="tabpanel" class="tab-pane fade" id="pengetahuan">
-                                    <b>Message Content</b><br>
-                                    @include('nilai-siswa.tab-spiritual')
+                                    <div>
+                                        @include('nilai-siswa.tab-pengetahuan',['matapel' => $matapel])
+                                    </div>
                                 </div>
                                 <div role="tabpanel" class="tab-pane fade" id="keterampilan">
-                                    <b>Settings Content</b><br>
-                                    @include('nilai-siswa.tab-spiritual')
+                                    <div>
+                                        @include('nilai-siswa.tab-keterampilan',['matapel' => $matapel])
+                                    </div>
                                 </div>
                                 <div role="tabpanel" class="tab-pane fade" id="catatan">
-                                    <b>Catatan Siswa</b><br>
-                                    @include('nilai-siswa.tab-spiritual')
+                                    <div>
+                                        @include('nilai-siswa.tab-catatan')
+                                    </div> 
                                 </div>
                             </div>
                     </div>
@@ -101,4 +156,52 @@
         </div>
     </div>
 </div>
+
+<!-- tanggal raport -->
+<div class="modal fade" id="setRaport" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="defaultModalLabel">Set Tanggal Raport</h4>
+            </div>
+            <div class="modal-body">
+                @if (!empty($nilaisiswa)) 
+                    Tanggal raport telah disetting, ubah tanggal sesuai tanggal yg diinginkan! <br>
+                    Hidden id kelas siswa : {{$kelassiswa->id_kelas_siswa}} <br>
+                    Hidden id siswa : {{$siswa->id_siswa}} <br>
+                    isi tgl raport <br>
+                    isi tgl penerimaan raport <br>  
+                @else 
+                    Tanggal Raport Belum di setting! silahkan setting disini!
+                @endif
+                
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-link waves-effect">SAVE CHANGES</button>
+                <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Large Size -->
+<div class="modal fade" id="rangkumModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="largeModalLabel">Rangkuman Pembelajaran</h4>
+                </div>
+                <div class="modal-body">
+                    @if (!empty($nilaisiswa)) 
+                        view Rangkuman disini!
+                    @else 
+                        Tanggal Raport Belum di setting! silahkan setting terlebih dahulu!
+                    @endif
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-link waves-effect">SAVE CHANGES</button>
+                    <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection

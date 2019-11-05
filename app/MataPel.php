@@ -21,5 +21,12 @@ class MataPel extends Model
     {
         return $this->hasMany('App\KompetensiDasar', 'id_mapel');
     }
-
+    public function kd_ki3()
+    {
+        return $this->hasMany('App\KompetensiDasar', 'id_mapel')->where('kelompok_indikator', 'ki3');
+    }
+    public function kd_ki4()
+    {
+        return $this->hasMany('App\KompetensiDasar', 'id_mapel')->where('kelompok_indikator', 'ki4');
+    }
 }

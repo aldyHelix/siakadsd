@@ -1,6 +1,17 @@
 @extends('layouts.app-dashboard')
 @section('content')
-breadcrums<!-- Hover Rows -->
+
+<ol class="breadcrumb">
+    <a href="{{URL::previous()}}">
+        <button type="button" class="btn btn-warning waves-effect">
+            <i class="material-icons">navigate_before</i>
+            <span>KEMBALI</span>
+        </button>
+    </a>
+    <li><a href="javascript:void(0);">Home</a></li>
+    <li class="active">Siswa</li>
+</ol>
+<!-- Hover Rows -->
 <div class="row clearfix">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
@@ -21,7 +32,7 @@ breadcrums<!-- Hover Rows -->
                 </div>
                 @include('layouts.flash-message')
                 <div class="body table-responsive">
-                    <table class="table table-hover">
+                    <table class="table table-bordered table-striped table-hover js-basic-example">
                         <thead>
                             <tr>
                                 <th>No</th>
@@ -72,7 +83,7 @@ breadcrums<!-- Hover Rows -->
                             @endforeach
                         </tbody>
                     </table>
-                    pagination  
+                    {{$siswa->links()}}  
                 </div>
             </div>
         </div>

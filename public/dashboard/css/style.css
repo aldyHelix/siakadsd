@@ -8067,3 +8067,41 @@ html.ie11 .dropdown-menu ul.menu li a {
 
 html.ie11 .bs-searchbox .form-control {
   width: 90%; }
+
+  .nolf-padding {
+    padding-left: 0 !important;
+    margin: 0 !important;
+ }
+
+ .rg-5-padding {
+  padding-right: 5px !important;
+  padding-left:0 !important ;
+  margin: 0 !important;
+ }
+ .no5paddings{
+  padding: 0 !important;
+  padding-right: 5px;
+  margin: 0 !important;
+}
+ .nopaddings{
+   padding: 0 !important;
+   margin: 0 !important;
+ }
+ hr {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border: 5px;
+  border-top: 1px solid rgb(2, 2, 2);
+}
+.nomarginbot{
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+.form-control-label-ct {
+  text-align: center; 
+  padding-top: 10px;
+}
+
+.input-nopadding{
+  padding-left: 0;
+}

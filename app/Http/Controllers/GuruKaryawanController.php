@@ -116,7 +116,7 @@ class GuruKaryawanController extends Controller
   public function destroy($id)
   {
     GuruKaryawan::find($id)->delete();
-    return redirect()->route('guru.index')->with('error', 'Berhasil Menghapus Data Guru');
+    return redirect()->route('gurukaryawan.index')->with('error', 'Berhasil Menghapus Data Guru');
   }
   
 }

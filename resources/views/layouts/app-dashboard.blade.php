@@ -31,6 +31,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.0/css/ion.rangeSlider.min.css"/>
     <link href="{{asset('dashboard/plugins/ion-rangeslider/css/ion.rangeSlider.css')}}" rel="stylesheet" />
     <link href="{{asset('dashboard/plugins/ion-rangeslider/css/ion.rangeSlider.skinFlat.css')}}" rel="stylesheet" />
+    <!-- JQuery DataTable Css -->
+    <link href="{{asset('dashboard/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css')}}" rel="stylesheet">
 
 </head>
 <body class="theme-lime ls-opened">
@@ -121,11 +123,23 @@
     <script src="{{asset('dashboard/plugins/jquery-sparkline/jquery.sparkline.js')}}"></script>
     <!-- Bootstrap Notify Plugin Js -->
     <script src="{{asset('dashboard/plugins/bootstrap-notify/bootstrap-notify.js')}}"></script>
+    <!-- Jquery DataTable Plugin Js -->
+    <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+
+    <script src="{{asset('dashboard/plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js')}}"></script>
+    <script src="{{asset('dashboard/plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js')}}"></script>
+    <script src="{{asset('dashboard/plugins/jquery-datatable/extensions/export/buttons.flash.min.js')}}"></script>
+    <script src="{{asset('dashboard/plugins/jquery-datatable/extensions/export/jszip.min.js')}}"></script>
+    <script src="{{asset('dashboard/plugins/jquery-datatable/extensions/export/pdfmake.min.js')}}"></script>
+    <script src="{{asset('dashboard/plugins/jquery-datatable/extensions/export/vfs_fonts.js')}}"></script>
+    <script src="{{asset('dashboard/plugins/jquery-datatable/extensions/export/buttons.html5.min.js')}}"></script>
+    <script src="{{asset('dashboard/plugins/jquery-datatable/extensions/export/buttons.print.min.js')}}"></script>
     <!-- Demo Js -->
     <script src="{{asset('dashboard/js/demo.js')}}"></script>
         <!-- Custom Js -->
         <script src="{{asset('dashboard/js/admin.js')}}"></script>
         <script src="{{asset('dashboard/js/pages/ui/range-sliders.js')}}"></script>
+        <script src="{{asset('dashboard/js/pages/tables/jquery-datatable.js')}}"></script>
     <!-- Popper -->
     {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script> --}}
     <script>
@@ -139,5 +153,6 @@
         });
 
 </script>
+
 </body>
 </html>

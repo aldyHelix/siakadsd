@@ -15,7 +15,8 @@
         "laravelcollective/html": "5.8",
         "maatwebsite/excel": "^3.1",
         "nesbot/carbon": "^2.23",
-        "rackspace/php-opencloud": "dev-master"
+        "rackspace/php-opencloud": "dev-master",
+        "yajra/laravel-datatables-oracle": "^9.7"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",

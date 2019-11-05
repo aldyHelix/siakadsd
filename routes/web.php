@@ -22,6 +22,8 @@ Route::post('/siswa/naikkelas', 'SiswaController@naikkelas')->name('siswa.naikke
 
 Route::resource('siswa', 'SiswaController');
 Route::get('siswa/{idsiswa}/{idkelas}',['as'=> 'siswa.shownilai','uses'=>'SiswaController@showNilai']);
+Route::get('raportsiswa',['as' => 'raport.cetak', 'uses'=>'SiswaController@showRaport']);
+Route::get('/data-siswa','SiswaController@dataSiswa');
 
 Route::resource('kelas', 'KelasController');
 Route::resource('profilsekolah', 'ProfilSekolahController');

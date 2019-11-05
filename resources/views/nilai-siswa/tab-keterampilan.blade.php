@@ -4,26 +4,27 @@
                 <!-- mulai perulangan disini-->
                 @foreach ($matapel as $item)
                 <div class="panel panel-col-teal">
-                    <div class="panel-heading" role="tab" id="headingOneki3_{{$item->id_mata_pelajaran}}">
+                    <div class="panel-heading" role="tab" id="headingOneki4_{{$item->id_mata_pelajaran}}">
                         <h4 class="panel-title">
-                                <a class="collapsed" role="button" data-toggle="collapse" href="#matapelki3_{{$item->id_mata_pelajaran}}" aria-expanded="false" aria-controls="matapelki3_{{$item->id_mata_pelajaran}}">
+                                <a class="collapsed" role="button" data-toggle="collapse" href="#matapelki4_{{$item->id_mata_pelajaran}}" aria-expanded="false" aria-controls="matapelki4_{{$item->id_mata_pelajaran}}">
                                 {{$item->nama_mata_pelajaran}}
                             </a>
                         </h4>
                     </div>
-                    <div id="matapelki3_{{$item->id_mata_pelajaran}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOneki3_{{$item->id_mata_pelajaran}}">
+                    <div id="matapelki4_{{$item->id_mata_pelajaran}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOneki4_{{$item->id_mata_pelajaran}}">
                         <div class="body">
-                            <!-- perulangan kd disini -->
-                            @if (count($item->kd_ki3)>0)
-                                @foreach ($item->kd_ki3 as $kd)
-                                    @include('inputform.nilai_harian_ki3')
-                                    <div class="col-xs-12">
-                                        <hr>
-                                    </div>
+                            <!-- perulangan kd disini-->
+                            @if (count($item->kd_ki4)>0)
+                                @foreach ($item->kd_ki4 as $kd)
+                                @include('inputform.nilai_harian_ki4')
+                                <div class="col-xs-12">
+                                    <hr>
+                                </div>
                                 @endforeach    
                             @else
                                 <b>Kompetensi Dasar Belum Ditambahkan. Silahkan Edit Kompetensi Dasar Terlebih Dahulu!</b>
                             @endif
+                        
                             <!-- END perulangan-->
                         </div>
                     </div>

@@ -1,5 +1,15 @@
 @extends('layouts.app-dashboard')
 @section('content')
+<ol class="breadcrumb">
+    <a href="{{URL::previous()}}">
+        <button type="button" class="btn btn-warning waves-effect">
+            <i class="material-icons">navigate_before</i>
+            <span>KEMBALI</span>
+        </button>
+    </a>
+    <li><a href="javascript:void(0);">Home</a></li>
+    <li class="active">Guru</li>
+</ol>
 <!-- Hover Rows -->
 <div class="row clearfix">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -30,7 +40,6 @@
                                 <th>Tempat, Tgl Lahir</th>
                                 <th>Jabatan</th>
                                 <th>Tipe Guru</th>
-                                <th>Status Guru</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -44,7 +53,6 @@
                                 <td>{{$gurus->tempat_lahir}},{{$gurus->tgl_lahir}}</td>
                                 <td>{{$gurus->jabatan}}</td>
                                 <td>{{$gurus->tipe_guru}}</td>
-                                <td>{{$gurus->status_guru}}</td>
                                 <td>
                                     {!! Form::model($gurus, ['route' => ['gurukaryawan.destroy', $gurus->id_guru], 'method' => 'delete'] ) !!}
                                         <a href="{{route('gurukaryawan.show', $gurus->id_guru)}}">

@@ -1,91 +1,277 @@
-{!! Form::open(array('route' => 'route.name', 'method' => 'POST')) !!}
-	<ul>
-		<li>
-			{!! Form::label('id_nilai_siswa', 'Id_nilai_siswa:') !!}
-			{!! Form::text('id_nilai_siswa') !!}
-		</li>
-		<li>
-			{!! Form::label('id_kompetensi_dasar', 'Id_kompetensi_dasar:') !!}
-			{!! Form::text('id_kompetensi_dasar') !!}
-		</li>
-		<li>
-			{!! Form::label('praktik_p1', 'Praktik_p1:') !!}
-			{!! Form::text('praktik_p1') !!}
-		</li>
-		<li>
-			{!! Form::label('praktik_p2', 'Praktik_p2:') !!}
-			{!! Form::text('praktik_p2') !!}
-		</li>
-		<li>
-			{!! Form::label('praktik_p3', 'Praktik_p3:') !!}
-			{!! Form::text('praktik_p3') !!}
-		</li>
-		<li>
-			{!! Form::label('praktik_p4', 'Praktik_p4:') !!}
-			{!! Form::text('praktik_p4') !!}
-		</li>
-		<li>
-			{!! Form::label('praktik_p5', 'Praktik_p5:') !!}
-			{!! Form::text('praktik_p5') !!}
-		</li>
-		<li>
-			{!! Form::label('praktik_max', 'Praktik_max:') !!}
-			{!! Form::text('praktik_max') !!}
-		</li>
-		<li>
-			{!! Form::label('produk_p1', 'Produk_p1:') !!}
-			{!! Form::text('produk_p1') !!}
-		</li>
-		<li>
-			{!! Form::label('produk_p2', 'Produk_p2:') !!}
-			{!! Form::text('produk_p2') !!}
-		</li>
-		<li>
-			{!! Form::label('produk_p3', 'Produk_p3:') !!}
-			{!! Form::text('produk_p3') !!}
-		</li>
-		<li>
-			{!! Form::label('produk_p4', 'Produk_p4:') !!}
-			{!! Form::text('produk_p4') !!}
-		</li>
-		<li>
-			{!! Form::label('produk_p5', 'Produk_p5:') !!}
-			{!! Form::text('produk_p5') !!}
-		</li>
-		<li>
-			{!! Form::label('produk_max', 'Produk_max:') !!}
-			{!! Form::text('produk_max') !!}
-		</li>
-		<li>
-			{!! Form::label('proyek_p1', 'Proyek_p1:') !!}
-			{!! Form::text('proyek_p1') !!}
-		</li>
-		<li>
-			{!! Form::label('proyek_p2', 'Proyek_p2:') !!}
-			{!! Form::text('proyek_p2') !!}
-		</li>
-		<li>
-			{!! Form::label('proyek_p3', 'Proyek_p3:') !!}
-			{!! Form::text('proyek_p3') !!}
-		</li>
-		<li>
-			{!! Form::label('proyek_p4', 'Proyek_p4:') !!}
-			{!! Form::text('proyek_p4') !!}
-		</li>
-		<li>
-			{!! Form::label('proyek_p5', 'Proyek_p5:') !!}
-			{!! Form::text('proyek_p5') !!}
-		</li>
-		<li>
-			{!! Form::label('proyek_max', 'Proyek_max:') !!}
-			{!! Form::text('proyek_max') !!}
-		</li>
-		<li>
-			{!! Form::label('deskripsi_raport', 'Deskripsi_raport:') !!}
-			{!! Form::textarea('deskripsi_raport') !!}
-		</li>
-		<li>
-			{!! Form::submit() !!}
-		</li>
-	</ul>
+{!! Form::open(array('route' => 'nilaiki4.store', 'method' => 'POST')) !!}
+<div class="row no5paddings">
+	<div class="col-md-12">
+			{{$kd->kelompok_indikator}}/{{$kd->no_indikator}}. {{$kd->keterangan_kompetensi_dasar}}
+	</div>
+	<!-- P1 -->		
+	<div class="col-xs-12 nopaddings">
+			<div class="col col-xs-2 nopaddings">
+				<div class="form-control-label-ct">
+					<label>Praktek</label>
+				</div>
+			</div>
+			<div class="col col-xs-2 nopaddings">
+				<div class="col-xs-8 form-control-label-ct rg-5-padding">
+					<label for="praktekp1">P1</label>
+				</div>
+				<div class="col-xs-4 nopaddings">
+					<div class="form-group">
+						<div class="form-line">
+							<input type="text" id="praktekp1" class="form-control" value="70">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col col-xs-2 nopaddings">
+				<div class="col-xs-8 form-control-label-ct rg-5-padding">
+					<label for="p1tulis">P2</label>
+				</div>
+				<div class="col-xs-4 nopaddings">
+					<div class="form-group">
+						<div class="form-line">
+							<input type="text" id="p1tulis" class="form-control" value="70">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col col-xs-2 nopaddings">
+				<div class="col-xs-8 form-control-label-ct rg-5-padding">
+					<label for="p1tugas1">P3</label>
+				</div>
+				<div class="col-xs-4 nopaddings">
+					<div class="form-group">
+						<div class="form-line">
+							<input type="text" id="p1tugas1" class="form-control" value="70">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col col-xs-2 nopaddings">
+				<div class="col-xs-8 form-control-label-ct rg-5-padding">
+					<label for="p1tugas2">P4</label>
+				</div>
+				<div class="col-xs-4 nopaddings">
+					<div class="form-group">
+						<div class="form-line">
+							<input type="text" id="p1tugas2" class="form-control" value="70">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col col-xs-2 nopaddings">
+				<div class="col-xs-8 form-control-label-ct rg-5-padding">
+					<label for="p1ratarata">P5</label>
+				</div>
+				<div class="col-xs-4 nopaddings">
+					<div class="form-group">
+						<div class="form-line">
+							<input type="text" id="p1ratarata" class="form-control" value="70">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- END P1 -->
+		<!--P2 -->
+		<div class="col-xs-12 nopaddings">
+			<div class="col col-xs-2 nopaddings">
+				<div class="form-control-label-ct">
+					<label>Produk</label>
+				</div>
+			</div>
+			<div class="col col-xs-2 nopaddings">
+				<div class="col-xs-8 form-control-label-ct rg-5-padding">
+					<label for="p2lisan">P1</label>
+				</div>
+				<div class="col-xs-4 nopaddings">
+					<div class="form-group">
+						<div class="form-line">
+							<input type="text" id="p2lisan" class="form-control" value="70">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col col-xs-2 nopaddings">
+				<div class="col-xs-8 form-control-label-ct rg-5-padding">
+					<label for="p2tulis">P2</label>
+				</div>
+				<div class="col-xs-4 nopaddings">
+					<div class="form-group">
+						<div class="form-line">
+							<input type="text" id="p2tulis" class="form-control" value="70">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col col-xs-2 nopaddings">
+				<div class="col-xs-8 form-control-label-ct rg-5-padding">
+					<label for="p2tugas1">P3</label>
+				</div>
+				<div class="col-xs-4 nopaddings">
+					<div class="form-group">
+						<div class="form-line">
+							<input type="text" id="p2tugas1" class="form-control" value="70">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col col-xs-2 nopaddings">
+				<div class="col-xs-8 form-control-label-ct rg-5-padding">
+					<label for="p2tugas2">P4</label>
+				</div>
+				<div class="col-xs-4 nopaddings">
+					<div class="form-group">
+						<div class="form-line">
+							<input type="text" id="p2tugas2" class="form-control" value="70">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col col-xs-2 nopaddings">
+				<div class="col-xs-8 form-control-label-ct rg-5-padding">
+					<label for="p2ratarata">P5</label>
+				</div>
+				<div class="col-xs-4 nopaddings">
+					<div class="form-group">
+						<div class="form-line">
+							<input type="text" id="p2ratarata" class="form-control" value="70">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	<!-- END P2-->
+	<!-- P3 -->
+	<div class="col-xs-12 nopaddings">
+			<div class="col col-xs-2 nopaddings">
+				<div class="form-control-label-ct">
+					<label>Proyek</label>
+				</div>
+			</div>
+			<div class="col col-xs-2 nopaddings">
+				<div class="col-xs-8 form-control-label-ct rg-5-padding">
+					<label for="p3lisan">P1</label>
+				</div>
+				<div class="col-xs-4 nopaddings">
+					<div class="form-group">
+						<div class="form-line">
+							<input type="text" id="p3lisan" class="form-control" value="70">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col col-xs-2 nopaddings">
+				<div class="col-xs-8 form-control-label-ct rg-5-padding">
+					<label for="p3tulis">P2</label>
+				</div>
+				<div class="col-xs-4 nopaddings">
+					<div class="form-group">
+						<div class="form-line">
+							<input type="text" id="p3tulis" class="form-control" value="70">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col col-xs-2 nopaddings">
+				<div class="col-xs-8 form-control-label-ct rg-5-padding">
+					<label for="p3tugas1">P3</label>
+				</div>
+				<div class="col-xs-4 nopaddings">
+					<div class="form-group">
+						<div class="form-line">
+							<input type="text" id="p3tugas1" class="form-control" value="70">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col col-xs-2 nopaddings">
+				<div class="col-xs-8 form-control-label-ct rg-5-padding">
+					<label for="p3tugas2">P4</label>
+				</div>
+				<div class="col-xs-4 nopaddings">
+					<div class="form-group">
+						<div class="form-line">
+							<input type="text" id="p3tugas2" class="form-control" value="70">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col col-xs-2 nopaddings">
+				<div class="col-xs-8 form-control-label-ct rg-5-padding">
+					<label for="p3ratarata">P5</label>
+				</div>
+				<div class="col-xs-4 nopaddings">
+					<div class="form-group">
+						<div class="form-line">
+							<input type="text" id="p3ratarata" class="form-control" value="70">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- END P3 -->
+		<!-- P4 -->
+	<div class="col-xs-12 nopaddings">
+			<div class="col col-xs-3 nopaddings">
+				<div class="col-xs-8 form-control-label-ct rg-5-padding">
+					<label for="p4lisan">MAX PRAKTEK</label>
+				</div>
+				<div class="col-xs-4 nopaddings">
+					<div class="form-group">
+						<div class="form-line">
+							<input type="text" id="p4lisan" class="form-control" value="70">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col col-xs-3 nopaddings">
+				<div class="col-xs-8 form-control-label-ct rg-5-padding">
+					<label for="p4tulis">MAX PRODUK</label>
+				</div>
+				<div class="col-xs-4 nopaddings">
+					<div class="form-group">
+						<div class="form-line">
+							<input type="text" id="p4tulis" class="form-control" value="70">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col col-xs-3 nopaddings">
+				<div class="col-xs-8 form-control-label-ct rg-5-padding">
+					<label for="p4tugas1">MAX PROYEK</label>
+				</div>
+				<div class="col-xs-4 nopaddings">
+					<div class="form-group">
+						<div class="form-line">
+							<input type="text" id="p4tugas1" class="form-control" value="70">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col col-xs-3 nopaddings">
+				<div class="col-xs-8 form-control-label-ct rg-5-padding">
+					<label for="p4tugas2">RATA - RATA KETERAMPILAN</label>
+				</div>
+				<div class="col-xs-4 nopaddings">
+					<div class="form-group">
+						<div class="form-line">
+							<input type="text" id="p4tugas2" class="form-control" value="70">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- END P4 -->
+		<div class="col-xs-12">
+            <h2 class="card-inside-title">Deskripsi</h2>
+            <div class="col-sm-12 nopaddings">
+                <div class="form-group">
+                    <div class="form-line">
+                        <textarea rows="2" class="form-control no-resize" placeholder="Please type what you want..."></textarea>
+                    </div>
+                </div>
+            </div>
+		</div>
+	{!! Form::submit(isset($model) ? 'Perbarui' : 'Simpan', ['class'=>'btn btn-primary pull-right']) !!}	
+</div>	
 {!! Form::close() !!}

@@ -7,6 +7,8 @@ use App\KelasSiswa;
 use App\Prestasi;
 use App\KenaikanKelas;
 use App\Ekstrakulikuler;
+use App\MataPel;
+use App\NilaiSiswa;
 use Illuminate\Http\Request;
 use Validator;
 
@@ -22,7 +24,7 @@ class SiswaController extends Controller
   {
     //$kelas = Kelas::pluck('nama_kelas','id_kelas');
     $kelas = Kelas::get();
-    $siswa =  Siswa::get();
+    $siswa =  Siswa::paginate(10);
     return view('siswa.siswa-data', compact('siswa', 'kelas'));
   }
 
@@ -219,7 +221,41 @@ class SiswaController extends Controller
 
   function showNilai($idsiswa, $idkelas)
   {
-    return view('siswa.siswa-nilai');
+    $kelassiswa = KelasSiswa::where(['id_siswa' => $idsiswa, 'id_kelas' => $idkelas])->first();
+
+    //cek nilai siswa apakah ada atau tidak
+    $nilaisiswa = NilaiSiswa::where(['id_siswa' => $idsiswa, 'id_kelas_siswa' => $kelassiswa->id_kelas_siswa])->first();
+
+    $kelas = Kelas::find($idkelas);
+    if ($kelas->nama_kelas == 'Kelas 1') {
+      $kelassis = 1;
+    } 
+    elseif ($kelas->nama_kelas == 'Kelas 2') {
+      $kelassis = 2;
+    }
+    elseif ($kelas->nama_kelas == 'Kelas 3') {
+      $kelassis = 3;
+    }
+    elseif ($kelas->nama_kelas == 'Kelas 4') {
+      $kelassis = 4;
+    }
+    elseif ($kelas->nama_kelas == 'Kelas 5') {
+      $kelassis = 5;
+    }
+    elseif ($kelas->nama_kelas == 'Kelas 6') {
+      $kelassis = 6;
+    }
+    else {
+      $kelassis = 0;
+    }
+
+    $matapel = MataPel::where('kelas', $kelassis)->get();
+    $siswa =  Siswa::find($idsiswa);
+    return view('siswa.siswa-nilai', compact('kelassiswa','matapel','siswa','nilaisiswa'));
+  }
+  function showRaport()
+  {
+    return view('cetak-raport');
   }
 }
 

@@ -1,5 +1,15 @@
 @extends('layouts.app-dashboard')
 @section('content')
+<ol class="breadcrumb">
+    <a href="{{URL::previous()}}">
+        <button type="button" class="btn btn-warning waves-effect">
+            <i class="material-icons">navigate_before</i>
+            <span>KEMBALI</span>
+        </button>
+    </a>
+    <li><a href="javascript:void(0);">Home</a></li>
+    <li class="active">Kompetensi Dasar</li>
+</ol>
 <!-- Hover Rows -->
 <div class="row clearfix">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">

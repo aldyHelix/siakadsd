@@ -14,12 +14,12 @@ class GuruKaryawan extends Model
 
     public function kelas()
     {
-        return $this->hasOne('App\Kelas', 'id_guru');
+        return $this->hasMany('App\Kelas', 'id_guru');
     }
 
     public function mata_pelajaran()
     {
-        return $this->hasOne('App\MataPel', 'id_guru');
+        return $this->hasMany('App\MataPel', 'id_guru');
     }
 
 }
