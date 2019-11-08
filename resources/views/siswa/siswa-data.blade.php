@@ -20,6 +20,17 @@
                         <div class="col-lg-4">
                             <h2>Data Siswa</h2>
                         </div>
+                        <div class="col-lg-4">
+                            {!! Form::open(['route' => 'siswa.index', 'method'=>'get', 'class'=>'form-inline'])!!}
+                            <div class="form-group {!! $errors->has('q') ? 'has-error' : '' !!}">
+                                {!! Form::text('q', isset($q) ? $q : null, ['class'=>'form-control', 'placeholder' => 'Cari Nama Siswa...']) !!}
+                                {!! $errors->first('q', '<p class="help-block">:message</p>') !!}
+                            </div>
+                        </div>
+                        <div class="col-lg-2">
+                            {!! Form::submit('Search', ['class'=>'btn btn-primary waves-effect']) !!} 
+                            {!! Form::close() !!}
+                        </div>
                         <div class="col-lg-2 pull-right">
                             <a href="{{route('siswa.create')}}">
                                 <button type="button" class="btn btn-primary waves-effect" toggle="tooltip" data-placement="top" title="Tambah Data Siswa">

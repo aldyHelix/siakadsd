@@ -14,7 +14,7 @@ class KompetensiDasarController extends Controller
    */
   public function index()
   {
-    $kd =  KompetensiDasar::get();
+    $kd =  KompetensiDasar::paginate(10);
     return view('kd.kd-data', compact('kd'));
   }
 
@@ -104,7 +104,7 @@ class KompetensiDasarController extends Controller
   public function destroy($id)
   {
     KompetensiDasar::find($id)->delete();
-    return redirect()->route('komtensidasar.index')->with('error', 'Berhasil Menghapus Data Kompetensi Dasar ');
+    return redirect()->route('kompetensidasar.index')->with('error', 'Berhasil Menghapus Data Kompetensi Dasar ');
   }
   
 }

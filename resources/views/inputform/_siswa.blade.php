@@ -871,6 +871,14 @@
 		</div>
 	</div>
 	{{--END form kolom  --}}
+	@if (isset($model)&& $model->foto_siswa !== '')
+	<div class="col-sm-6 col-md-3">
+		<p>Foto Siswa</p>
+		<div class="thumbnail">
+		<img src="{{ url('/img/' . $model->foto_siswa) }}">
+		</div>
+	</div>
+	@endif
 </div>
 {{-- END Form baris --}}
 

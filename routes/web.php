@@ -24,6 +24,8 @@ Route::resource('siswa', 'SiswaController');
 Route::get('siswa/{idsiswa}/{idkelas}',['as'=> 'siswa.shownilai','uses'=>'SiswaController@showNilai']);
 Route::get('raportsiswa',['as' => 'raport.cetak', 'uses'=>'SiswaController@showRaport']);
 Route::get('/data-siswa','SiswaController@dataSiswa');
+Route::post('',['as' => 'prestasi-siswa.store','uses' => 'PrestasiController@prestasisiswa']);
+Route::post('',['as' => 'update.prestasi-siswa','uses' => 'PrestasiController@update_prestasisiswa']);
 
 Route::resource('kelas', 'KelasController');
 Route::resource('profilsekolah', 'ProfilSekolahController');
@@ -41,3 +43,4 @@ Route::resource('nilaisosial', 'NilaiSosialController');
 Route::resource('nilaispiritual', 'NilaiSpiritualController');
 Route::resource('kelassiswa', 'KelasSiswaController');
 Route::resource('ekskulsiswa', 'EkskulSiswaController');
+Route::resource('test', 'TestController');

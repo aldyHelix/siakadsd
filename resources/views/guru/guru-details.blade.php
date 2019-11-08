@@ -21,7 +21,7 @@
                     <div class="row clearfix">
                         <div class="col-sm-4">
                            <div class="image align-center">
-                                <img src="{{url('dashboard/images/user.png')}}" height="75" alt="User" />
+                                <img src="{{ url('/img-guru/' . $guru->foto_guru) }}" height="75" alt="User" />
                             </div>
                         </div>
                         <div class="col-sm-8">

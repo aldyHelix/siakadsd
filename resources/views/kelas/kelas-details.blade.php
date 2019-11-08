@@ -9,9 +9,6 @@
     </a>
 </ol>
 <div class="container-fluid">
-    <div class="block-header">
-        <h2>Kelas</h2>
-    </div>
     <!-- Input -->
     <div class="row clearfix">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -125,7 +122,7 @@
                                                     @endforeach
                                                 </tbody>
                                             </table>
-                                            pagination  
+                                            {{$kelassiswa->links()}} 
                                         </div>
                             </div>
                         </div>

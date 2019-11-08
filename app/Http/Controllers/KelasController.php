@@ -17,7 +17,7 @@ class KelasController extends Controller
    */
   public function index()
   {
-    $kelas =  Kelas::get();
+    $kelas =  Kelas::paginate(6);
     return view('kelas.kelas-data', compact('kelas'));
   }
 
@@ -58,7 +58,7 @@ class KelasController extends Controller
    */
   public function show($id)
   {
-    $kelassiswa = Siswa::where('id_kelas',$id)->get();
+    $kelassiswa = Siswa::where('id_kelas',$id)->paginate(10);
     $guru = GuruKaryawan::pluck('nama','id_guru');
     $kelas = Kelas::findOrFail($id);
     return view('kelas.kelas-details', compact('kelas','guru','kelassiswa'));

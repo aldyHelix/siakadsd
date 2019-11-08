@@ -25,7 +25,7 @@
                     </ul>
                 </div>
                 <div class="body">
-                    {!! Form::open(['route' => 'siswa.store', 'enctype' => 'multipart/form-data']) !!}
+                    {!! Form::open(['route' => 'siswa.store', 'files' => true, 'enctype' => 'multipart/form-data']) !!}
                         @include('inputform._siswa')
                     {!! Form::close() !!}
                 </div>

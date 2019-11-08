@@ -59,7 +59,7 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    @foreach($ekskul->siswa as $no=>$item)
+                                                    @foreach($siswa as $no=>$item)
                                                     <tr>
                                                         <th scope="row">{{$no+1}}</th>
                                                         <td>{{$item->INDUK}}</td>
@@ -74,7 +74,7 @@
                                                     @endforeach
                                                 </tbody>
                                             </table>
-                                            pagination  
+                                            {{$siswa->links()}}
                                         </div>
                             </div>
                         </div>

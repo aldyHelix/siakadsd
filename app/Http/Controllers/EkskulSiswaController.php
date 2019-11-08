@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\EkskulSiswa;
 
 class EkskulSiswaController extends Controller 
 {
@@ -34,7 +35,10 @@ class EkskulSiswaController extends Controller
    */
   public function store(Request $request)
   {
-    
+    $data = $request->all();
+    EkskulSiswa::create($data);
+
+    return redirect()->back()->with('success', 'Berhasil Menambah ekstrakulikuler Siswa');
   }
 
   /**
@@ -65,9 +69,8 @@ class EkskulSiswaController extends Controller
    * @param  int  $id
    * @return Response
    */
-  public function update($id)
+  public function update(Request $request, $id)
   {
-    
   }
 
   /**
@@ -78,7 +81,8 @@ class EkskulSiswaController extends Controller
    */
   public function destroy($id)
   {
-    
+    $ekskul_siswa = EkskulSiswa::find($id)->delete();
+    return redirect()->back()->with('error', 'Berhasil Menghapus Ekstrakulikuler Siswa ');
   }
   
 }

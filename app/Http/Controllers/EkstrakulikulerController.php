@@ -15,7 +15,7 @@ class EkstrakulikulerController extends Controller
    */
   public function index()
   {
-    $ekskul =  Ekstrakulikuler::get();
+    $ekskul =  Ekstrakulikuler::paginate(5);
     return view('ekskul.ekskul-data', compact('ekskul'));
   }
 
@@ -56,7 +56,8 @@ class EkstrakulikulerController extends Controller
   public function show($id)
   {
     $ekskul = Ekstrakulikuler::findOrFail($id);
-    return view('ekskul.ekskul-details', compact('ekskul'));
+    $siswa = $ekskul->siswa()->paginate(5);
+    return view('ekskul.ekskul-details', compact('ekskul','siswa','paginate'));
   }
 
   /**

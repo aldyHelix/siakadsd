@@ -16,5 +16,9 @@ class EkskulSiswa extends Model
     {
         return $this->belongsToMany('App\Siswa','ekskul_siswa','id_siswa','id_ekskul');
     }
+    public function ekskul()
+    {
+        return $this->belongsTo('App\Ekstrakulikuler','id_ekskul');
+    }
 
 }

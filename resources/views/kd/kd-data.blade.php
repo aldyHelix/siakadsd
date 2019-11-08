@@ -36,8 +36,8 @@
                                 <th>No</th>
                                 <th>Nama Mata Pelajaran</th>
                                 <th>KI/No</th>
-                                <th>Keterangan KD</th>
                                 <th>Kelas / Semester</th>
+                                <th>Keterangan KD</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -47,8 +47,8 @@
                                 <th scope="row">{{$no+1}}</th>
                                 <td>{{$kds->mata_pelajaran->nama_mata_pelajaran}}</td>
                                 <td>{{$kds->kelompok_indikator}}/{{$kds->no_indikator}}</td>
-                                <td>{{$kds->keterangan_kompetensi_dasar}}</td>
                                 <td>{{$kds->kelas}} / {{$kds->semester}}</td>
+                                <td>{{$kds->keterangan_kompetensi_dasar}}</td>
                                 <td>
                                     {!! Form::model($kds, ['route' => ['kompetensidasar.destroy', $kds->id_kompetensi_dasar], 'method' => 'delete'] ) !!}
                                         <a href="{{route('kompetensidasar.show', $kds->id_kompetensi_dasar)}}">
@@ -70,6 +70,7 @@
                             @endforeach
                         </tbody>
                     </table>
+                    {{$kd->links()}}
                 </div>
             </div>
         </div>

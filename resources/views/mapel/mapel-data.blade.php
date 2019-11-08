@@ -72,6 +72,7 @@
                             @endforeach
                         </tbody>
                     </table>
+                    {{$mapel->links()}}
                 </div>
             </div>
         </div>

@@ -16,6 +16,8 @@
         "maatwebsite/excel": "^3.1",
         "nesbot/carbon": "^2.23",
         "rackspace/php-opencloud": "dev-master",
+        "symfony/finder": "^4.3",
+        "symfony/http-foundation": "^4.3",
         "yajra/laravel-datatables-oracle": "^9.7"
     },
     "require-dev": {

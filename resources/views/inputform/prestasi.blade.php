@@ -52,25 +52,46 @@
                         {{-- form class --}}
                         <div class="form-group">
                             <div class="form-line">
-                                {!! Form::textarea('saran-saran', null,['rows' => '2','class' =>'form-control', 'placeholder' => 'Saran - Saran']) !!}
+                                {!! Form::text('jenis_prestasi', null,['class' =>'form-control', 'placeholder' => 'Contoh : Kecamatan atau Kelurahan']) !!}
                             </div>
-                            {!! $errors->first('saran-saran', '<p class="help-block">:message</p>') !!}
+                            {!! $errors->first('jenis_prestasi', '<p class="help-block">:message</p>') !!}
                         </div>
                     </div>
                     {{--END form kolom  --}}
-
-                    {{-- form kolom --}}
+                                        {{-- form kolom --}}
                     <div class="col-sm-6">
-                        <h4 class="card-inside-title">Foto Prestasi</h4>
                         {{-- form class --}}
                         <div class="form-group">
                             <div class="form-line">
-                                {!! Form::file('foto_prestasi', null,['class' => 'form-control']) !!}
-                        	</div>
-                            {!! $errors->first('foto_prestasi', '<p class="help-block">:message</p>') !!}
+                                {!! Form::textarea('saran_saran', null,['rows' => '2','class' =>'form-control', 'placeholder' => 'Hasil lomba seperti Tropi atau piagam atau bingkisan']) !!}
+                            </div>
+                            {!! $errors->first('saran_saran', '<p class="help-block">:message</p>') !!}
                         </div>
                     </div>
                     {{--END form kolom  --}}
-				</div>
+                </div>
+                <div class="row clearfix">
+                    {{-- form kolom --}}
+                    <div class="col-sm-6">
+                            <h4 class="card-inside-title">Foto Prestasi</h4>
+                            {{-- form class --}}
+                            <div class="form-group">
+                                <div class="form-line">
+                                    {!! Form::file('foto_prestasi', null,['class' => 'form-control']) !!}
+                                </div>
+                                {!! $errors->first('foto_prestasi', '<p class="help-block">:message</p>') !!}
+                            </div>
+                        </div>
+                        {{--END form kolom  --}}
+                        	{{--END form kolom  --}}
+                            @if (isset($model)&& $model->foto_prestasi !== '')
+                            <div class="col-sm-6 col-md-3">
+                                <p>Foto Siswa</p>
+                                <div class="thumbnail">
+                                <img src="{{ url('/img-prestasi/' . $model->foto_prestasi) }}">
+                                </div>
+                            </div>
+                            @endif
+                </div>
 
 				{!! Form::submit(isset($model) ? 'Perbarui' : 'Simpan', ['class'=>'btn btn-primary']) !!}

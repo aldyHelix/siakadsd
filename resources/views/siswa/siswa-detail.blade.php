@@ -9,9 +9,6 @@
     </a>
 </ol>
 <div class="container-fluid">
-    <div class="block-header">
-        <h2>Data Detail Siswa</h2>
-    </div>
     <!-- Input -->
     <div class="row clearfix">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -23,13 +20,14 @@
                     </h2>
                         </li>
                     </ul>
+                    @include('layouts.flash-message')
                 </div>
                 <div class="body">
                         <div class="row clearfix">
                             <div class="col-xs-4 ol-sm-4 col-md-4 col-lg-4">
                                 <div class="thumbnail">
                                     <div class="image align-center">
-                                        <img src="{{url('dashboard/images/user.png')}}" height="150" alt="User" />
+                                        <img src="{{ url('/img/' . $siswa->foto_siswa) }}" height="150" alt="User" />
                                     </div>
                                     <div class="caption">
                                         <h3>{{$siswa->nama_lengkap}}</h3>
@@ -298,7 +296,7 @@
                                                             <div class="media">
                                                                 <div class="media-left">
                                                                     <a href="javascript:void(0);">
-                                                                        <img class="media-object" src="http://placehold.it/64x64" width="64" height="64">
+                                                                        <img class="media-object" src="{{ url('/img-prestasi/' . $pr->foto_prestasi) }}" width="64" height="64">
                                                                     </a>
                                                                 </div>
                                                                 <div class="media-body">
@@ -308,25 +306,25 @@
                                                                     </button>
                                                                     Tahun : {{$pr->tahun_prestasi}} <br>
                                                                     Prestasi {{$pr->jenis_prestasi}} yang diselenggarakan oleh {{$pr->penyelenggara}}. <br>
-                                                                    Peringkat {{$pr->peringkat}}, Hasil {{$pr->saran_saran}}.
+                                                                    Peringkat {{$pr->peringkat}} <br>
+                                                                    Hasil berupa {{$pr->saran_saran}}.
                                                                 </div>
                                                             </div>
                                                             <div class="modal fade" id="{{$key}}" tabindex="-1" role="dialog">
                                                                     <div class="modal-dialog" role="document">
                                                                         <div class="modal-content">
                                                                             <div class="modal-header">
-                                                                            <h4 class="modal-title" id="defaultModalLabel">Modal title {{$key}}</h4>
+                                                                            <h4 class="modal-title" id="defaultModalLabel">Ubah prestasi {{$pr->nama_prestasi}}</h4>
                                                                             </div>
                                                                             <div class="modal-body">
-                                                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales orci ante, sed ornare eros vestibulum ut. Ut accumsan
-                                                                                vitae eros sit amet tristique. Nullam scelerisque nunc enim, non dignissim nibh faucibus ullamcorper.
-                                                                                Fusce pulvinar libero vel ligula iaculis ullamcorper. Integer dapibus, mi ac tempor varius, purus
-                                                                                nibh mattis erat, vitae porta nunc nisi non tellus. Vivamus mollis ante non massa egestas fringilla.
-                                                                                Vestibulum egestas consectetur nunc at ultricies. Morbi quis consectetur nunc.
+                                                                                {!! Form::model($pr, ['route' => ['prestasi.update', $pr],'method' =>'patch', 'files' => true])!!}
+                                                                                    {!! Form::hidden('id_prestasi', $pr->id_prestasi,['class' =>'form-control']) !!}
+                                                                                    {!! Form::hidden('id_siswa', $pr->id_siswa,['class' =>'form-control']) !!}
+                                                                                    @include('inputform.prestasi', ['model' => $pr])
+                                                                                {!! Form::close() !!}
                                                                             </div>
                                                                             <div class="modal-footer">
-                                                                                <button type="button" class="btn btn-link waves-effect">SAVE CHANGES</button>
-                                                                                <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+                                                                                <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">Tutup</button>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -339,7 +337,7 @@
                                                             <br>
                                                             <b>Ekstrakulikuler Siswa</b>
                                                             <p>
-                                                                @foreach($siswa->ekskul as $key=>$pr)
+                                                                @foreach($siswa->siswaekskul as $key=>$pr)
                                                                 <div class="media">
                                                                     <div class="media-left">
                                                                         <a href="javascript:void(0);">
@@ -347,31 +345,29 @@
                                                                         </a>
                                                                     </div>
                                                                     <div class="media-body">
-                                                                        <h4 class="media-heading">{{$pr->nama_ekskul}}</h4>
-                                                                        <button type="button" class="btn btn-default waves-effect pull-right" data-toggle="modal" data-target="#{{$key}}">
-                                                                                <i class="material-icons">edit</i>
+                                                                        <h4 class="media-heading">{{$pr->ekskul->nama_ekskul}}</h4>
+                                                                        <button type="button" class="btn btn-danger waves-effect pull-right" data-toggle="modal" data-target="#AA{{$key}}">
+                                                                                <i class="material-icons">delete</i>
                                                                         </button>
                                                                         {{-- Tahun : {{$pr->tahun_prestasi}} <br>
                                                                         Prestasi {{$pr->jenis_prestasi}} yang diselenggarakan oleh {{$pr->penyelenggara}}. <br>
                                                                         Peringkat {{$pr->peringkat}}, Hasil {{$pr->saran_saran}}. --}}
                                                                     </div>
                                                                 </div>
-                                                                <div class="modal fade" id="{{$key}}" tabindex="-1" role="dialog">
+                                                                <div class="modal fade" id="AA{{$key}}" tabindex="-1" role="dialog">
                                                                         <div class="modal-dialog" role="document">
                                                                             <div class="modal-content">
                                                                                 <div class="modal-header">
-                                                                                <h4 class="modal-title" id="defaultModalLabel">Modal title {{$key}}</h4>
+                                                                                <h4 class="modal-title" id="defaultModalLabel">{{$siswa->nama_lengkap}} mengikuti Ekstrakulikuler {{$pr->ekskul->nama_ekskul}}</h4>
                                                                                 </div>
                                                                                 <div class="modal-body">
-                                                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales orci ante, sed ornare eros vestibulum ut. Ut accumsan
-                                                                                    vitae eros sit amet tristique. Nullam scelerisque nunc enim, non dignissim nibh faucibus ullamcorper.
-                                                                                    Fusce pulvinar libero vel ligula iaculis ullamcorper. Integer dapibus, mi ac tempor varius, purus
-                                                                                    nibh mattis erat, vitae porta nunc nisi non tellus. Vivamus mollis ante non massa egestas fringilla.
-                                                                                    Vestibulum egestas consectetur nunc at ultricies. Morbi quis consectetur nunc.
+                                                                                    Apakah Anda Yakin untuk menghapus data ini?
                                                                                 </div>
                                                                                 <div class="modal-footer">
-                                                                                    <button type="button" class="btn btn-link waves-effect">SAVE CHANGES</button>
-                                                                                    <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+                                                                                    {!! Form::model($pr, ['route' => ['ekskulsiswa.destroy', $pr->id], 'method' => 'delete'] ) !!}
+                                                                                    <button type="submit" class="btn btn-link waves-effect">Ya, Saya Yakin</button>
+                                                                                    {!! Form::close()!!}
+                                                                                    <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">Tutup</button>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -407,6 +403,7 @@
             <div class="modal-body">
                 {!! Form::open(['route' => 'prestasi.store', 'enctype' => 'multipart/form-data']) !!}
                 <!-- Hidden Id siswa here-->
+                    {!! Form::hidden('id_siswa', $siswa->id_siswa,['class' =>'form-control']) !!}
                     @include('inputform.prestasi')
                 {!! Form::close() !!}
             </div>
@@ -424,9 +421,9 @@
                     <h4 class="modal-title" id="defaultModalLabel">Tambah Ekstrakulikuler Siswa</h4>
                 </div>
                 <div class="modal-body">
-                    {!! Form::open(['route' => 'ekskulsiswa.store', 'enctype' => 'multipart/form-data']) !!}
-                    <!-- Hidden Id siswa here-->
+                        {!! Form::open(['route' => 'ekskulsiswa.store', 'enctype' => 'multipart/form-data']) !!}
                         @include('inputform.ekskul_siswa')
+                        {!! Form::hidden('id_siswa', $siswa->id_siswa,['class' =>'form-control']) !!}
                     {!! Form::close() !!}
                 </div>
                 <div class="modal-footer">

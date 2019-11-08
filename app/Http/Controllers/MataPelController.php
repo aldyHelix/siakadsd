@@ -14,7 +14,7 @@ class MataPelController extends Controller
    */
   public function index()
   {
-    $mapel =  MataPel::get();
+    $mapel =  MataPel::paginate(10);
     return view('mapel.mapel-data', compact('mapel'));
   }
 
