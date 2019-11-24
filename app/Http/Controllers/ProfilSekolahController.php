@@ -14,7 +14,7 @@ class ProfilSekolahController extends Controller
    */
   public function index()
   {
-    
+     return view('profil.profile-dashboard');
   }
 
   /**

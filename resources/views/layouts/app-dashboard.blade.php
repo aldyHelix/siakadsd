@@ -56,12 +56,12 @@
                                 <ul class="menu">
                                         <div class="clearfix">
                                             <div class="circle-image">
-                                                <img src="{{url('dashboard/images/user.png')}}" alt="User" />           
+                                                <img src="{{ url('/img-guru/' . Auth::user()->guru->foto_guru) }}" alt="User" />           
                                             </div>
                                             <div class="text-info">
-                                                JHON DOE
-                                                <div>john.doe@example.com</div>
-                                                <div>1234567890</div>
+                                                {{ Auth::user()->guru->nama }}
+                                                <div>{{ Auth::user()->email }}</div>
+                                                <div>{{ Auth::user()->nip }}</div>
                                             </div>
                                         </div>
                                 </ul>
@@ -73,14 +73,29 @@
                     </li>
                     <!-- #END# Notifications -->
 
-                    <li><a href="#" class="js-search" data-close="true"><i class="material-icons">input</i></a></li>
+                    <li><a href="{{route('logout')}}" class="js-search" data-close="true"><i class="material-icons">input</i></a></li>
                     <!-- Notifications -->
                 </div>
             </div>
         </div>
     </nav>
     <!-- #Top Bar -->
-    @include('layouts.sidebar')
+    <!-- Pembagian Sidebar ke User -->
+    @can('admin-access')
+        @include('layouts.sidebar-admin')
+    @endcan
+    @can('operator-access')
+        @include('layouts.sidebar-operator')
+    @endcan
+    @can('gurukelas-access')
+        @include('layouts.sidebar-gurukelas')
+    @endcan
+    @can('gurumapel-access')
+        @include('layouts.sidebar-gurumapel')
+    @endcan
+    @can('kepalasekolah-access')
+        @include('layouts.sidebar-kepalasekolah')
+    @endcan
     <section class="content">
     @yield('content')
     </section>

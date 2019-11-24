@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\GuruKaryawan;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
@@ -37,7 +39,9 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        //$this->middleware('auth');
+        $this->middleware('role:admin');
+        //$this->middleware('role:operator');
     }
 
     /**
@@ -64,9 +68,42 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         return User::create([
+            'id_guru' => $data['id_guru'],
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'role' => $data['role'],
         ]);
+    }
+
+    protected function store(Request $request)
+    {
+        $data = $request->only('id_guru','name','nip', 'email','role');
+        $data['password'] = Hash::make($request->password);
+        User::create($data);
+        return redirect()->route('user.index')->with('success', 'Berhasil Menambahkan Data User ' .$request->get('name'));
+    }
+    public function index()
+    {   
+        $user = User::get();
+        return view('auth.user-data', compact('user'));
+    }
+
+    public function userAdd()
+    {
+        $guru = GuruKaryawan::pluck('nama','id_guru');
+        return view('auth.user-add',compact('guru'));
+    }
+    public function edit($id)
+    {
+
+    }
+    public function update(Request $request)
+    {
+
+    }
+    public function destroy($id)
+    {
+
     }
 }

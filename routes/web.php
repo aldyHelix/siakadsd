@@ -10,6 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::post('login', 'Auth\LoginController@login');
 
 Route::get('/', function () {
     return redirect('halaman-utama');
@@ -26,6 +27,17 @@ Route::get('raportsiswa',['as' => 'raport.cetak', 'uses'=>'SiswaController@showR
 Route::get('/data-siswa','SiswaController@dataSiswa');
 Route::post('',['as' => 'prestasi-siswa.store','uses' => 'PrestasiController@prestasisiswa']);
 Route::post('',['as' => 'update.prestasi-siswa','uses' => 'PrestasiController@update_prestasisiswa']);
+//REGISTER ROUTES
+
+Route::get('register/user', ['as' => 'register.user' ,'uses' => 'Auth\RegisterController@userAdd']);
+Route::get('user', ['as' => 'user.index', 'uses' => 'Auth\RegisterController@index']);
+Route::post('',['as' => 'register.store', 'uses' => 'Auth\RegisterController@store']);
+Route::get('user/{id}',  ['as' => 'user.edit', 'uses' => 'Auth\RegisterController@edit']);
+Route::post('user/{id}',  ['as' => 'user.update', 'uses' => 'Auth\RegisterController@update']);
+Route::delete('user/{id}',['as' => 'user.destroy', 'uses' => 'Auth\RegisterController@destroy']);
+
+Route::get('login', ['as' => 'login', 'uses' => 'Auth\LoginController@login']);
+Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 Route::resource('kelas', 'KelasController');
 Route::resource('profilsekolah', 'ProfilSekolahController');
@@ -44,3 +56,6 @@ Route::resource('nilaispiritual', 'NilaiSpiritualController');
 Route::resource('kelassiswa', 'KelasSiswaController');
 Route::resource('ekskulsiswa', 'EkskulSiswaController');
 Route::resource('test', 'TestController');
+Auth::routes();
+
+Route::get('/home', 'FrontController@homeView')->name('home');

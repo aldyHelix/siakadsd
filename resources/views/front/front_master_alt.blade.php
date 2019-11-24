@@ -68,7 +68,7 @@
 <body>
 
     <!-- PRELOADER -->
-    <img id="preloader" src="{{url('white_pro/images/preloader.gif')}}" alt="" />
+    <img id="preloader" src="{{url('white_pro/images/preloader.gif')}}" alt="" style="height:50px; width:50px"/>
     <!-- //PRELOADER -->
     <div class="preloader_hide">
 

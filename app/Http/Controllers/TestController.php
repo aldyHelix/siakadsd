@@ -11,7 +11,9 @@ use App\KenaikanKelas;
 use App\Ekstrakulikuler;
 use App\MataPel;
 use App\NilaiSiswa;
+use App\GuruKaryawan;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Illuminate\Support\Facades\Auth;
 use Validator;
 class TestController extends Controller
 {
@@ -22,9 +24,23 @@ class TestController extends Controller
      */
     public function index()
     {
-        $prestasi = Prestasi::findOrFail(4);
+
+        if(Auth::user()->role == 'admin')
+        {
+            $prestasi = Prestasi::findOrFail(4);
+        }
+        elseif (Auth::user()->role == 'gurukelas') {
+            $guru =  GuruKaryawan::findOrFail(Auth::user()->guru->id_guru);
+            $kelas = Kelas::where('id_guru', $guru->id_guru)->pluck('id_kelas');
+            //$kelasid = $kelas->id_kelas;
+            $siswa =  Siswa::whereIn('id_kelas', $kelas)->get();
+        } 
+        else
+        {
+            $prestasi = Prestasi::findOrFail(3);
+        }
         $kelassiswabaru = Kelas::where('nama_kelas', 'LIKE' ,'%'.'baru'.'%')->orWhere('tahun_ajaran', date("Y"))->first();
-        return view('test-page', compact('kelassiswabaru','prestasi'));
+        return view('test-page', compact('kelassiswabaru','prestasi','kelas','siswa'));
     }
 
     /**

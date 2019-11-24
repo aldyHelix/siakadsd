@@ -9,8 +9,12 @@ use App\KenaikanKelas;
 use App\Ekstrakulikuler;
 use App\MataPel;
 use App\NilaiSiswa;
+use App\User;
+use App\GuruKaryawan;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
 use Validator;
 use File;
 
@@ -26,7 +30,21 @@ class SiswaController extends Controller
   {
     //$kelas = Kelas::pluck('nama_kelas','id_kelas');
     $kelas = Kelas::get();
-    $siswa =  Siswa::where('nama_lengkap', 'LIKE', '%'.$request->get('q').'%')->paginate(10);
+
+    //$siswa =  Siswa::where('nama_lengkap', 'LIKE', '%'.$request->get('q').'%')->paginate(10);
+    if(Auth::user()->role == 'gurukelas')
+    {
+      $guru =  GuruKaryawan::findOrFail(Auth::user()->guru->id_guru);
+      $kelasguru = Kelas::where('id_guru', $guru->id_guru)->pluck('id_kelas');
+      //$siswa =  Siswa::whereIn('id_kelas', $kelas->id_kelas)->paginate(10);
+      $siswa =  Siswa::whereIn('id_kelas', $kelasguru)->paginate(10);
+    }
+    else {
+      $siswa = Siswa::paginate(10);
+    }
+    if($request->get('q')){
+      $siswa =  Siswa::whereIn('id_kelas', $kelasguru)->where('nama_lengkap', 'LIKE', '%'.$request->get('q').'%')->paginate(10);
+    }
     return view('siswa.siswa-data', compact('siswa', 'kelas'));
   }
 

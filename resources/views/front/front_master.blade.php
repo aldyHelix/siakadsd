@@ -33,7 +33,7 @@
             @include('front/front_footer')
         </div>
     </div>
-
+            @include('front/script-foot')
     <!-- jQuery -->
     <script src="{{url('front-end/vendors/jquery/dist/jquery.min.js')}}"></script>
     <!-- Bootstrap -->

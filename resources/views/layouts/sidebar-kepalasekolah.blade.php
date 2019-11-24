@@ -116,25 +116,6 @@
                             </li>                                
                         </ul>
                 </li>
-                <li class="header">Pengaturan</li>
-                <li>
-                    <a href="{{route('siswa.index')}}">
-                        <i class="material-icons col-red">perm_identity</i>
-                        <span>Akun</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{route('siswa.index')}}">
-                        <i class="material-icons col-amber">build</i>
-                        <span>Profil Sekolah</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{route('siswa.index')}}">
-                        <i class="material-icons col-light-blue">visibility</i>
-                        <span>Halaman Depan</span>
-                    </a>
-                </li>
             </ul>
         </div>
         <!-- #Menu -->

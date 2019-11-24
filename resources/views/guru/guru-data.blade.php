@@ -29,6 +29,7 @@
                         </div>
                     </div>
                 </div>
+                @include('layouts.flash-message')
                 <div class="body table-responsive">
                     <table class="table table-hover">
                         <thead>

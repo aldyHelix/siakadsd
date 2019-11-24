@@ -8,15 +8,12 @@
         </button>
     </a>
     <li><a href="javascript:void(0);">Home</a></li>
-    <li class="active">TEST PAGE</li>
+    <li class="active">Profil Sekolah</li>
 </ol>
 <!-- Hover Rows -->
 <div class="row clearfix">
-        {{Auth::user()->role}}
-        @if (Auth::user()->role == "gurukelas")
-            {{$kelas}} <br>
-                {{$siswa}}
-        @endif
+    Input and Edit
+    only 1st query could be change
 </div>
 <!-- #END# Hover Rows -->
 @endsection

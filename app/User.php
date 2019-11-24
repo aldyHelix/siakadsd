@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'id_guru','name','nip', 'email', 'password','role'
     ];
 
     /**
@@ -36,4 +36,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    protected $table = 'users';
+    protected $primaryKey = 'id';
+    public function guru()
+    {
+        return $this->belongsTo('App\GuruKaryawan', 'id_guru');
+    }
+
 }

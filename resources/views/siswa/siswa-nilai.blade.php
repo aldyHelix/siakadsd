@@ -20,7 +20,7 @@
                         <div class="row clearfix demo-button-sizes">
                             <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
                                 <a href="javascript:void(0);">
-                                    <img class="media-object" src="http://placehold.it/64x64" width="64" height="64">
+                                    <img class="media-object" src="{{ url('/img/' . $siswa->foto_siswa) }}" width="64" height="64">
                                 </a>
                             </div>
                             <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">

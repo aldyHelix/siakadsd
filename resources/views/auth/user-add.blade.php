@@ -10,7 +10,7 @@
 </ol>
 <div class="container-fluid">
     <div class="block-header">
-        <h2>Ubah Data Guru</h2>
+        <h2>Tambah Data Siswa</h2>
     </div>
     <!-- Input -->
     <div class="row clearfix">
@@ -18,15 +18,14 @@
             <div class="card">
                 <div class="header">
                     <h2>
-                        Ubah Data
-                        <small>Keterangan</small>
+                        Tambahkan User untuk Login
                     </h2>
                         </li>
                     </ul>
                 </div>
                 <div class="body">
-                        {!! Form::model($guru, ['route' => ['gurukaryawan.update', $guru],'method' =>'patch', 'files' => true])!!}
-                        @include('inputform.guru_karyawan', ['model' => $guru])
+                    {!! Form::open(['route' => 'register.store', 'enctype' => 'multipart/form-data']) !!}
+                        @include('inputform.user-add')
                     {!! Form::close() !!}
                 </div>
             </div>

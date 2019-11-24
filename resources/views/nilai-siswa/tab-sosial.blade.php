@@ -5,7 +5,7 @@
     </div> 
     <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 align-center">
         <div class="col-xs-12">
-                <label>1</label>
+                <label>Jujur</label>
         </div>
         <form class="form-horizontal">
             <div class="row clearfix">
@@ -36,7 +36,7 @@
     </div>
     <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 align-center">
         <div class="col-xs-12">
-                <label>2</label>
+                <label>Disiplin</label>
         </div>
         <form class="form-horizontal">
             <div class="row clearfix">
@@ -67,7 +67,7 @@
     </div>
     <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 align-center">
         <div class="col-xs-12">
-                <label>3</label>
+                <label>Tanggung Jawab</label>
         </div>
         <form class="form-horizontal">
             <div class="row clearfix">
@@ -98,7 +98,7 @@
     </div>
     <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 align-center">
         <div class="col-xs-12">
-                <label>4</label>
+                <label>Santun</label>
         </div>
         <form class="form-horizontal">
             <div class="row clearfix">
@@ -129,7 +129,7 @@
     </div>
     <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 align-center">
         <div class="col-xs-12">
-                <label>5</label>
+                <label>Peduli</label>
         </div>
         <form class="form-horizontal">
             <div class="row clearfix">
@@ -160,7 +160,7 @@
     </div>
     <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 align-center">
             <div class="col-xs-12">
-                    <label>6</label>
+                    <label>Percaya Diri</label>
             </div>
             <form class="form-horizontal">
                 <div class="row clearfix">
@@ -197,7 +197,7 @@
     </div> 
     <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 align-center">
             <div class="col-xs-12">
-                    <label>1</label>
+                    <label>Jujur</label>
             </div>
             <form class="form-horizontal">
                 <div class="row clearfix">
@@ -228,7 +228,7 @@
         </div>
         <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 align-center">
             <div class="col-xs-12">
-                    <label>2</label>
+                    <label>Disiplin</label>
             </div>
             <form class="form-horizontal">
                 <div class="row clearfix">
@@ -259,7 +259,7 @@
         </div>
         <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 align-center">
             <div class="col-xs-12">
-                    <label>3</label>
+                    <label>Tanggung Jawab</label>
             </div>
             <form class="form-horizontal">
                 <div class="row clearfix">
@@ -290,7 +290,7 @@
         </div>
         <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 align-center">
             <div class="col-xs-12">
-                    <label>4</label>
+                    <label>Santun</label>
             </div>
             <form class="form-horizontal">
                 <div class="row clearfix">
@@ -321,7 +321,7 @@
         </div>
         <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 align-center">
             <div class="col-xs-12">
-                    <label>5</label>
+                    <label>Peduli</label>
             </div>
             <form class="form-horizontal">
                 <div class="row clearfix">
@@ -352,7 +352,7 @@
         </div>
         <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 align-center">
                 <div class="col-xs-12">
-                        <label>6</label>
+                        <label>Percaya Diri</label>
                 </div>
                 <form class="form-horizontal">
                     <div class="row clearfix">

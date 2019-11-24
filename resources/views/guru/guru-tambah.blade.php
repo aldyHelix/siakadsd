@@ -25,7 +25,7 @@
                     </ul>
                 </div>
                 <div class="body">
-                    {!! Form::open(array('route' => 'gurukaryawan.store')) !!}
+                    {!! Form::open(array('route' => 'gurukaryawan.store', 'files' => true)) !!}
                         @include('inputform.guru_karyawan')
                     {!! Form::close() !!}
                 </div>

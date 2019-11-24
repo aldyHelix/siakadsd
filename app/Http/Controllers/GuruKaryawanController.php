@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 use App\GuruKaryawan;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use File;
 
 class GuruKaryawanController extends Controller 
 {
