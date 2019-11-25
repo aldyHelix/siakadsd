@@ -14,8 +14,9 @@
 
                         <!-- SEARCH FORM -->
                         <div id="search-form" class="pull-right">
-                            <form method="get" action="#">
-                                <input type="text" name="Search" value="Search" onFocus="if (this.value == 'Search') this.value = '';" onBlur="if (this.value == '') this.value = 'Search';" />
+                            <form action="/search" method="post" role="search">
+                                {{csrf_field() }}
+                                <input type="text" name="q" placeholder="Cari Siswa . . ."/>
                             </form>
                         </div><!-- SEARCH FORM -->
 

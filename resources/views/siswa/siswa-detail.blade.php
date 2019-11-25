@@ -339,16 +339,14 @@
                                                             <p>
                                                                 @foreach($siswa->siswaekskul as $key=>$pr)
                                                                 <div class="media">
-                                                                    <div class="media-left">
-                                                                        <a href="javascript:void(0);">
-                                                                            <img class="media-object" src="http://placehold.it/64x64" width="64" height="64">
-                                                                        </a>
-                                                                    </div>
                                                                     <div class="media-body">
                                                                         <h4 class="media-heading">{{$pr->ekskul->nama_ekskul}}</h4>
+
                                                                         <button type="button" class="btn btn-danger waves-effect pull-right" data-toggle="modal" data-target="#AA{{$key}}">
                                                                                 <i class="material-icons">delete</i>
                                                                         </button>
+                                                                        {{$pr->ekskul->nama_pengajar}} <br>
+                                                                        {{$pr->ekskul->hari_mengajar}} <br>
                                                                         {{-- Tahun : {{$pr->tahun_prestasi}} <br>
                                                                         Prestasi {{$pr->jenis_prestasi}} yang diselenggarakan oleh {{$pr->penyelenggara}}. <br>
                                                                         Peringkat {{$pr->peringkat}}, Hasil {{$pr->saran_saran}}. --}}

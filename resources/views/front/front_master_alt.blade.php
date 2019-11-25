@@ -71,13 +71,9 @@
     <img id="preloader" src="{{url('white_pro/images/preloader.gif')}}" alt="" style="height:50px; width:50px"/>
     <!-- //PRELOADER -->
     <div class="preloader_hide">
-
         <!-- PAGE -->
         <div id="page" class="single_page">
-
             @include('front/front_header')
-
-
             <!-- BREADCRUMBS -->
             <section class="breadcrumbs_block clearfix parallax">
                 <div class="container center">
@@ -86,28 +82,16 @@
                     <br>
                     <div class="col-md-8 col-sm-8 col-xs-12 col-md-offset-2">
                         <div id="fields">
-                            <form id="contact-form-face" class="clearfix" action="#">
-                                <input type="text" name="name" placeholder="Cari Nama Siswa atau NIS . . ."/>
+                            <form id="contact-form-face" class="clearfix" action="/search" method="post" role="search">
+                                {{csrf_field() }}
+                                <input type="text" name="q" placeholder="Cari Nama Siswa atau NIS atau NISN . . ."/>
                                 <input class="contact_btn" type="submit" value="Cari" />
                             </form>
                         </div>
                     </div>
                 </div>
             </section><!-- //BREADCRUMBS -->
-
-
-            <!-- PORTFOLIO -->
-            <section id="portfolio">
-
-                <!-- CONTAINER -->
-                <div class="container">
-                    @include('front/front_content')
-                </div>
-            </section><!-- //PORTFOLIO -->
         </div><!-- //PAGE -->
-
-        <!-- FOOTER -->
-        @include('front/front_footer')
     </div>
 </body>
 

@@ -10,4 +10,8 @@ class FrontController extends Controller
     {
         return view('front/front_master_alt');
     }
+    public function siswaDetails()
+    {
+        return view('front/front_siswa_view');
+    }
 }

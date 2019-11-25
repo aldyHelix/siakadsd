@@ -1,5 +1,6 @@
 <?php
-
+use App\Siswa;
+use Illuminate\Support\Facades\Input;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,7 +17,8 @@ Route::get('/', function () {
     return redirect('halaman-utama');
 });
 
-Route::get('/home', 'FrontController@homeView');
+//Route::get('/home', 'FrontController@homeView');
+Route::get('/detailsiswa', 'FrontController@siswaDetails')->name('detailsiswa');
 Route::get('/halaman-utama', 'DashboardController@index')->name('halaman-utama');
 Route::post('/siswa/naikkelas', 'SiswaController@naikkelas')->name('siswa.naikkelas');
 
@@ -59,3 +61,13 @@ Route::resource('test', 'TestController');
 Auth::routes();
 
 Route::get('/home', 'FrontController@homeView')->name('home');
+Route::get('/detailsiswa', 'FrontController@siswaDetails')->name('detailsiswa');
+
+//searching in frontpage by here
+Route::any('/search',function(){
+    $q = Input::get('q');
+    $siswa = Siswa::where('nama_lengkap','LIKE','%'.$q.'%')->orWhere('INDUK','LIKE','%'.$q.'%')->orWhere('NISN','LIKE','%'.$q.'%')->first();
+    if(count(array($siswa)) > 0)
+        return view('front/front_siswa_view',compact('siswa'))->withDetails($siswa)->withQuery($q);
+    else return view('home')->withMessage('Data Tidak Ditemukan');
+});
