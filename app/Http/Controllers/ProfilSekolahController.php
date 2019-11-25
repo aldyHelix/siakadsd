@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\ProfilSekolah;
+use App\GuruKaryawan;
 
 class ProfilSekolahController extends Controller 
 {
@@ -14,7 +16,9 @@ class ProfilSekolahController extends Controller
    */
   public function index()
   {
-     return view('profil.profile-dashboard');
+    $guru = GuruKaryawan::pluck('nama','id_guru');
+    $profil = ProfilSekolah::first();
+    return view('profil.profile-dashboard',compact('profil','guru'));
   }
 
   /**

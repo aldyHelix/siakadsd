@@ -23,7 +23,7 @@
                     </h2>
                 </div>
                 <div class="body">
-                        {!! Form::model($kelas, ['route' => ['kelas.update', $kelas],'method' =>'patch'])!!}
+                    {!! Form::model($kelas, ['route' => ['kelas.update', $kelas],'method' =>'patch'])!!}
                         @include('inputform.kelas', ['model' => $kelas])
                     {!! Form::close() !!}
                 </div>
