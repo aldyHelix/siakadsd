@@ -52,16 +52,14 @@
                                 <td>{{$item->email}}</td>
                                 <td>{{$item->role}}</td>
                                 <td>
-                                    {!! Form::model($item, ['route' => ['user.destroy', $item->id], 'method' => 'delete'] ) !!}
                                     <a href="{{route('user.edit', $item->id)}}">
                                         <button type="button" class="btn btn-info btn-circle waves-effect waves-circle waves-float">
                                             <i class="material-icons">edit</i>
                                         </button>
                                     </a>
-                                    <button type="submit" class="btn btn-danger btn-circle waves-effect waves-circle waves-float">
+                                    <button type="submit" class="btn btn-danger btn-circle bg-red waves-effect waves-circle waves-float" data-color="red" data-toggle="modal" data-target="#delModal{{$no}}" toggle="tooltip" data-placement="top" title="Hapus Data">
                                         <i class="material-icons">delete</i>
-                                    </button>
-                                    {!! Form::close()!!}      
+                                    </button>   
                                 </td>
                             </tr>
                             @endforeach
@@ -72,4 +70,25 @@
         </div>
     </div>
     <!-- #END# Hover Rows -->
+    @foreach ($user as $no=>$item)
+    <!-- Small Size -->
+    <div class="modal fade" id="delModal{{$no}}" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-sm" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="smallModalLabel">{{$item->guru->nama}}</h4>
+                    </div>
+                    {!! Form::model($item, ['route' => ['user.destroy', $item->id], 'method' => 'delete'] ) !!}
+                    <div class="modal-body">
+                        Data User akan dihapus secara PERMANEN, Apakah anda yakin menghapus data ini?
+                    </div>
+                    <div class="modal-footer">
+                        {!! Form::submit('HAPUS', ['class'=>'btn btn-link waves-effect']) !!}
+                        <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">BATAL</button>
+                    </div>  
+                    {!! Form::close() !!}
+                </div>
+            </div>
+        </div>
+    @endforeach
 @endsection

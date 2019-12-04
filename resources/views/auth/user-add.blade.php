@@ -10,7 +10,7 @@
 </ol>
 <div class="container-fluid">
     <div class="block-header">
-        <h2>Tambah Data Siswa</h2>
+        <h2>Tambah Data User</h2>
     </div>
     <!-- Input -->
     <div class="row clearfix">

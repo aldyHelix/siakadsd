@@ -15,11 +15,15 @@
                         <div class="body">
                             <!-- perulangan kd disini -->
                             @if (count($item->kd_ki3)>0)
-                                @foreach ($item->kd_ki3 as $kd)
-                                    @include('inputform.nilai_harian_ki3')
-                                    <div class="col-xs-12">
-                                        <hr>
-                                    </div>
+                                @foreach ($nilaiki3 as $kd)
+                                    @if ($item->id_mata_pelajaran == $kd->kompetensi_dasar->id_mapel)
+                                        @include('inputform.nilai_harian_ki3')
+                                        <div class="col-xs-12">
+                                            <hr>
+                                        </div>
+                                        @else 
+                                        <b>Nilai Siswa Belum Dibuat!</b>
+                                    @endif
                                 @endforeach    
                             @else
                                 <b>Kompetensi Dasar Belum Ditambahkan. Silahkan Edit Kompetensi Dasar Terlebih Dahulu!</b>

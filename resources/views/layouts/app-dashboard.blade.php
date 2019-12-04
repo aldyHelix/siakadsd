@@ -123,6 +123,7 @@
     <script src="{{asset('dashboard/js/pages/ui/modals.js')}}"></script>
     <script src="{{asset('dashboard/js/pages/forms/advanced-form-elements.js')}}"></script>
     {{-- <script src="{{asset('dashboard/js/pages/ui/tooltips-popovers.js')}}"></script> --}}
+    <script src="{{asset('dashboard/js/pages/ui/notifications.js')}}"></script>
         <!-- Input Mask Plugin Js -->
         <script src="{{asset('dashboard/plugins/jquery-inputmask/jquery.inputmask.bundle.js')}}"></script>
 

@@ -71,7 +71,7 @@
                                                     </tr>
                                                     <tr>
                                                         <td>Tempat, Tanggal Lahir </td>
-                                                        <td>: {{$kelas->guru->tempat_lahir}}, {{$kelas->guru->tanggal_lahir}}</td>
+                                                        <td>: {{$kelas->guru->tempat_lahir}}, {{$kelas->guru->tgl_lahir}}</td>
                                                     </tr>
                                                     <tr>
                                                         <td>Golongan </td>

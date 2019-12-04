@@ -50,21 +50,19 @@
                                 <td>{{$kds->kelas}} / {{$kds->semester}}</td>
                                 <td>{{$kds->keterangan_kompetensi_dasar}}</td>
                                 <td>
-                                    {!! Form::model($kds, ['route' => ['kompetensidasar.destroy', $kds->id_kompetensi_dasar], 'method' => 'delete'] ) !!}
                                         <a href="{{route('kompetensidasar.show', $kds->id_kompetensi_dasar)}}">
                                             <button type="button" class="btn btn-primary btn-circle waves-effect waves-circle waves-float">
                                                 <i class="material-icons">more_horiz</i>
                                             </button>
                                         </a>
-                                        <a href="{{route('kompetensidasar.show', $kds->id_kompetensi_dasar)}}">
+                                        <a href="{{route('kompetensidasar.edit', $kds->id_kompetensi_dasar)}}">
                                             <button type="button" class="btn btn-info btn-circle waves-effect waves-circle waves-float">
                                                 <i class="material-icons">edit</i>
                                             </button>
                                         </a>
-                                        <button type="submit" class="btn btn-danger btn-circle waves-effect waves-circle waves-float">
+                                        <button type="submit" class="btn btn-danger btn-circle bg-red waves-effect waves-circle waves-float" data-color="red" data-toggle="modal" data-target="#delModal{{$no}}" toggle="tooltip" data-placement="top" title="Hapus Data">
                                             <i class="material-icons">delete</i>
-                                        </button>
-                                    {!! Form::close()!!}      
+                                        </button>      
                                 </td>
                             </tr>
                             @endforeach
@@ -76,4 +74,25 @@
         </div>
     </div>
     <!-- #END# Hover Rows -->
+    @foreach($kd as $no=>$kds)
+    <!-- Small Size -->
+    <div class="modal fade" id="delModal{{$no}}" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-sm" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="smallModalLabel">{{$kds->mata_pelajaran->nama_mata_pelajaran}} {{$kds->kelompok_indikator}}/{{$kds->no_indikator}}</h4>
+                    </div>
+                    {!! Form::model($kds, ['route' => ['kompetensidasar.destroy', $kds->id_kompetensi_dasar], 'method' => 'delete'] ) !!}
+                    <div class="modal-body">
+                        Data Kompetensi Dasar akan dihapus secara PERMANEN, Apakah anda yakin menghapus data ini?
+                    </div>
+                    <div class="modal-footer">
+                        {!! Form::submit('HAPUS', ['class'=>'btn btn-link waves-effect']) !!}
+                        <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">BATAL</button>
+                    </div>  
+                    {!! Form::close() !!}
+                </div>
+            </div>
+        </div>
+    @endforeach
 @endsection

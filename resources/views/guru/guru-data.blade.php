@@ -38,7 +38,6 @@
                                 <th>NIP</th>
                                 <th>Nama Guru</th>
                                 <th>L / P</th>
-                                <th>Tempat, Tgl Lahir</th>
                                 <th>Jabatan</th>
                                 <th>Tipe Guru</th>
                                 <th>Aksi</th>
@@ -51,11 +50,9 @@
                                 <td>{{$gurus->NIP}}</td>
                                 <td>{{$gurus->nama}}</td>
                                 <td>{{$gurus->jenis_kelamin}}</td>
-                                <td>{{$gurus->tempat_lahir}},{{$gurus->tgl_lahir}}</td>
                                 <td>{{$gurus->jabatan}}</td>
                                 <td>{{$gurus->tipe_guru}}</td>
                                 <td>
-                                    {!! Form::model($gurus, ['route' => ['gurukaryawan.destroy', $gurus->id_guru], 'method' => 'delete'] ) !!}
                                         <a href="{{route('gurukaryawan.show', $gurus->id_guru)}}">
                                         <button type="button" class="btn btn-primary btn-circle waves-effect waves-circle waves-float">
                                             <i class="material-icons">more_horiz</i>
@@ -66,10 +63,9 @@
                                             <i class="material-icons">edit</i>
                                         </button>
                                         </a>
-                                            <button type="submit" class="btn btn-danger btn-circle waves-effect waves-circle waves-float">
-                                                <i class="material-icons">delete</i>
-                                            </button>
-                                    {!! Form::close()!!}
+                                        <button type="submit" class="btn btn-danger btn-circle bg-red waves-effect waves-circle waves-float" data-color="red" data-toggle="modal" data-target="#delModal{{$no}}" toggle="tooltip" data-placement="top" title="Hapus Data">
+                                            <i class="material-icons">delete</i>
+                                        </button>
                                 </td>
                             </tr>
                             @endforeach
@@ -81,4 +77,25 @@
         </div>
     </div>
     <!-- #END# Hover Rows -->
+    @foreach($guru as $no=>$gurus)
+    <!-- Small Size -->
+    <div class="modal fade" id="delModal{{$no}}" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-sm" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="smallModalLabel">{{$gurus->nama}}</h4>
+                    </div>
+                    {!! Form::model($gurus, ['route' => ['gurukaryawan.destroy', $gurus->id_guru], 'method' => 'delete'] ) !!}
+                    <div class="modal-body">
+                        Data Guru akan dihapus secara PERMANEN, Apakah anda yakin menghapus data ini?
+                    </div>
+                    <div class="modal-footer">
+                        {!! Form::submit('HAPUS', ['class'=>'btn btn-link waves-effect']) !!}
+                        <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">BATAL</button>
+                    </div>  
+                    {!! Form::close() !!}
+                </div>
+            </div>
+        </div>
+    @endforeach
 @endsection

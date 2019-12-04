@@ -15,6 +15,11 @@ class KelasController extends Controller
    *
    * @return Response
    */
+  public function __construct()
+  {
+      $this->middleware('auth');
+  }
+  
   public function index()
   {
     $kelas =  Kelas::paginate(6);
@@ -83,7 +88,7 @@ class KelasController extends Controller
    * @param  int  $id
    * @return Response
    */
-  public function update($id)
+  public function update(Request $request, $id)
   {
     $kelas = Kelas::findOrFail($id);
     $this->validate($request, [

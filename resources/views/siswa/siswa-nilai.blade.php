@@ -15,6 +15,7 @@
                         <h2>
                             Nilai Siswa
                         </h2>
+                        @include('layouts.flash-message')
                     </div>
                     <div class="body">
                         <div class="row clearfix demo-button-sizes">
@@ -36,11 +37,11 @@
                                         </tr>
                                         <tr>
                                             <td>Nama Sekolah</td>
-                                            <td>: SDN balabala</td>
+                                            <td>: {{$profilSekolah->nama_sekolah}}</td>
                                         </tr>
                                         <tr>
                                             <td>Alamat Sekolah</td>
-                                            <td>: Jalan Jalan</td>
+                                            <td>: {{$profilSekolah->alamat_sekolah}}</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -50,12 +51,12 @@
                                     <tbody>
                                         <tr>
                                             <td>Kelas</td>
-                                            <td>: {{$siswa->current_kelas->nama_kelas}}</td>
+                                            <td>: {{$nilaisiswa->nilai_siswa_kelas->kelas->nama_kelas}}</td>
                                         </tr>
                                         <tr>
                                             <td>Semester</td>
                                             <td>: 
-                                            @if ($siswa->current_kelas->semester == 1)
+                                            @if ($nilaisiswa->nilai_siswa_kelas->kelas->semester == 1)
                                             Ganjil
                                             @else 
                                             Genap    
@@ -63,7 +64,7 @@
                                         </tr>
                                         <tr>
                                             <td>Tahun Ajaran</td>
-                                            <td>: {{$siswa->current_kelas->tahun_ajaran}}</td>
+                                            <td>: {{$nilaisiswa->nilai_siswa_kelas->kelas->tahun_ajaran}}</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -125,15 +126,17 @@
                             <div class="tab-content">
                                 <div role="tabpanel" class="tab-pane fade in active" id="spiritual">
                                     <div class="row clearfix">
-                                        @include('nilai-siswa.tab-spiritual')
+                                        @foreach ($nilaispiritual as $item)
+                                            @include('nilai-siswa.tab-spiritual')
+                                        @endforeach
                                     </div>
-                                    
                                 </div>
                                 <div role="tabpanel" class="tab-pane fade" id="sosial">
                                     <div class="row clearfix">
-                                        @include('nilai-siswa.tab-sosial')
+                                        @foreach ($nilaisosial as $item)
+                                            @include('nilai-siswa.tab-sosial')
+                                        @endforeach
                                     </div>
-
                                 </div>
                                 <div role="tabpanel" class="tab-pane fade" id="pengetahuan">
                                     <div>
@@ -164,22 +167,37 @@
             <div class="modal-header">
                 <h4 class="modal-title" id="defaultModalLabel">Set Tanggal Raport</h4>
             </div>
+            {!! Form::model($nilaisiswa, ['route' => ['nilaisiswa.update', $nilaisiswa],'method' =>'patch'])!!}
             <div class="modal-body">
                 @if (!empty($nilaisiswa)) 
                     Tanggal raport telah disetting, ubah tanggal sesuai tanggal yg diinginkan! <br>
-                    Hidden id kelas siswa : {{$kelassiswa->id_kelas_siswa}} <br>
-                    Hidden id siswa : {{$siswa->id_siswa}} <br>
-                    isi tgl raport <br>
-                    isi tgl penerimaan raport <br>  
+                            {!! Form::hidden('id_kelas_siswa', $kelassiswa->id_kelas_siswa,['class' =>'form-control']) !!}
+                            {!! Form::hidden('id_siswa', $siswa->id_siswa,['class' =>'form-control']) !!}
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        {!! Form::date('tgl_raport', null,['class' =>'form-control', 'placeholder' => 'pilih tanggal raport']) !!}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        {!! Form::date('tgl_penerimaan_raport', null,['class' =>'form-control', 'placeholder' => 'pilih tanggal raport']) !!}
+                                    </div>
+                                </div>
+                            </div> 
+                    </form> 
                 @else 
-                    Tanggal Raport Belum di setting! silahkan setting disini!
-                @endif
-                
+                    Tanggal Raport Belum di setting!
+                @endif  
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-link waves-effect">SAVE CHANGES</button>
+                {!! Form::submit('SIMPAN', ['class'=>'btn btn-link waves-effect']) !!}
+                <button type="submit" class="btn btn-link waves-effect">PERBARUI</button>
                 <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
             </div>
+            {!! Form::close() !!}
         </div>
     </div>
 </div>

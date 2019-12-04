@@ -40,5 +40,9 @@ class NilaiSiswa extends Model
     {
         return $this->hasOne('App\NilaiSpiritual', 'id_nilai_spiritual');
     }
+    public function nilai_siswa_kelas()
+    {
+        return $this->belongsTo('App\KelasSiswa', 'id_kelas_siswa');
+    }
 
 }

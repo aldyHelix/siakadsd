@@ -1,7 +1,7 @@
-{!! Form::open(array('route' => 'nilaiki4.store', 'method' => 'POST')) !!}
+
 <div class="row no5paddings">
 	<div class="col-md-12">
-			{{$kd->kelompok_indikator}}/{{$kd->no_indikator}}. {{$kd->keterangan_kompetensi_dasar}}
+			{{$kd->kompetensi_dasar->kelompok_indikator}}/{{$kd->kompetensi_dasar->no_indikator}}. {{$kd->kompetensi_dasar->keterangan_kompetensi_dasar}}
 	</div>
 	<!-- P1 -->		
 	<div class="col-xs-12 nopaddings">
@@ -274,4 +274,3 @@
 		</div>
 	{!! Form::submit(isset($model) ? 'Perbarui' : 'Simpan', ['class'=>'btn btn-primary pull-right']) !!}	
 </div>	
-{!! Form::close() !!}

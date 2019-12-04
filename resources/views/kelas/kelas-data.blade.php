@@ -52,7 +52,7 @@
                                 <td>{{count($kelases->siswa)}}</td>
                                 <td>{{$kelases->guru->nama}}</td>
                                 <td>
-                                    {!! Form::model($kelases, ['route' => ['kelas.destroy', $kelases->id_kelas], 'method' => 'delete'] ) !!}
+                                    
                                     <button type="button" class="btn btn-light-blue btn-circle waves-effect waves-circle waves-float">
                                             <i class="material-icons">person_add</i>
                                     </button>
@@ -66,10 +66,9 @@
                                             <i class="material-icons">edit</i>
                                         </button>
                                     </a>
-                                    <button type="submit" class="btn btn-danger btn-circle waves-effect waves-circle waves-float">
+                                    <button type="submit" class="btn btn-danger btn-circle bg-red waves-effect waves-circle waves-float" data-color="red" data-toggle="modal" data-target="#delModal{{$no}}" toggle="tooltip" data-placement="top" title="Hapus Data">
                                         <i class="material-icons">delete</i>
-                                    </button>
-                                    {!! Form::close()!!}      
+                                    </button>  
                                 </td>
                             </tr>
                             @endforeach
@@ -81,4 +80,25 @@
         </div>
     </div>
     <!-- #END# Hover Rows -->
+    @foreach($kelas as $no=>$kelases)
+    <!-- Small Size -->
+    <div class="modal fade" id="delModal{{$no}}" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-sm" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="smallModalLabel">{{$kelases->nama_kelas}}</h4>
+                    </div>
+                    {!! Form::model($kelases, ['route' => ['kelas.destroy', $kelases->id_kelas], 'method' => 'delete'] ) !!}
+                    <div class="modal-body">
+                        Data Kelas akan dihapus secara PERMANEN, Apakah anda yakin menghapus data ini?
+                    </div>
+                    <div class="modal-footer">
+                        {!! Form::submit('HAPUS', ['class'=>'btn btn-link waves-effect']) !!}
+                        <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">BATAL</button>
+                    </div>  
+                    {!! Form::close() !!}
+                </div>
+            </div>
+        </div>
+    @endforeach
 @endsection

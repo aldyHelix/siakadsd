@@ -65,9 +65,14 @@ class NilaiSiswaController extends Controller
    * @param  int  $id
    * @return Response
    */
-  public function update($id)
+  public function update(Request $request, $id)
   {
-    
+      $nilaisiswa = NilaiSiswa::findOrFail($id);
+      $data = $request->all();
+
+      $nilaisiswa->update($data);
+
+      return redirect()->back()->with('success', 'Sukses Menyimpan Data');
   }
 
   /**
@@ -79,6 +84,11 @@ class NilaiSiswaController extends Controller
   public function destroy($id)
   {
     
+  }
+
+  public function tglupdate(Request $request)
+  {
+
   }
   
 }

@@ -43,54 +43,6 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{route('kompetensidasar.index')}}">
-                        <i class="material-icons">assessment</i>
-                        <span>Kompetensi dasar</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="javascript:void(0);" class="menu-toggle">
-                        <i class="material-icons">assignment_ind</i>
-                        <span>Nilai Siswa</span>
-                    </a>
-                    <ul class="ml-menu">
-                        <li>
-                            <a href="{{route('nilaisiswa.index')}}">
-                                <span>Data Nilai Siswa</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0);" class="menu-toggle">
-                                <span>Nilai Sikap & Catatan</span>
-                            </a>
-                            <ul class="ml-menu">
-                                <li>
-                                    <a href="{{route('catatansiswa.index')}}">Catatan Siswa</a>
-                                </li>
-                                <li>
-                                    <a href="{{route('nilaisosial.index')}}">Sikap Sosial</a>
-                                </li>
-                                <li>
-                                    <a href="{{route('nilaispiritual.index')}}">Sikap Spiritual</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0);" class="menu-toggle">
-                                <span>Nilai Harian Tema</span>
-                            </a>
-                            <ul class="ml-menu">
-                                <li>
-                                    <a href="{{route('nilaiki3.index')}}">Harian Tema KI3</a>
-                                </li>
-                                <li>
-                                    <a href="{{route('nilaiki4.index')}}">Harian Tema KI4</a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-                <li>
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">assignment</i>
                             <span>Laporan</span>

@@ -31,6 +31,7 @@
                             {!! Form::submit('Search', ['class'=>'btn btn-primary waves-effect']) !!} 
                             {!! Form::close() !!}
                         </div>
+                        @if($userRole == 'operator' || $userRole == 'admin')
                         <div class="col-lg-2 pull-right">
                             <a href="{{route('siswa.create')}}">
                                 <button type="button" class="btn btn-primary waves-effect" toggle="tooltip" data-placement="top" title="Tambah Data Siswa">
@@ -39,6 +40,7 @@
                             </button>
                             </a>
                         </div>
+                        @endif
                     </div>
                 </div>
                 @include('layouts.flash-message')
@@ -70,8 +72,9 @@
                                 @endif
                                 <td>{{!empty($siswas->current_kelas->nama_kelas) ? $siswas->current_kelas->nama_kelas : '-'}}</td>
                                 <td>{{$siswas->tempat_lahir}}, {{date('d-m-Y', strtotime($siswas->tgl_lahir))}}</td>
-                                <td> 
-                                        {!! Form::model($siswas, ['route' => ['siswa.destroy', $siswas->id_siswa], 'method' => 'delete'] ) !!}
+                                <td>
+                                    @if($userRole == 'operator' || $userRole == 'admin')
+                                    <div class="js-modal-buttons">
                                         <button type="button" class="btn btn-primary btn-circle waves-effect waves-circle waves-float" data-toggle="modal" data-target="#smallModal{{$no}}" toggle="tooltip" data-placement="top" title="Naikkan Kelas Siswa">
                                             <i class="material-icons">plus_one</i>
                                         </button>
@@ -85,10 +88,27 @@
                                             <i class="material-icons">edit</i>
                                         </button>
                                     </a>
-                                        <button type="submit" class="btn btn-danger btn-circle waves-effect waves-circle waves-float">
+                                        <button type="submit" class="btn btn-danger btn-circle bg-red waves-effect waves-circle waves-float" data-color="red" data-toggle="modal" data-target="#delModal{{$no}}" toggle="tooltip" data-placement="top" title="Hapus Data">
                                             <i class="material-icons">delete</i>
                                         </button>
-                                    {!! Form::close()!!}
+                                    </div>
+                                    @elseif($userRole == 'gurukelas')
+                                    <div class="js-modal-buttons">
+                                        <button type="button" class="btn btn-primary btn-circle waves-effect waves-circle waves-float" data-toggle="modal" data-target="#smallModal{{$no}}" toggle="tooltip" data-placement="top" title="Naikkan Kelas Siswa">
+                                            <i class="material-icons">plus_one</i>
+                                        </button>
+                                    <a href="{{route('siswa.show', $siswas->id_siswa)}}">
+                                        <button type="button" class="btn btn-primary btn-circle waves-effect waves-circle waves-float" toggle="tooltip" data-placement="top" title="Detail Data">
+                                            <i class="material-icons">more_horiz</i>
+                                        </button>                                        
+                                    </a>
+                                    @else 
+                                    <a href="{{route('siswa.show', $siswas->id_siswa)}}">
+                                        <button type="button" class="btn btn-primary btn-circle waves-effect waves-circle waves-float" toggle="tooltip" data-placement="top" title="Detail Data">
+                                            <i class="material-icons">more_horiz</i>
+                                        </button>                                        
+                                    </a> 
+                                    @endif
                                 </td>
                             </tr>
                             @endforeach
@@ -136,6 +156,26 @@
                     <div class="modal-footer">
                         {!! Form::submit('SIMPAN', ['class'=>'btn btn-link waves-effect']) !!}
                         <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+                    </div>  
+                    {!! Form::close() !!}
+                </div>
+            </div>
+        </div>
+
+    <!-- Small Size -->
+    <div class="modal fade" id="delModal{{$no}}" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-sm" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="smallModalLabel">{{$siswas->nama_lengkap}}</h4>
+                    </div>
+                    {!! Form::model($siswas, ['route' => ['siswa.destroy', $siswas->id_siswa], 'method' => 'delete'] ) !!}
+                    <div class="modal-body">
+                        Data Siswa akan dihapus secara PERMANEN, Apakah anda yakin menghapus data ini?
+                    </div>
+                    <div class="modal-footer">
+                        {!! Form::submit('HAPUS', ['class'=>'btn btn-link waves-effect']) !!}
+                        <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">BATAL</button>
                     </div>  
                     {!! Form::close() !!}
                 </div>

@@ -29,6 +29,11 @@ Route::get('raportsiswa',['as' => 'raport.cetak', 'uses'=>'SiswaController@showR
 Route::get('/data-siswa','SiswaController@dataSiswa');
 Route::post('',['as' => 'prestasi-siswa.store','uses' => 'PrestasiController@prestasisiswa']);
 Route::post('',['as' => 'update.prestasi-siswa','uses' => 'PrestasiController@update_prestasisiswa']);
+
+Route::post('',['as' => 'nilai.saveNilaispiritual', 'uses' => 'SiswaController@saveNilaiSpiritual']);
+Route::post('',['as' => 'nilai.saveNilaisosial', 'uses' => 'SiswaController@saveNilaiSosial']);
+
+Route::post('',['as' => 'nilai.tglupdate', 'uses' => 'NilaiSiswaController@tglupdate']);
 //REGISTER ROUTES
 
 Route::get('register/user', ['as' => 'register.user' ,'uses' => 'Auth\RegisterController@userAdd']);

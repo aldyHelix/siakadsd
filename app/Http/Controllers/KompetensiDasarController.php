@@ -12,6 +12,11 @@ class KompetensiDasarController extends Controller
    *
    * @return Response
    */
+  public function __construct()
+  {
+      $this->middleware('auth');
+  }
+  
   public function index()
   {
     $kd =  KompetensiDasar::paginate(10);
@@ -69,8 +74,9 @@ class KompetensiDasarController extends Controller
    */
   public function edit($id)
   {
+    $matapel = MataPel::get();
     $kd = KompetensiDasar::findOrFail($id);
-    return view('kd.kd-edit', compact('kd'));
+    return view('kd.kd-edit', compact('kd','matapel'));
   }
 
   /**

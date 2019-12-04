@@ -96,7 +96,9 @@ class RegisterController extends Controller
     }
     public function edit($id)
     {
-
+        $user = User::findOrFail($id);
+        $guru = GuruKaryawan::pluck('nama','id_guru');
+        return view('auth.user-edit', compact('guru','user'));
     }
     public function update(Request $request)
     {
@@ -104,6 +106,7 @@ class RegisterController extends Controller
     }
     public function destroy($id)
     {
-
+        User::find($id)->delete();
+        return redirect()->route('user.index')->with('error', 'Berhasil Menghapus Data User');
     }
 }

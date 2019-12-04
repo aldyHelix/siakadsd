@@ -50,7 +50,6 @@
                                 <td>{{$ekskuls->hari_mengajar}}, {{$ekskuls->jam_mengajar}}</td>
                                 <td>{{count($ekskuls->siswa)}}</td>
                                 <td>
-                                    {!! Form::model($ekskuls, ['route' => ['ekstrakulikuler.destroy', $ekskuls->id_ekskul], 'method' => 'delete'] ) !!}
                                         <a href="{{route('ekstrakulikuler.show', $ekskuls->id_ekskul)}}">
                                             <button type="button" class="btn btn-primary btn-circle waves-effect waves-circle waves-float">
                                                 <i class="material-icons">more_horiz</i>
@@ -61,10 +60,9 @@
                                                 <i class="material-icons">edit</i>
                                             </button>
                                         </a>
-                                        <button type="submit" class="btn btn-danger btn-circle waves-effect waves-circle waves-float">
-                                            <i class="material-icons">delete</i>
-                                        </button>
-                                    {!! Form::close()!!}      
+                                    <button type="submit" class="btn btn-danger btn-circle bg-red waves-effect waves-circle waves-float" data-color="red" data-toggle="modal" data-target="#delModal{{$no}}" toggle="tooltip" data-placement="top" title="Hapus Data">
+                                        <i class="material-icons">delete</i>
+                                    </button>  
                                 </td>
                             </tr>
                             @endforeach
@@ -76,4 +74,25 @@
         </div>
     </div>
     <!-- #END# Hover Rows -->
+    @foreach($ekskul as $no=>$ekskuls)
+    <!-- Small Size -->
+    <div class="modal fade" id="delModal{{$no}}" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-sm" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="smallModalLabel">{{$ekskuls->nama_ekskul}}</h4>
+                    </div>
+                    {!! Form::model($ekskuls, ['route' => ['ekstrakulikuler.destroy', $ekskuls->id_ekskul], 'method' => 'delete'] ) !!}
+                    <div class="modal-body">
+                        Data Ekstrakulikuler akan dihapus secara PERMANEN, Apakah anda yakin menghapus data ini?
+                    </div>
+                    <div class="modal-footer">
+                        {!! Form::submit('HAPUS', ['class'=>'btn btn-link waves-effect']) !!}
+                        <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">BATAL</button>
+                    </div>  
+                    {!! Form::close() !!}
+                </div>
+            </div>
+        </div>
+    @endforeach
 @endsection
