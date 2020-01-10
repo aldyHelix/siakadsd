@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\NilaiSiswa;
 
 class NilaiSiswaController extends Controller 
 {
@@ -67,12 +68,13 @@ class NilaiSiswaController extends Controller
    */
   public function update(Request $request, $id)
   {
-      $nilaisiswa = NilaiSiswa::findOrFail($id);
-      $data = $request->all();
-
-      $nilaisiswa->update($data);
-
-      return redirect()->back()->with('success', 'Sukses Menyimpan Data');
+          //$request->id_
+          $nilaisiswa = NilaiSiswa::findOrFail($id);
+          $data = $request->all();
+    
+          $nilaisiswa->update($data);
+    
+          return redirect()->back()->with('success', 'Sukses Menyimpan Data');
   }
 
   /**
@@ -86,9 +88,15 @@ class NilaiSiswaController extends Controller
     
   }
 
-  public function tglupdate(Request $request)
+  public function tglupdate(Request $request, $id)
   {
+      //$request->id_
+      $nilaisiswa = NilaiSiswa::findOrFail($id);
+      $data = $request->all();
 
+      $nilaisiswa->update($data);
+
+      return redirect()->back()->with('success', 'Sukses Menyimpan Data');
   }
   
 }

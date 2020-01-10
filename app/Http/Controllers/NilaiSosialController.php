@@ -65,9 +65,14 @@ class NilaiSosialController extends Controller
    * @param  int  $id
    * @return Response
    */
-  public function update($id)
+  public function update(Request $request, $id)
   {
-    
+    $nilaisosial = NilaiSosial::findOrFail($id);
+    $data = $request->all();
+
+    if($nilaisosial->update($data)){
+      return redirect()->back()->with('success', 'Nilai Sosial Diperbarui');
+    }
   }
 
   /**

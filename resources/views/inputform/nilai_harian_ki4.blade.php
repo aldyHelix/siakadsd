@@ -1,7 +1,7 @@
 
 <div class="row no5paddings">
 	<div class="col-md-12">
-			{{$kd->kompetensi_dasar->kelompok_indikator}}/{{$kd->kompetensi_dasar->no_indikator}}. {{$kd->kompetensi_dasar->keterangan_kompetensi_dasar}}
+			{{$kd->kompetensi_dasar->kelompok_indikator}}.{{$kd->kompetensi_dasar->no_indikator}} : {{$kd->kompetensi_dasar->keterangan_kompetensi_dasar}}
 	</div>
 	<!-- P1 -->		
 	<div class="col-xs-12 nopaddings">
@@ -210,58 +210,6 @@
 			</div>
 		</div>
 		<!-- END P3 -->
-		<!-- P4 -->
-	<div class="col-xs-12 nopaddings">
-			<div class="col col-xs-3 nopaddings">
-				<div class="col-xs-8 form-control-label-ct rg-5-padding">
-					<label for="p4lisan">MAX PRAKTEK</label>
-				</div>
-				<div class="col-xs-4 nopaddings">
-					<div class="form-group">
-						<div class="form-line">
-							<input type="text" id="p4lisan" class="form-control" value="70">
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col col-xs-3 nopaddings">
-				<div class="col-xs-8 form-control-label-ct rg-5-padding">
-					<label for="p4tulis">MAX PRODUK</label>
-				</div>
-				<div class="col-xs-4 nopaddings">
-					<div class="form-group">
-						<div class="form-line">
-							<input type="text" id="p4tulis" class="form-control" value="70">
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col col-xs-3 nopaddings">
-				<div class="col-xs-8 form-control-label-ct rg-5-padding">
-					<label for="p4tugas1">MAX PROYEK</label>
-				</div>
-				<div class="col-xs-4 nopaddings">
-					<div class="form-group">
-						<div class="form-line">
-							<input type="text" id="p4tugas1" class="form-control" value="70">
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col col-xs-3 nopaddings">
-				<div class="col-xs-8 form-control-label-ct rg-5-padding">
-					<label for="p4tugas2">RATA - RATA KETERAMPILAN</label>
-				</div>
-				<div class="col-xs-4 nopaddings">
-					<div class="form-group">
-						<div class="form-line">
-							<input type="text" id="p4tugas2" class="form-control" value="70">
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- END P4 -->
 		<div class="col-xs-12">
             <h2 class="card-inside-title">Deskripsi</h2>
             <div class="col-sm-12 nopaddings">

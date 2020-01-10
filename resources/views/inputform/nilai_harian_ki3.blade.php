@@ -1,7 +1,7 @@
 
 <div class="row no5paddings">
 	<div class="col-md-12">
-		{{$kd->kompetensi_dasar->kelompok_indikator}}/{{$kd->kompetensi_dasar->no_indikator}}. {{$kd->kompetensi_dasar->keterangan_kompetensi_dasar}}
+		{{$kd->kompetensi_dasar->kelompok_indikator}}.{{$kd->kompetensi_dasar->no_indikator}} : {{$kd->kompetensi_dasar->keterangan_kompetensi_dasar}}
 	</div>
 	<!-- P1 -->		
 	<div class="col-xs-12 nopaddings">
@@ -54,18 +54,6 @@
 					<div class="form-group nomarginbot">
 						<div class="form-line">
 							<input type="text" id="{{$kd->kompetensi_dasar->kelompok_indikator}}{{$kd->kompetensi_dasar->no_indikator}}p1tugas2" class="form-control input-nopadding p1" name="p1tugas2" value="{{$kd->p1tugas2}}">
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col col-xs-2 nopaddings">
-				<div class="col-xs-8 form-control-label-ct rg-5-padding">
-					<label for="{{$kd->kompetensi_dasar->kelompok_indikator}}{{$kd->kompetensi_dasar->no_indikator}}p1ratarata">Rata - Rata</label>
-				</div>
-				<div class="col-xs-4 nopaddings">
-					<div class="form-group nomarginbot">
-						<div class="form-line">
-							<input type="text" id="{{$kd->kompetensi_dasar->kelompok_indikator}}{{$kd->kompetensi_dasar->no_indikator}}p1ratarata" class="form-control input-nopadding p1has" name="p1rata_rata" value="{{$kd->p1rata_rata}}">
 						</div>
 					</div>
 				</div>
@@ -127,18 +115,6 @@
 					</div>
 				</div>
 			</div>
-			<div class="col col-xs-2 nopaddings">
-				<div class="col-xs-8 form-control-label-ct rg-5-padding">
-					<label for="{{$kd->kompetensi_dasar->kelompok_indikator}}{{$kd->kompetensi_dasar->no_indikator}}p2ratarata">Rata - Rata</label>
-				</div>
-				<div class="col-xs-4 nopaddings">
-					<div class="form-group nomarginbot">
-						<div class="form-line">
-							<input type="text" id="{{$kd->kompetensi_dasar->kelompok_indikator}}{{$kd->kompetensi_dasar->no_indikator}}p2ratarata" class="form-control input-nopadding" name="p2rata_rata" value="{{$kd->p2rata_rata}}">
-						</div>
-					</div>
-				</div>
-			</div>
 		</div>
 	<!-- END P2-->
 	<!-- P3 -->
@@ -192,18 +168,6 @@
 					<div class="form-group nomarginbot">
 						<div class="form-line">
 							<input type="text" id="{{$kd->kompetensi_dasar->kelompok_indikator}}{{$kd->kompetensi_dasar->no_indikator}}p3tugas2" class="form-control input-nopadding" name="p3tugas2" value="{{$kd->p3tugas2}}">
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col col-xs-2 nopaddings">
-				<div class="col-xs-8 form-control-label-ct rg-5-padding">
-					<label for="{{$kd->kompetensi_dasar->kelompok_indikator}}{{$kd->kompetensi_dasar->no_indikator}}p3ratarata">Rata - Rata</label>
-				</div>
-				<div class="col-xs-4 nopaddings">
-					<div class="form-group nomarginbot">
-						<div class="form-line">
-							<input type="text" id="{{$kd->kompetensi_dasar->kelompok_indikator}}{{$kd->kompetensi_dasar->no_indikator}}p3ratarata" class="form-control input-nopadding" name="p3rata_rata" value="{{$kd->p3rata_rata}}">
 						</div>
 					</div>
 				</div>
@@ -265,18 +229,6 @@
 					</div>
 				</div>
 			</div>
-			<div class="col col-xs-2 nopaddings">
-				<div class="col-xs-8 form-control-label-ct rg-5-padding">
-					<label for="{{$kd->kompetensi_dasar->kelompok_indikator}}{{$kd->kompetensi_dasar->no_indikator}}p4ratarata">Rata - Rata</label>
-				</div>
-				<div class="col-xs-4 nopaddings">
-					<div class="form-group nomarginbot">
-						<div class="form-line">
-							<input type="text" id="{{$kd->kompetensi_dasar->kelompok_indikator}}{{$kd->kompetensi_dasar->no_indikator}}p4ratarata" class="form-control input-nopadding" name="p4rata_rata" value="{{$kd->p4rata_rata}}">
-						</div>
-					</div>
-				</div>
-			</div>
 		</div>
 		<!-- END P4 -->
 		<!-- P5 -->
@@ -334,18 +286,6 @@
 					</div>
 				</div>
 			</div>
-			<div class="col col-xs-2 nopaddings">
-				<div class="col-xs-8 form-control-label-ct rg-5-padding">
-					<label for="{{$kd->kompetensi_dasar->kelompok_indikator}}{{$kd->kompetensi_dasar->no_indikator}}p5ratarata">Rata - Rata</label>
-				</div>
-				<div class="col-xs-4 nopaddings">
-					<div class="form-group nomarginbot">
-						<div class="form-line">
-							<input type="text" id="{{$kd->kompetensi_dasar->kelompok_indikator}}{{$kd->kompetensi_dasar->no_indikator}}p5ratarata" class="form-control input-nopadding" name="p5rata_rata" value="{{$kd->p5rata_rata}}">
-						</div>
-					</div>
-				</div>
-			</div>
 		</div>
 		<!-- END P5 -->
 	<!-- Nilai -->
@@ -353,18 +293,6 @@
 			<div class="col col-xs-2 nopaddings">
 				<div class="form-control-label-ct">
 					<label>Nilai</label>
-				</div>
-			</div>
-			<div class="col col-xs-2 nopaddings">
-				<div class="col-xs-8 form-control-label-ct rg-5-padding">
-					<label for="nph">NPH</label>
-				</div>
-				<div class="col-xs-4 nopaddings">
-					<div class="form-group nomarginbot">
-						<div class="form-line">
-							<input type="text" id="nph" class="form-control input-nopadding"name="NPH" value="{{$kd->NPH}}">
-						</div>
-					</div>
 				</div>
 			</div>
 			<div class="col col-xs-2 nopaddings">
@@ -391,18 +319,6 @@
 					</div>
 				</div>
 			</div>
-			<div class="col col-xs-2 nopaddings">
-				<div class="col-xs-8 form-control-label-ct rg-5-padding">
-					<label for="nilaikd">Nilai KD</label>
-				</div>
-				<div class="col-xs-4 nopaddings">
-					<div class="form-group nomarginbot">
-						<div class="form-line">
-							<input type="text" id="nilaikd" class="form-control input-nopadding" name="nilai_kd" value="{{$kd->nilai_kd}}">
-						</div>
-					</div>
-				</div>
-			</div>
 		</div>
 		<!-- END P5 -->
 		<div class="col-xs-12 nopaddings">
@@ -416,19 +332,4 @@
             </div>
 		</div>
 	{!! Form::submit(isset($model) ? 'Perbarui' : 'Simpan', ['class'=>'btn btn-primary pull-right']) !!}	
-</div>	
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" type="text/javascript">
-	$(document).ready(function(){
-		$(".p1").change(function(){
-			var p1lisan = $("#{{$kd->kompetensi_dasar->kelompok_indikator}}{{$kd->kompetensi_dasar->no_indikator}}p1lisan").val();
-			var p1tulis = $("#{{$kd->kompetensi_dasar->kelompok_indikator}}{{$kd->kompetensi_dasar->no_indikator}}p1tulis").val();
-			var p1tugas1 = $("#{{$kd->kompetensi_dasar->kelompok_indikator}}{{$kd->kompetensi_dasar->no_indikator}}p1tugas1").val();
-			var p1tugas2 = $("#{{$kd->kompetensi_dasar->kelompok_indikator}}{{$kd->kompetensi_dasar->no_indikator}}p1tugas2").val();
-
-			var p1ratarata = 0;
-			p1ratarata = (p1lisan + p1tulis + p1tugas1 + p1tugas2) / 4;
-			console.log(p1ratarata);
-			$(".p1has").val(p1ratarata);
-		});
-	});
-</script>
+</div>

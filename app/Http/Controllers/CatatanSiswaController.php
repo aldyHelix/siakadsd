@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\CatatanSiswa;
 
 class CatatanSiswaController extends Controller 
 {
@@ -39,7 +40,11 @@ class CatatanSiswaController extends Controller
    */
   public function store(Request $request)
   {
-    
+      $data = $request->all();
+
+      if(CatatanSiswa::create($data)){
+        return redirect()->back()->with('success', 'Catatan Siswa Berhasil Ditambahkan!');
+      }
   }
 
   /**
@@ -70,9 +75,15 @@ class CatatanSiswaController extends Controller
    * @param  int  $id
    * @return Response
    */
-  public function update($id)
+  public function update(Request $request, $id)
   {
-    
+     $catsiswa = CatatanSiswa::findOrFail($id);
+
+     $data = $request->all();
+
+     if($catsiswa->update($data)){
+        return redirect()->back()->with('success', 'Catatan Siswa Berhasil Diperbarui!');
+     }
   }
 
   /**

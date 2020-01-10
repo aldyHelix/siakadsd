@@ -13,6 +13,7 @@ use App\NilaiSosial;
 use App\NilaiSpiritual;
 use App\NilaiKi3;
 use App\NilaiKi4;
+use App\CatatanSiswa;
 use App\User;
 use App\GuruKaryawan;
 use App\KompetensiDasar;
@@ -448,9 +449,10 @@ class SiswaController extends Controller
 
     $nilaiki3 = NilaiKi3::where('id_nilai_siswa', $nilaisiswa->id_nilai_siswa)->get();
     $nilaiki4 = NilaiKi4::where('id_nilai_siswa', $nilaisiswa->id_nilai_siswa)->get();
+    $catatansiswa = CatatanSiswa::where('id_nilai_siswa', $nilaisiswa->id_nilai_siswa)->first();
     $matapel = MataPel::where('kelas', $kelassis)->get();
     $siswa =  Siswa::find($idsiswa);
-    return view('siswa.siswa-nilai', compact('kelassiswa','matapel','siswa','nilaisiswa', 'nilaispiritual', 'nilaisosial' ,'profilSekolah','nilaiki3','nilaiki4'));
+    return view('siswa.siswa-nilai', compact('kelassiswa','matapel','siswa','nilaisiswa', 'nilaispiritual', 'nilaisosial' ,'profilSekolah','nilaiki3','nilaiki4','catatansiswa'));
   }
   function saveNilaiSpiritual(Request $request)
   {

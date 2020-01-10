@@ -36,12 +36,11 @@ class Siswa extends Model
 
     public function nilai_siswa()
     {
-        return $this->hasMany('App\NilaiSiswa', 'id_nilai_siswa');
+        return $this->hasMany('App\NilaiSiswa', 'id_siswa');
     }
 
     public function kenaikan_kelas()
     {
         return $this->hasOne('App\KenaikanKelas', 'id_naik_kelas');
     }
-
 }

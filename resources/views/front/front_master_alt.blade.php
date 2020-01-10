@@ -72,7 +72,6 @@
     <!-- //PRELOADER -->
     <div class="preloader_hide">
         <!-- PAGE -->
-        <div id="page" class="single_page">
             @include('front/front_header')
             <!-- BREADCRUMBS -->
             <section class="breadcrumbs_block clearfix parallax">
@@ -84,14 +83,13 @@
                         <div id="fields">
                             <form id="contact-form-face" class="clearfix" action="/search" method="post" role="search">
                                 {{csrf_field() }}
-                                <input type="text" name="q" placeholder="Cari Nama Siswa atau NIS atau NISN . . ."/>
+                                <input type="text" name="q" placeholder="Cari Nama Siswa atau NIS atau NISN . . .">
                                 <input class="contact_btn" type="submit" value="Cari" />
                             </form>
                         </div>
                     </div>
                 </div>
             </section><!-- //BREADCRUMBS -->
-        </div><!-- //PAGE -->
     </div>
 </body>
 

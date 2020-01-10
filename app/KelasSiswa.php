@@ -18,4 +18,8 @@ class KelasSiswa extends Model
     {
         return $this->belongsTo('App\Kelas','id_kelas');
     }
+    public function nilai_siswa()
+    {
+        return $this->hasOne('App\NilaiSiswa', 'id_kelas_siswa');
+    }
 }

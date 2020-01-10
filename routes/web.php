@@ -43,6 +43,14 @@ Route::get('user/{id}',  ['as' => 'user.edit', 'uses' => 'Auth\RegisterControlle
 Route::post('user/{id}',  ['as' => 'user.update', 'uses' => 'Auth\RegisterController@update']);
 Route::delete('user/{id}',['as' => 'user.destroy', 'uses' => 'Auth\RegisterController@destroy']);
 
+//laporanroutes
+Route::get('laporan/tahunan/', ['as' => 'laporan.tahunan' ,'uses' => 'LaporanController@showTahunan']);
+Route::get('laporan/semester/', ['as' => 'laporan.semester' ,'uses' => 'LaporanController@showSemester']);
+Route::get('laporan/kelas/', ['as' => 'laporan.kelas' ,'uses' => 'LaporanController@showKelas']);
+Route::get('laporan/siswa/', ['as' => 'laporan.siswa' ,'uses' => 'LaporanController@showSiswa']);
+Route::get('laporan/guru/', ['as' => 'laporan.guru' ,'uses' => 'LaporanController@showGuru']);
+Route::get('laporan/prestasi/', ['as' => 'laporan.prestasi' ,'uses' => 'LaporanController@showPrestasi']);
+
 Route::get('login', ['as' => 'login', 'uses' => 'Auth\LoginController@login']);
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
@@ -66,13 +74,10 @@ Route::resource('test', 'TestController');
 Auth::routes();
 
 Route::get('/home', 'FrontController@homeView')->name('home');
-Route::get('/detailsiswa', 'FrontController@siswaDetails')->name('detailsiswa');
+Route::get('/detailsiswa/{q}', 'FrontController@siswaDetails')->name('detailsiswa');
 
 //searching in frontpage by here
 Route::any('/search',function(){
     $q = Input::get('q');
-    $siswa = Siswa::where('nama_lengkap','LIKE','%'.$q.'%')->orWhere('INDUK','LIKE','%'.$q.'%')->orWhere('NISN','LIKE','%'.$q.'%')->first();
-    if(count(array($siswa)) > 0)
-        return view('front/front_siswa_view',compact('siswa'))->withDetails($siswa)->withQuery($q);
-    else return view('home')->withMessage('Data Tidak Ditemukan');
+    return redirect()->route('detailsiswa', ['q' => $q]);
 });

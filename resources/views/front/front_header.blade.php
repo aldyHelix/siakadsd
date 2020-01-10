@@ -24,7 +24,7 @@
                         <div class="pull-right">
                             <nav class="navmenu center">
                                 <ul>
-                                    <li class="first scroll_btn"><a href="index.html">Home</a></li>
+                                    <li class="first scroll_btn"><a href="{{route('home')}}">Home</a></li>
                                     <li class="scroll_btn"><a href="index.html#about">Tentang</a></li>
                                     <li class="scroll_btn"><a href="index.html#projects">Belajar Mengajar</a></li>
                                     <li class="scroll_btn"><a href="index.html#team">Guru</a></li>

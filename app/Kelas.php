@@ -31,5 +31,13 @@ class Kelas extends Model
     {
         return $this->hasOne('App\KenaikanKelas', 'id_kelas_sesudah');
     }
+    public function nilai_siswa()
+    {
+        return $this->hasOne('App\NilaiSiswa','id_siswa', 'id_kelas_siswa');
+    }
+    public function kelas_siswa()
+    {
+        return $this->hasOne('App\KelasSiswa', 'id_kelas');
+    }
 
 }

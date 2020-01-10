@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\NilaiSpiritual;
 
 class NilaiSpiritualController extends Controller 
 {
@@ -65,9 +66,15 @@ class NilaiSpiritualController extends Controller
    * @param  int  $id
    * @return Response
    */
-  public function update($id)
+  public function update(Request $request, $id)
   {
-    
+      $nilaispiritual = NilaiSpiritual::findOrFail($id);
+      $data = $request->all();
+
+      if($nilaispiritual->update($data)){
+        return redirect()->back()->with('success', 'Nilai Spiritual Diperbarui');
+      }
+      //return redirect()->back();
   }
 
   /**
