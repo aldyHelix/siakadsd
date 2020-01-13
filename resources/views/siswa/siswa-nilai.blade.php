@@ -179,16 +179,26 @@
                         {!! Form::hidden('id_kelas_siswa', $kelassiswa->id_kelas_siswa,['class' =>'form-control']) !!}
                         {!! Form::hidden('id_siswa', $siswa->id_siswa,['class' =>'form-control']) !!}
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <div class="form-group">
-                                <div class="form-line">
-                                    {!! Form::date('tgl_raport', null,['class' =>'form-control', 'placeholder' => 'pilih tanggal raport']) !!}                                    
+                            <div class="col-xs-6 form-control-label-ct rg-5-padding">
+                                <label>Tgl Raport</label>
+                            </div>
+                            <div class="col-xs-6 nopaddings">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        {!! Form::date('tgl_raport', null,['class' =>'form-control', 'placeholder' => 'pilih tanggal raport']) !!}                                    
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <div class="form-group">
-                                <div class="form-line">
-                                    {!! Form::date('tgl_penerimaan_raport', null,['class' =>'form-control', 'placeholder' => 'pilih tanggal raport']) !!}
+                            <div class="col-xs-6 form-control-label-ct rg-5-padding">
+                                <label>Tgl Penerimaan Raport</label>
+                            </div>
+                            <div class="col-xs-6 nopaddings">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        {!! Form::date('tgl_penerimaan_raport', null,['class' =>'form-control', 'placeholder' => 'pilih tanggal raport']) !!}
+                                    </div>
                                 </div>
                             </div>
                         </div> 
@@ -213,14 +223,149 @@
                     <h4 class="modal-title" id="largeModalLabel">Rangkuman Pembelajaran</h4>
                 </div>
                 <div class="modal-body">
-                    @if (!empty($nilaisiswa)) 
-                        view Rangkuman disini!
+                    @if (!empty($nilaisiswa))
+                        <div class="body">
+                            <div class="list-group">
+                                <a href="javascript:void(0);" class="list-group-item">
+                                    <h4 class="list-group-item-heading">Nilai Sosial</h4>
+                                    <p class="list-group-item-text">
+                                    @foreach($nilaisosial as $nisos)
+                                        @php
+                                            $jumlahnisos[] = array(
+                                                $nisos->jujur_sb,
+                                                $nisos->jujur_pb,
+                                                $nisos->disiplin_sb,
+                                                $nisos->disiplin_pb,
+                                                $nisos->tanggung_jawab_sb,
+                                                $nisos->tanggung_jawab_pb,
+                                                $nisos->santun_sb,
+                                                $nisos->santun_pb,
+                                                $nisos->peduli_sb,
+                                                $nisos->peduli_pb,
+                                                $nisos->percaya_diri_sb,
+                                                $nisos->percaya_diri_pb,
+                                            );
+                                        @endphp
+                                    @endforeach
+                                    @php
+                                        $jumlahnisos = (array_sum($jumlahnisos[0]) + array_sum($jumlahnisos[1]))/24;
+                                    @endphp
+                                        @if($jumlahnisos <= 2)
+                                            <p> Ananda {{$siswa->nama_lengkap}} kurang bersosial</p>
+                                        @elseif((2 < $jumlahnisos) or ($jumlahnisos >= 5))
+                                            <p>Ananda {{$siswa->nama_lengkap}} bersosial dengan baik</p>
+                                        @elseif((5 < $jumlahnisos) or ($jumlahnisos <= 6))
+                                            <p>Ananda {{$siswa->nama_lengkap}} bersosial dan aktif dalam bersosialisasi</p>
+                                        @else 
+                                            <p>-</p>
+                                        @endif
+                                    </p>
+                                </a>
+                                <a href="javascript:void(0);" class="list-group-item">
+                                    <h4 class="list-group-item-heading">Nilai Spiritual</h4>
+                                    <p class="list-group-item-text">
+                                    @foreach($nilaispiritual as $nilai_spiritual)
+                                        @php
+                                            $jumlahnilai[] = array(
+                                                $nilai_spiritual->ketaatan_ibadah_sb, 
+                                                $nilai_spiritual->ketaatan_ibadah_pb,
+                                                $nilai_spiritual->perilaku_syukur_sb,
+                                                $nilai_spiritual->perilaku_syukur_pb,
+                                                $nilai_spiritual->berdoa_ses_seb_sb,
+                                                $nilai_spiritual->berdoa_ses_seb_pb,
+                                                $nilai_spiritual->toleransi_beribadah_sb,
+                                                $nilai_spiritual->toleransi_beribadah_pb,
+                                                );
+                                        @endphp
+                                    @endforeach
+                                    @php
+                                        $jumlahnilai = (array_sum($jumlahnilai[0]) + array_sum($jumlahnilai[1]))/16;
+                                    @endphp
+                                        @if($jumlahnilai <= 2)
+                                            <p> Ananda {{$siswa->nama_lengkap}} memiliki toleransi dengan sesama murid yang rendah, 
+                                            perlu adanya bimbingan dari orang tua dan guru untuk memberikan edukasi mengenai ketaatan ibadah, berperilaku bersyukur, pentingnya berdoa Sebelum
+                                            dan sesudah melakukan sesuatu, serta pentingnya dalam toleransi beribadah. </p>
+                                        @elseif((2 < $jumlahnilai) or ($jumlahnilai >= 5))
+                                            <p>Ananda {{$siswa->nama_lengkap}} memiliki toleransi yang baik dengan sesama murid, siswa mampu memahami pentingnya ketaatan ibadah, berperilaku bersyukur
+                                            pentingnya berdoa sebelum dan sesudah melakukan sesuatu, serta pentingnya bertoleransi dalam beribadah.</p>
+                                        @elseif((5 < $jumlahnilai) or ($jumlahnilai <= 6))
+                                            <p>Ananda {{$siswa->nama_lengkap}} memiliki toleransi yang sangat baik dan berlaku adil pada teman-temannya, siswa mampu menjelaskan dan berdiskusi mengenai pentingnya ketaatan ibadah,
+                                            berperilaku bersyukur, pentingnya berdoa sebelum dan sesudah melakukan sesuatu, serta pentingnya bertoleransi dalam beribadah</p>
+                                        @else 
+                                            <p>-</p>
+                                        @endif
+                                    </p>
+                                </a>
+                                <a href="javascript:void(0);" class="list-group-item">
+                                    <h4 class="list-group-item-heading">Nilai Pengetahuan</h4>
+                                    <div class="body">
+                                        <ul class="list-group">
+                                        @foreach ($matapel as $item)
+                                        @if (count($item->kd_ki3)>0)
+                                            @foreach ($nilaiki3 as $kd)
+                                                @php
+                                                    $rtki3[] = $kd->nilai_kd;
+                                                @endphp
+                                            @endforeach
+                                                @php
+                                                    $rtmapel = array_sum($rtki3)/count($rtki3);
+                                                    $rtmapel = number_format((float)$rtmapel, 2, '.','');
+                                                @endphp
+                                            <li class="list-group-item">{{$item->nama_mata_pelajaran}} <span class="badge bg-orange">{{$rtmapel}}</span></li>    
+                                        @else
+                                            <li class="list-group-item">{{$item->nama_mata_pelajaran}} <span class="badge bg-orange">Kosong</span></li>
+                                        @endif
+                                        @endforeach
+                                        </ul>
+                                    </div>
+                                </a>
+                                <a href="javascript:void(0);" class="list-group-item">
+                                    <h4 class="list-group-item-heading">Nilai Keterampilan</h4>
+                                    <div class="body">
+                                        <ul class="list-group">
+                                        @foreach ($matapel as $item)
+                                        @if (count($item->kd_ki4)>0)
+                                            @foreach ($nilaiki4 as $kd)
+                                                @php
+                                                    $rtki4[] = $kd->rata_rata;
+                                                @endphp
+                                            @endforeach
+                                                @php
+                                                    $rtmapel = array_sum($rtki4)/count($rtki4);
+                                                    $rtmapel = number_format((float)$rtmapel, 2, '.','');
+                                                @endphp
+                                            <li class="list-group-item">{{$item->nama_mata_pelajaran}} <span class="badge bg-purple">{{$rtmapel}}</span></li>    
+                                        @else
+                                            <li class="list-group-item">{{$item->nama_mata_pelajaran}} <span class="badge bg-orange">Kosong</span></li>
+                                        @endif
+                                        @endforeach
+                                        </ul>
+                                    </div>
+                                </a>
+                                <a href="javascript:void(0);" class="list-group-item">
+                                    <h4 class="list-group-item-heading">Catatan Siswa</h4>
+                                    <div class="body">
+                                        <ul class="list-group">
+                                            <li class="list-group-item">Absensi Sakit <span class="badge bg-cyan">{{$catatansiswa->absensi_sakit}}</span></li>
+                                            <li class="list-group-item">Absensi Ijin <span class="badge bg-cyan">{{$catatansiswa->absensi_ijin}}</span></li>
+                                            <li class="list-group-item">Absensi Tanpa Keterangan <span class="badge bg-cyan">{{$catatansiswa->absensi_tanpa_keterangan}}</span></li>
+                                            <li class="list-group-item">Tinggi Badan <span class="badge bg-cyan">{{$catatansiswa->tinggi_badan}}</span></li>
+                                            <li class="list-group-item">Berat Badan <span class="badge bg-cyan">{{$catatansiswa->berat_badan}}</span></li>
+                                            <li class="list-group-item">Kesehatan Pendengaran <span class="badge bg-cyan">{{$catatansiswa->kesehatan_pendengaran}}</span></li>
+                                            <li class="list-group-item">Kesehatan Pengelihatan <span class="badge bg-cyan">{{$catatansiswa->kesehatan_pengelihatan}}</span></li>
+                                            <li class="list-group-item">Kesehatan Gigi <span class="badge bg-cyan">{{$catatansiswa->kesehatan_gigi}}</span></li>
+                                            <li class="list-group-item">Kesehatan Lain <span class="badge bg-cyan">{{$catatansiswa->kesehatan_lainnya}}</span></li>
+                                            <li class="list-group-item">Prestasi Akademik <span class="badge bg-cyan">{{$catatansiswa->prestasi_akademik}}</span></li>
+                                        </ul>
+                                    </div>
+                                </a>
+                            </div>
+                        </div> 
                     @else 
                         Tanggal Raport Belum di setting! silahkan setting terlebih dahulu!
                     @endif
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-link waves-effect">SAVE CHANGES</button>
                     <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
                 </div>
             </div>
