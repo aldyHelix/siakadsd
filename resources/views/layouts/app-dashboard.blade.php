@@ -122,7 +122,7 @@
     <script src="{{asset('dashboard/js/pages/widgets/infobox/infobox-5.js')}}"></script>
     <script src="{{asset('dashboard/js/pages/ui/modals.js')}}"></script>
     <script src="{{asset('dashboard/js/pages/forms/advanced-form-elements.js')}}"></script>
-    {{-- <script src="{{asset('dashboard/js/pages/ui/tooltips-popovers.js')}}"></script> --}}
+     <script src="{{asset('dashboard/js/pages/ui/tooltips-popovers.js')}}"></script>
     <script src="{{asset('dashboard/js/pages/ui/notifications.js')}}"></script>
         <!-- Input Mask Plugin Js -->
         <script src="{{asset('dashboard/plugins/jquery-inputmask/jquery.inputmask.bundle.js')}}"></script>
@@ -167,8 +167,9 @@
     format: 'yyyy-mm-dd'
     });
         });
-
-</script>
-
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+@yield('scripts')
+@yield('scriptski4')
 </body>
 </html>

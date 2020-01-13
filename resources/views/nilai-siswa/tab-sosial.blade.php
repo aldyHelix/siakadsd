@@ -218,7 +218,4 @@
         <div class="col-sm-12">
             {!! Form::submit(isset($model) ? 'Perbarui' : 'Simpan', ['class'=>'btn btn-primary pull-right']) !!}
         </div>
-<script type="text/javascript">
-    
-</script>
 

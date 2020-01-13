@@ -88,6 +88,11 @@
                             </div>
                         </div>
                         <div class="row">
+                            <div class="col-lg-12">
+                                <a href="{{ route('rekap.nilai.kelas', $kelas->id_kelas)}}"><button type="button" class="btn bg-blue btn-sm waves-effect pull-right">Rekap Nilai</button></a>
+                            </div>
+                        </div>
+                        <div class="row">
                             <div class="col-xs-12 ol-sm-12 col-md-12 col-lg-12">
                                     <div class="body table-responsive">
                                             <table class="table table-hover">

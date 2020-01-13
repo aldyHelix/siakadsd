@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\NilaiKi4;
 
 class NilaiKi4Controller extends Controller 
 {
@@ -65,9 +66,14 @@ class NilaiKi4Controller extends Controller
    * @param  int  $id
    * @return Response
    */
-  public function update($id)
+  public function update(Request $request ,$id)
   {
-    
+    $dt = $request->dt;
+    if(NilaiKi4::findOrFail($id)->update($dt)){
+      $nil = NilaiKi4::where('id_nilai_ki4', $id)->first();
+      return redirect()->back()->with('success', 'Success Update Nilai Keterampilan '.$nil->kompetensi_dasar->mata_pelajaran->nama_mata_pelajaran);
+    }
+    return redirect()->back()->with('error', 'Gagal Update Nilai Keterampilan.');
   }
 
   /**

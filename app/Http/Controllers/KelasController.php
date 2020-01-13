@@ -112,6 +112,11 @@ class KelasController extends Controller
     Kelas::find($id)->delete();
     return redirect()->route('kelas.index')->with('error', 'Berhasil Menghapus Data kelas ');
   }
+  public function rekapNilai($id)
+  {
+      $dt = KelasSiswa::where('id_kelas', $id)->get();
+      return view('kelas.kelas-rekap-nilai', compact('dt'));
+  }
   
 }
 

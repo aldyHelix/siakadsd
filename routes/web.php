@@ -12,27 +12,36 @@ use Illuminate\Support\Facades\Input;
 |
 */
 Route::post('login', 'Auth\LoginController@login');
-
 Route::get('/', function () {
-    return redirect('halaman-utama');
+    return redirect('home');
 });
-
+Route::get('/home', 'FrontController@homeView')->name('home');
+Route::get('/detailsiswa/{q}', 'FrontController@siswaDetails')->name('detailsiswa');
+Route::get('login', ['as' => 'login', 'uses' => 'Auth\LoginController@login']);
+Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
+//searching in frontpage by here
+Route::any('/search',function(){
+    $q = Input::get('q');
+    return redirect()->route('detailsiswa', ['q' => $q]);
+});
 //Route::get('/home', 'FrontController@homeView');
 Route::get('/detailsiswa', 'FrontController@siswaDetails')->name('detailsiswa');
 Route::get('/halaman-utama', 'DashboardController@index')->name('halaman-utama');
-Route::post('/siswa/naikkelas', 'SiswaController@naikkelas')->name('siswa.naikkelas');
 
 
-Route::resource('siswa', 'SiswaController');
-Route::get('siswa/{idsiswa}/{idkelas}',['as'=> 'siswa.shownilai','uses'=>'SiswaController@showNilai']);
+Route::group(['prefix' => 'siswa'], function(){
+    Route::post('/naikkelas', 'SiswaController@naikkelas')->name('siswa.naikkelas');
+    Route::get('/{idsiswa}/{idkelas}',['as'=> 'siswa.shownilai','uses'=>'SiswaController@showNilai']);
+    
+});
+
 Route::get('raportsiswa',['as' => 'raport.cetak', 'uses'=>'SiswaController@showRaport']);
 Route::get('/data-siswa','SiswaController@dataSiswa');
+
 Route::post('',['as' => 'prestasi-siswa.store','uses' => 'PrestasiController@prestasisiswa']);
 Route::post('',['as' => 'update.prestasi-siswa','uses' => 'PrestasiController@update_prestasisiswa']);
-
 Route::post('',['as' => 'nilai.saveNilaispiritual', 'uses' => 'SiswaController@saveNilaiSpiritual']);
 Route::post('',['as' => 'nilai.saveNilaisosial', 'uses' => 'SiswaController@saveNilaiSosial']);
-
 Route::post('',['as' => 'nilai.tglupdate', 'uses' => 'NilaiSiswaController@tglupdate']);
 //REGISTER ROUTES
 
@@ -51,9 +60,47 @@ Route::get('laporan/siswa/', ['as' => 'laporan.siswa' ,'uses' => 'LaporanControl
 Route::get('laporan/guru/', ['as' => 'laporan.guru' ,'uses' => 'LaporanController@showGuru']);
 Route::get('laporan/prestasi/', ['as' => 'laporan.prestasi' ,'uses' => 'LaporanController@showPrestasi']);
 
-Route::get('login', ['as' => 'login', 'uses' => 'Auth\LoginController@login']);
-Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
+Route::group(['prefix' => 'kelas'], function(){
+    Route::get('{id}/rekap', 'KelasController@rekapNilai')->name('rekap.nilai.kelas');
+});
+Route::group(['prefix' => 'gurukaryawan'], function(){
 
+});
+Route::group(['prefix' => 'matapel'], function(){
+
+});
+Route::group(['prefix' => 'kompetensidasar'], function(){
+
+});
+Route::group(['prefix' => 'nilaisiswa'], function(){
+
+});
+Route::group(['prefix' => 'nilaiki3'], function(){
+    Route::put('{id}/updateki3', 'NilaiKi3Controller@update');
+});
+Route::group(['prefix' => 'nilaiki4'], function(){
+    Route::put('{id}/updateki4', 'NilaiKi4Controller@update');
+});
+Route::group(['prefix' => 'nilaispiritual'], function(){
+
+});
+Route::group(['prefix' => 'nilaisosial'], function(){
+
+});
+Route::group(['prefix' => 'catatansiswa'], function(){
+
+});
+Route::group(['prefix' => 'kelassiswa'], function(){
+
+});
+Route::group(['prefix' => 'prestasi'], function(){
+
+});
+Route::group(['prefix' => 'ekstrakulikuler'], function(){
+
+});
+
+Route::resource('siswa', 'SiswaController');
 Route::resource('kelas', 'KelasController');
 Route::resource('profilsekolah', 'ProfilSekolahController');
 Route::resource('prestasi', 'PrestasiController');
@@ -73,11 +120,3 @@ Route::resource('ekskulsiswa', 'EkskulSiswaController');
 Route::resource('test', 'TestController');
 Auth::routes();
 
-Route::get('/home', 'FrontController@homeView')->name('home');
-Route::get('/detailsiswa/{q}', 'FrontController@siswaDetails')->name('detailsiswa');
-
-//searching in frontpage by here
-Route::any('/search',function(){
-    $q = Input::get('q');
-    return redirect()->route('detailsiswa', ['q' => $q]);
-});
