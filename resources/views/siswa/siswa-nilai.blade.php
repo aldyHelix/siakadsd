@@ -86,7 +86,7 @@
                             </div>
                             <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
                                 @if (!empty($nilaisiswa)) 
-                                    <a href="{{route('raport.cetak', ['idnilaisiswa' => $nilaisiswa->id_nilai_siswa])}}" class="btn btn-primary btn-block waves-effect" role="button">Cetak Raport</a>
+                                    <a href="{{route('raport.cetak', ['idsiswa' => $siswa->id_siswa, 'idkelas' => $siswa->id_kelas])}}" class="btn btn-primary btn-block waves-effect" role="button">Cetak Raport</a>
                                 @else 
                                 <a href="#" class="btn btn-primary btn-block waves-effect" disabled="disabled">Cetak Raport</a>
                                 @endif
@@ -346,16 +346,20 @@
                                     <h4 class="list-group-item-heading">Catatan Siswa</h4>
                                     <div class="body">
                                         <ul class="list-group">
+                                            @if(!empty($catatansiswa))
                                             <li class="list-group-item">Absensi Sakit <span class="badge bg-cyan">{{$catatansiswa->absensi_sakit}}</span></li>
                                             <li class="list-group-item">Absensi Ijin <span class="badge bg-cyan">{{$catatansiswa->absensi_ijin}}</span></li>
                                             <li class="list-group-item">Absensi Tanpa Keterangan <span class="badge bg-cyan">{{$catatansiswa->absensi_tanpa_keterangan}}</span></li>
-                                            <li class="list-group-item">Tinggi Badan <span class="badge bg-cyan">{{$catatansiswa->tinggi_badan}}</span></li>
-                                            <li class="list-group-item">Berat Badan <span class="badge bg-cyan">{{$catatansiswa->berat_badan}}</span></li>
+                                            <li class="list-group-item">Tinggi Badan <span class="badge bg-cyan">{{$catatansiswa->tinggi_badan}} cm</span></li>
+                                            <li class="list-group-item">Berat Badan <span class="badge bg-cyan">{{$catatansiswa->berat_badan}} kg</span></li>
                                             <li class="list-group-item">Kesehatan Pendengaran <span class="badge bg-cyan">{{$catatansiswa->kesehatan_pendengaran}}</span></li>
                                             <li class="list-group-item">Kesehatan Pengelihatan <span class="badge bg-cyan">{{$catatansiswa->kesehatan_pengelihatan}}</span></li>
                                             <li class="list-group-item">Kesehatan Gigi <span class="badge bg-cyan">{{$catatansiswa->kesehatan_gigi}}</span></li>
                                             <li class="list-group-item">Kesehatan Lain <span class="badge bg-cyan">{{$catatansiswa->kesehatan_lainnya}}</span></li>
                                             <li class="list-group-item">Prestasi Akademik <span class="badge bg-cyan">{{$catatansiswa->prestasi_akademik}}</span></li>
+                                            @else
+                                            <li class="list-group-item">Data belum terisi <span class="badge bg-cyan">kosong</span></li>
+                                            @endif 
                                         </ul>
                                     </div>
                                 </a>

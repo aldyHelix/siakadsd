@@ -24,6 +24,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use Validator;
 use File;
+use PDF;
 
 class SiswaController extends Controller 
 {
@@ -458,9 +459,61 @@ class SiswaController extends Controller
   {
 
   }
-  function showRaport()
+  function showRaport($idsiswa, $idkelas)
   {
-    return view('cetak-raport');
+    $kelassiswa = KelasSiswa::where(['id_siswa' => $idsiswa, 'id_kelas' => $idkelas])->first();
+    $profilsekolah = ProfilSekolah::first();
+    //cek nilai siswa apakah ada atau tidak
+    $nilaisiswa = NilaiSiswa::where(['id_siswa' => $idsiswa, 'id_kelas_siswa' => $kelassiswa->id_kelas_siswa])->first();
+    $nilaisosial = NilaiSosial::where('id_nilai_siswa', $nilaisiswa->id_nilai_siswa)->get();
+    $nilaispiritual = NilaiSpiritual::where('id_nilai_siswa', $nilaisiswa->id_nilai_siswa)->get();
+
+    $kelas = Kelas::find($idkelas);
+    if ($kelas->nama_kelas == 'Kelas 1') {
+      $kelassis = 1;
+    } 
+    elseif ($kelas->nama_kelas == 'Kelas 2') {
+      $kelassis = 2;
+    }
+    elseif ($kelas->nama_kelas == 'Kelas 3') {
+      $kelassis = 3;
+    }
+    elseif ($kelas->nama_kelas == 'Kelas 4') {
+      $kelassis = 4;
+    }
+    elseif ($kelas->nama_kelas == 'Kelas 5') {
+      $kelassis = 5;
+    }
+    elseif ($kelas->nama_kelas == 'Kelas 6') {
+      $kelassis = 6;
+    }
+    else {
+      $kelassis = 0;
+    }
+    $kelassiswa['kelassis'] = $kelassis;
+    $nilaiki3 = NilaiKi3::where('id_nilai_siswa', $nilaisiswa->id_nilai_siswa)->get();
+    $nilaiki4 = NilaiKi4::where('id_nilai_siswa', $nilaisiswa->id_nilai_siswa)->get();
+    $catatansiswa = CatatanSiswa::where('id_nilai_siswa', $nilaisiswa->id_nilai_siswa)->first();
+    $matapel = MataPel::where('kelas', $kelassis)->get();
+    $siswa =  Siswa::find($idsiswa);
+    $dt = [
+      'kelassiswa' => $kelassiswa,
+      'profilsekolah' => $profilsekolah,
+      'nilaisiswa' => $nilaisiswa,
+      'nilaisosial' => $nilaisosial,
+      'nilaispiritual' => $nilaispiritual,
+      'kelas' => $kelassis,
+      'nilaiki3' => $nilaiki3,
+      'nilaiki4' => $nilaiki4,
+      'catatansiswa' => $catatansiswa,
+      'matapel' => $matapel,
+      'siswa' => $siswa
+    ];
+    $pdf = PDF::loadview('cetak-raport', compact('kelassiswa','profilsekolah','nilaisiswa','nilaisosial','nilaispiritual','kelas','kelassis','nilaiki3','nilaiki4','catatansiswa','matapel','siswa'))->setPaper([0,0,612,935.433], 'portrait');
+    $namasiswa = explode(' ',trim($siswa->nama_lengkap));
+    $filename = $kelassis.'-'.$namasiswa[0].'-raport-'.$kelassiswa->kelas->tahun_ajaran;
+    return $pdf->download($filename);
+    //return view('cetak-raport', compact('kelassiswa','profilsekolah','nilaisiswa','nilaisosial','nilaispiritual','kelas','kelassis','nilaiki3','nilaiki4','catatansiswa','matapel','siswa'));
   }
   protected function savePhoto(UploadedFile $foto_siswa) 
     { 

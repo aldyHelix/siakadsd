@@ -117,12 +117,14 @@
                                                         @else 
                                                             <td>P</td>
                                                         @endif
+                                                        @if($kelas->nama_kelas != 'Siswa Baru')
                                                         <td><a href=""><button type="button" class="btn bg-red btn-block btn-sm waves-effect">SOSIAL</button></a></td>
                                                         <td><a href=""><button type="button" class="btn bg-red btn-block btn-sm waves-effect">SPIRITUAL</button></a></td>
                                                         <td><a href=""><button type="button" class="btn bg-red btn-block btn-sm waves-effect">KI3</button></a></td>
                                                         <td><a href=""><button type="button" class="btn bg-red btn-block btn-sm waves-effect">KI4</button></a></td>
                                                         <td><a href=""><button type="button" class="btn bg-red btn-block btn-sm waves-effect">CATATAN</button></a></td>
                                                         <td><a href=""><button type="button" class="btn bg-red btn-block btn-sm waves-effect">RAPORT</button></a></td>
+                                                        @endif
                                                     </tr>
                                                     @endforeach
                                                 </tbody>

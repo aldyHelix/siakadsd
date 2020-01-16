@@ -7,6 +7,9 @@ use App\Kelas;
 use App\GuruKaryawan;
 use App\KelasSiswa;
 use App\Siswa;
+use App\MataPel;
+use App\NilaiSiswa;
+use App\Nilaiki3;
 class KelasController extends Controller 
 {
 
@@ -113,9 +116,52 @@ class KelasController extends Controller
     return redirect()->route('kelas.index')->with('error', 'Berhasil Menghapus Data kelas ');
   }
   public function rekapNilai($id)
-  {
-      $dt = KelasSiswa::where('id_kelas', $id)->get();
-      return view('kelas.kelas-rekap-nilai', compact('dt'));
+  {   
+      $dt = KelasSiswa::where('id_kelas', $id)->first();
+      if ($dt->kelas->nama_kelas == 'Kelas 1') {
+        $kelassis = 1;
+      } 
+      elseif ($dt->kelas->nama_kelas == 'Kelas 2') {
+        $kelassis = 2;
+      }
+      elseif ($dt->kelas->nama_kelas == 'Kelas 3') {
+        $kelassis = 3;
+      }
+      elseif ($dt->kelas->nama_kelas == 'Kelas 4') {
+        $kelassis = 4;
+      }
+      elseif ($dt->kelas->nama_kelas == 'Kelas 5') {
+        $kelassis = 5;
+      }
+      elseif ($dt->kelas->nama_kelas == 'Kelas 6') {
+        $kelassis = 6;
+      }
+      else {
+        $kelassis = 0;
+      }
+      $mapel = MataPel::where('kelas', $kelassis)->get();
+      $siswa = Siswa::where('id_kelas',$id)->get();
+      foreach($siswa as $s){
+        foreach($mapel as $mp){
+          $ks = KelasSiswa::where(['id_siswa' => $s->id_siswa, 'id_kelas' => $id])->first();
+          $nilaisiswa = NilaiSiswa::where(['id_siswa' => $s->id_siswa, 'id_kelas_siswa' => $ks->id_kelas_siswa])->first();
+          $nilaiki3 = NilaiKi3::where('id_nilai_siswa', $nilaisiswa->id_nilai_siswa)->get();
+          foreach ($nilaiki3 as $kd){
+            $rtki3[] = $kd->nilai_kd;
+          }
+          $rtmapel = array_sum($rtki3)/count($rtki3);
+          $rtmapel = number_format((float)$rtmapel, 2, '.','');
+          $nilai[] = [$mp->nama_mata_pelajaran => $rtmapel, ];
+        }
+      }
+      if(!empty($dt))
+      {
+        return view('kelas.kelas-rekap-nilai', compact('dt', 'mapel', 'siswa'));
+      } else 
+      {
+        return redirect()->back()->with('success', 'Data Tidak Ditemukan. ');
+      }
+
   }
   
 }

@@ -100,7 +100,10 @@
     @yield('content')
     </section>
     <!-- Jquery Core Js -->
-    <script src="{{asset('dashboard/plugins/jquery/jquery.min.js')}}"></script>
+    <!-- <script src="{{asset('dashboard/plugins/jquery/jquery.min.js')}}"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    @yield('scripts')
+    @yield('scriptski4')
     <!-- Bootstrap Core Js -->
     <script src="{{asset('dashboard/plugins/bootstrap/js/bootstrap.js')}}"></script>
     <!-- Select Plugin Js -->
@@ -122,13 +125,13 @@
     <script src="{{asset('dashboard/js/pages/widgets/infobox/infobox-5.js')}}"></script>
     <script src="{{asset('dashboard/js/pages/ui/modals.js')}}"></script>
     <script src="{{asset('dashboard/js/pages/forms/advanced-form-elements.js')}}"></script>
-     <script src="{{asset('dashboard/js/pages/ui/tooltips-popovers.js')}}"></script>
+    <script src="{{asset('dashboard/js/pages/ui/tooltips-popovers.js')}}"></script>
     <script src="{{asset('dashboard/js/pages/ui/notifications.js')}}"></script>
-        <!-- Input Mask Plugin Js -->
-        <script src="{{asset('dashboard/plugins/jquery-inputmask/jquery.inputmask.bundle.js')}}"></script>
+    <!-- Input Mask Plugin Js -->
+    <script src="{{asset('dashboard/plugins/jquery-inputmask/jquery.inputmask.bundle.js')}}"></script>
 
-        <!-- Multi Select Plugin Js -->
-        <script src="{{asset('dashboard/plugins/multi-select/js/jquery.multi-select.js')}}"></script>
+    <!-- Multi Select Plugin Js -->
+    <script src="{{asset('dashboard/plugins/multi-select/js/jquery.multi-select.js')}}"></script>
     <!-- RangeSlider Plugin Js -->
     <script src="{{asset('dashboard/plugins/ion-rangeslider/js/ion.rangeSlider.js')}}"></script>
     <!-- Dropzone Plugin Js -->
@@ -152,10 +155,10 @@
     <script src="{{asset('dashboard/plugins/jquery-datatable/extensions/export/buttons.print.min.js')}}"></script>
     <!-- Demo Js -->
     <script src="{{asset('dashboard/js/demo.js')}}"></script>
-        <!-- Custom Js -->
-        <script src="{{asset('dashboard/js/admin.js')}}"></script>
-        <script src="{{asset('dashboard/js/pages/ui/range-sliders.js')}}"></script>
-        <script src="{{asset('dashboard/js/pages/tables/jquery-datatable.js')}}"></script>
+    <!-- Custom Js -->
+    <script src="{{asset('dashboard/js/admin.js')}}"></script>
+    <script src="{{asset('dashboard/js/pages/ui/range-sliders.js')}}"></script>
+    <script src="{{asset('dashboard/js/pages/tables/jquery-datatable.js')}}"></script>
     <!-- Popper -->
     {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script> --}}
     <script>
@@ -168,8 +171,5 @@
     });
         });
     </script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-@yield('scripts')
-@yield('scriptski4')
 </body>
 </html>

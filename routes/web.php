@@ -32,10 +32,10 @@ Route::get('/halaman-utama', 'DashboardController@index')->name('halaman-utama')
 Route::group(['prefix' => 'siswa'], function(){
     Route::post('/naikkelas', 'SiswaController@naikkelas')->name('siswa.naikkelas');
     Route::get('/{idsiswa}/{idkelas}',['as'=> 'siswa.shownilai','uses'=>'SiswaController@showNilai']);
-    
+    Route::get('/{idsiswa}/{idkelas}/raportsiswa',['as' => 'raport.cetak', 'uses'=>'SiswaController@showRaport']);
 });
 
-Route::get('raportsiswa',['as' => 'raport.cetak', 'uses'=>'SiswaController@showRaport']);
+
 Route::get('/data-siswa','SiswaController@dataSiswa');
 
 Route::post('',['as' => 'prestasi-siswa.store','uses' => 'PrestasiController@prestasisiswa']);
@@ -53,12 +53,21 @@ Route::post('user/{id}',  ['as' => 'user.update', 'uses' => 'Auth\RegisterContro
 Route::delete('user/{id}',['as' => 'user.destroy', 'uses' => 'Auth\RegisterController@destroy']);
 
 //laporanroutes
-Route::get('laporan/tahunan/', ['as' => 'laporan.tahunan' ,'uses' => 'LaporanController@showTahunan']);
-Route::get('laporan/semester/', ['as' => 'laporan.semester' ,'uses' => 'LaporanController@showSemester']);
-Route::get('laporan/kelas/', ['as' => 'laporan.kelas' ,'uses' => 'LaporanController@showKelas']);
-Route::get('laporan/siswa/', ['as' => 'laporan.siswa' ,'uses' => 'LaporanController@showSiswa']);
-Route::get('laporan/guru/', ['as' => 'laporan.guru' ,'uses' => 'LaporanController@showGuru']);
-Route::get('laporan/prestasi/', ['as' => 'laporan.prestasi' ,'uses' => 'LaporanController@showPrestasi']);
+Route::group(['prefix' => 'laporan'], function(){
+    Route::get('tahunan/', ['as' => 'laporan.tahunan' ,'uses' => 'LaporanController@showTahunan']);
+    Route::get('semester/', ['as' => 'laporan.semester' ,'uses' => 'LaporanController@showSemester']);
+    Route::get('kelas/', ['as' => 'laporan.kelas' ,'uses' => 'LaporanController@showKelas']);
+    Route::get('siswa/', ['as' => 'laporan.siswa' ,'uses' => 'LaporanController@showSiswa']);
+    Route::get('guru/', ['as' => 'laporan.guru' ,'uses' => 'LaporanController@showGuru']);
+    Route::get('prestasi/', ['as' => 'laporan.prestasi' ,'uses' => 'LaporanController@showPrestasi']);
+    Route::get('tahunan/cetak', ['as' => 'cetak.tahunan' ,'uses' => 'LaporanController@cetakTahunan']);
+    Route::get('semester/cetak', ['as' => 'cetak.semester' ,'uses' => 'LaporanController@cetakSemester']);
+    Route::get('kelas/cetak', ['as' => 'cetak.kelas' ,'uses' => 'LaporanController@cetakKelas']);
+    Route::get('siswa/cetak', ['as' => 'cetak.siswa' ,'uses' => 'LaporanController@cetakSiswa']);
+    Route::get('guru/cetak', ['as' => 'cetak.guru' ,'uses' => 'LaporanController@cetakGuru']);
+    Route::get('prestasi/cetak', ['as' => 'cetak.prestasi' ,'uses' => 'LaporanController@cetakPrestasi']);
+});
+
 
 Route::group(['prefix' => 'kelas'], function(){
     Route::get('{id}/rekap', 'KelasController@rekapNilai')->name('rekap.nilai.kelas');

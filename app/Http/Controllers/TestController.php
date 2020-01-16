@@ -12,6 +12,7 @@ use App\Ekstrakulikuler;
 use App\MataPel;
 use App\NilaiSiswa;
 use App\GuruKaryawan;
+use App\NilaiKi3;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Illuminate\Support\Facades\Auth;
 use Validator;
@@ -24,23 +25,44 @@ class TestController extends Controller
      */
     public function index()
     {
-
-        if(Auth::user()->role == 'admin')
-        {
-            $prestasi = Prestasi::findOrFail(4);
-        }
-        elseif (Auth::user()->role == 'gurukelas') {
-            $guru =  GuruKaryawan::findOrFail(Auth::user()->guru->id_guru);
-            $kelas = Kelas::where('id_guru', $guru->id_guru)->pluck('id_kelas');
-            //$kelasid = $kelas->id_kelas;
-            $siswa =  Siswa::whereIn('id_kelas', $kelas)->get();
+        $dt = KelasSiswa::where('id_kelas', 8)->first();
+        if ($dt->kelas->nama_kelas == 'Kelas 1') {
+          $kelassis = 1;
         } 
-        else
-        {
-            $prestasi = Prestasi::findOrFail(3);
+        elseif ($dt->kelas->nama_kelas == 'Kelas 2') {
+          $kelassis = 2;
         }
-        $kelassiswabaru = Kelas::where('nama_kelas', 'LIKE' ,'%'.'baru'.'%')->orWhere('tahun_ajaran', date("Y"))->first();
-        return view('test-page', compact('kelassiswabaru','prestasi','kelas','siswa'));
+        elseif ($dt->kelas->nama_kelas == 'Kelas 3') {
+          $kelassis = 3;
+        }
+        elseif ($dt->kelas->nama_kelas == 'Kelas 4') {
+          $kelassis = 4;
+        }
+        elseif ($dt->kelas->nama_kelas == 'Kelas 5') {
+          $kelassis = 5;
+        }
+        elseif ($dt->kelas->nama_kelas == 'Kelas 6') {
+          $kelassis = 6;
+        }
+        else {
+          $kelassis = 0;
+        }
+        $mapel = MataPel::where('kelas', $kelassis)->get();
+        $siswa = Siswa::get();
+        foreach($siswa as $s){
+            foreach($mapel as $mp){
+              $ks = KelasSiswa::where(['id_siswa' => $s->id_siswa, 'id_kelas' => 8])->first();
+              $nilaisiswa = NilaiSiswa::where(['id_siswa' => $s->id_siswa, 'id_kelas_siswa' => $ks->id_kelas_siswa])->first();
+              $nilaiki3 = NilaiKi3::where('id_nilai_siswa', $nilaisiswa->id_nilai_siswa)->get();
+              foreach ($nilaiki3 as $kd){
+                $rtki3[] = $kd->nilai_kd;
+              }
+              $rtmapel = array_sum($rtki3)/count($rtki3);
+              $rtmapel = number_format((float)$rtmapel, 2, '.','');
+              $siswa[] = [$mp->nama_mata_pelajaran => $rtmapel];
+            }
+          }
+        return view('test-page', compact('siswa'));
     }
 
     /**

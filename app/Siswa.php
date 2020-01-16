@@ -43,4 +43,9 @@ class Siswa extends Model
     {
         return $this->hasOne('App\KenaikanKelas', 'id_naik_kelas');
     }
+    public function kelas_siswa()
+    {
+        return $this->belongsTo('App\KelasSiswa','id_siswa','id_kelas');
+    }
+    
 }

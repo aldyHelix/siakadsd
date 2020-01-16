@@ -53,7 +53,7 @@
             $noki = $kd->kompetensi_dasar->no_indikator;
         @endphp
 	<script>
-		$(document).ready(function(){
+		$(function(){
 				var {{$ki}}{{$noki}}p1lisan = $('#{{$ki}}{{$noki}}p1lisan').val();
 				var {{$ki}}{{$noki}}p1tulis = $('#{{$ki}}{{$noki}}p1tulis').val();
 				var {{$ki}}{{$noki}}p1tugas1 = $('#{{$ki}}{{$noki}}p1tugas1').val();
@@ -99,7 +99,7 @@
                 var {{$ki}}{{$noki}}nilaikd = ( parseInt({{$ki}}{{$noki}}nph) + parseInt({{$ki}}{{$noki}}npas1) + parseInt({{$ki}}{{$noki}}npas2))/3;
                 $('#{{$ki}}{{$noki}}nilaikd').val({{$ki}}{{$noki}}nilaikd);
 
-			$("input").on("keyup", function(){
+			$('input').on("keyup", function(){
 				var {{$ki}}{{$noki}}p1lisan = $('#{{$ki}}{{$noki}}p1lisan').val();
 				var {{$ki}}{{$noki}}p1tulis = $('#{{$ki}}{{$noki}}p1tulis').val();
 				var {{$ki}}{{$noki}}p1tugas1 = $('#{{$ki}}{{$noki}}p1tugas1').val();

@@ -13,7 +13,7 @@ class ProfilSekolah extends Model
 
     public function kepala_sekolah()
     {
-        return $this->belongsTo('App\GuruKaryawan', 'id_guru');
+        return $this->belongsTo('App\GuruKaryawan', 'id_kepala_sekolah');
     }
 
 }

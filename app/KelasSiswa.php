@@ -20,6 +20,10 @@ class KelasSiswa extends Model
     }
     public function nilai_siswa()
     {
-        return $this->hasOne('App\NilaiSiswa', 'id_kelas_siswa');
+        return $this->belongsTo('App\NilaiSiswa', 'id_kelas_siswa');
+    }
+    public function rekap_nilai()
+    {
+        return $this->belongsTo('App\NilaiSiswa','id_kelas_siswa', 'id_siswa');
     }
 }

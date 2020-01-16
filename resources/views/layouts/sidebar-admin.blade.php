@@ -97,22 +97,22 @@
                         </a>
                         <ul class="ml-menu">
                             <li>
-                                <a href="{{route('laporan.tahunan')}}" target="_blank">Tahunan</a>
+                                <a href="{{route('laporan.tahunan')}}">Tahunan</a>
                             </li>
                             <li>
-                                <a href="{{route('laporan.semester')}}" target="_blank">Semester</a>
+                                <a href="{{route('laporan.semester')}}">Semester</a>
                             </li>
                             <li>
-                                <a href="{{route('laporan.kelas')}}" target="_blank">Kelas</a>
+                                <a href="{{route('laporan.kelas')}}">Kelas</a>
                             </li>
                             <li>
-                                <a href="{{route('laporan.siswa')}}" target="_blank">Siswa</a>
+                                <a href="{{route('laporan.siswa')}}">Siswa</a>
                             </li>
                             <li>
-                                <a href="{{route('laporan.guru')}}" target="_blank">Guru</a>
+                                <a href="{{route('laporan.guru')}}">Guru</a>
                             </li>
                             <li>
-                                <a href="{{route('laporan.prestasi')}}" target="_blank">Prestasi</a>
+                                <a href="{{route('laporan.prestasi')}}">Prestasi</a>
                             </li>                                
                         </ul>
                 </li>
@@ -151,3 +151,4 @@
         <!-- #Footer -->
     </aside>
     <!-- #END# Left Sidebar -->
+</section>

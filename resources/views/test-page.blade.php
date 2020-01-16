@@ -12,11 +12,7 @@
 </ol>
 <!-- Hover Rows -->
 <div class="row clearfix">
-        {{Auth::user()->role}}
-        @if (Auth::user()->role == "gurukelas")
-            {{$kelas}} <br>
-                {{$siswa}}
-        @endif
+    {{dd($siswa)}}
 </div>
 <!-- #END# Hover Rows -->
 @endsection
